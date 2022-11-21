@@ -1,0 +1,18 @@
+#ifndef UTLIS_H
+#define UTLIS_H
+
+#include <QByteArray>
+#include <QString>
+
+
+
+
+class Utlis
+{
+public:
+    Utlis();
+    static QByteArray readJsonFromFile(QString &fileName);
+    
+};
+
+#endif // UTLIS_H

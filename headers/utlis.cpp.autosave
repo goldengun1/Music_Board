@@ -1,0 +1,20 @@
+#include "utlis.h"
+
+Utlis::Utlis()
+{
+    QByteArray Utils::readJsonFromFile(QString &fileName)
+    {
+        QDir dir("//resources");
+        QString path = dir.absolutePath() + fileName;
+    
+        QFile file(path);
+        QByteArray data = QByteArray("");
+        if (!file.open(QFile::ReadOnly)) {
+            qDebug() << file.errorString();
+        } else {
+            data = file.readAll();
+        }
+    
+        return data;
+    }
+}

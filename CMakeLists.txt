@@ -19,6 +19,9 @@ set(PROJECT_SOURCES
         src/mainwindow.cpp
         src/mainwindow.h
         src/mainwindow.ui
+        headers/utlis.cpp
+        headers/utlis.h
+        src/teme/Darkeum.qss
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
