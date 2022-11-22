@@ -19,8 +19,7 @@ SoundPlayer::Play(const sid index)
 
     if(sound.has_value())
     {
-        sound->get()->Play();
-        played = true;
+        played = sound->get()->Play();
     }
 
     return played;
