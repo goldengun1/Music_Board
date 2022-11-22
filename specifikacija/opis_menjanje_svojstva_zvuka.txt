@@ -1,0 +1,33 @@
+* Kratak opis: Korisnik bira dugme sa table. Prikazuju mu se svojstva zvuka.
+Korisnik pravi izmene svojstva nakon čega aplikacija čuva te izmene.
+
+* Akteri: 
+	- Korisnik
+
+* Preduslovi: Aplikacija je pokrenuta. Aplikacija je u edit modu.
+
+* Postuslovi: Aplikacija je sačuvala sve izmene svojstava.
+
+* Osnovni tok:
+1. Sve dok korisnik ne pritisne dugme za izlazak iz edit moda, ponavljaju se koraci:
+	1.1. Korisnik pritiska dugme zvuka koje želi da izmeni.
+		1.1.1. Ako je korisnik pritisnuo dugme na koje je već mapiran zvuk:
+			1.1.1.1. Aplikacija prikazuje odeljak za menjanje svojstva zvuka mapiranog 
+				   na pritisnuto dugme na ekranu.
+			1.1.1.2. Sve dok korisnik ne pritisne neko drugo dugme, ponavljaju se koraci:
+				1.1.1.2.1. Korisnik pravi izmenu svojstva.
+				1.1.1.2.2. Aplikacija čuva izmenu.
+		1.1.2. Ako je korisnik pritisnuo dugme na koje nije mapiran zvuk:
+			1.1.2.1. Ako je odeljak za menjanje svojstva zvuka već prikazan, 
+				   aplikacija ga sklanja sa ekrana.
+2. Po izlasku iz edit moda, aplikacija sakriva odeljak za menjanje svojstva zvuka sa ekrana.
+
+* Alternativni tokovi:
+- A1: Neočekivani izlaz iz aplikacije. Ukoliko u bilo kojem koraku korisnik isključi aplikaciju,
+sve eventualno zapamćene informacije se poništavaju i aplikacija završava rad. Slučaj upotrebe se završava.
+
+* Podtokovi: /
+
+* Specijalni zahtevi: /
+
+* Dodatne informacije: /

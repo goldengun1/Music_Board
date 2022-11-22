@@ -25,6 +25,9 @@ set(PROJECT_SOURCES
         src/soundbank.h
         src/sound.h
         src/sound.cpp
+        headers/utlis.cpp
+        headers/utlis.h
+        src/teme/Darkeum.qss
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
