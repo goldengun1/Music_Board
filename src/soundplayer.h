@@ -5,6 +5,9 @@
 #include <optional>
 #include "soundbank.h"
 
+///
+/// Using the given SoundBank, play sounds.
+///
 class SoundPlayer
 {
     std::shared_ptr<SoundBank> bank;

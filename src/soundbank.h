@@ -8,6 +8,11 @@
 // Sound identifier type.
 typedef uint32_t sid;
 
+///
+/// Manage Sound objects.
+/// Assign a Sound to an id (Assign function) and retrive it later (Assigned function).
+/// Unassigned id points to nullptr and Assigned() returns std::optional with no value.
+///
 class SoundBank
 {
     std::map<sid, std::shared_ptr<Sound>> sound;
