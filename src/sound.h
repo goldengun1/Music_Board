@@ -7,7 +7,6 @@ class Sound
 {
     QSoundEffect effect;
     const QUrl source;
-    bool playing;
 
 public:
     Sound(const QUrl &source);

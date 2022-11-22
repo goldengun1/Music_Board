@@ -2,8 +2,7 @@
 #include "sound.h"
 
 Sound::Sound(const QUrl &source)
-    :source(source),
-      playing(false)
+    :source(source)
 {
     qDebug() << "Create sound" << source;
     effect.setSource(source);
@@ -18,27 +17,23 @@ Sound::~Sound(void)
 bool
 Sound::Play(void)
 {
-    bool wasplaying = playing;
-
-    if (!playing)
+    if (!effect.isPlaying())
     {
-        playing = true;
         effect.play();
+        return true;
     }
 
-    return !wasplaying;
+    return false;
 }
 
 bool
 Sound::Stop(void)
 {
-    bool wasstopped = !playing;
-
-    if (!wasstopped)
+    if (effect.isPlaying())
     {
-        playing = false;
         effect.stop();
+        return true;
     }
 
-    return wasstopped;
+    return false;
 }
