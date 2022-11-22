@@ -11,14 +11,20 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Multimedia)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Multimedia)
 
 set(PROJECT_SOURCES
         src/main.cpp
         src/mainwindow.cpp
         src/mainwindow.h
         src/mainwindow.ui
+        src/soundplayer.cpp
+        src/soundplayer.h
+        src/soundbank.cpp
+        src/soundbank.h
+        src/sound.h
+        src/sound.cpp
         headers/utlis.cpp
         headers/utlis.h
         src/teme/Darkeum.qss
@@ -47,7 +53,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(05-muzicka-tabla PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(05-muzicka-tabla PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Multimedia)
 
 set_target_properties(05-muzicka-tabla PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
