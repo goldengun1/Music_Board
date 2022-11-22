@@ -23,6 +23,8 @@ set(PROJECT_SOURCES
         src/soundplayer.h
         src/soundbank.cpp
         src/soundbank.h
+        src/sound.h
+        src/sound.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

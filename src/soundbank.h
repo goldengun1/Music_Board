@@ -3,26 +3,10 @@
 #include <map>
 #include <memory>
 #include <optional>
-#include <QSoundEffect>
+#include "sound.h"
 
 // Sound identifier type.
 typedef uint32_t sid;
-
-class Sound
-{
-    QSoundEffect effect;
-    const QUrl source;
-    bool playing;
-
-public:
-    Sound(const QUrl &source);
-    ~Sound(void);
-
-    bool Play(void);
-    bool Stop(void);
-
-    QUrl Source(void) const { return source; }
-};
 
 class SoundBank
 {
