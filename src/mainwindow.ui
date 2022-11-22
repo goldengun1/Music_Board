@@ -229,13 +229,35 @@ border-radius:15px</string>
           </sizepolicy>
          </property>
          <property name="mouseTracking">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ffffff , stop:1 #ccffe6 );
+          <string notr="true">QPushButton{
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ffffff , stop:1 #ccffe6 );
 border:1px solid white ;
-border-radius:15px
-</string>
+font: 50px;
+border-radius:15px;
+font: 900 50pt &quot;Segoe UI Black&quot;;
+color: #4969ff;
+}
+
+QPushButton::hover{
+border-color: #4969ff;
+border-width: 3px;
+}
+
+
+QPushButton::pressed
+{
+    background-color: #4969ff;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 3px;
+
+    border-color: #051a39;
+
+
+}</string>
          </property>
          <property name="text">
           <string>Q</string>
