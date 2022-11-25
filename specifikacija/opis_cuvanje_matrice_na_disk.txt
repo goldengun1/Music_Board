@@ -1,0 +1,34 @@
+* Kratak opis: Cuvanje snimljene matrice na disk.
+
+
+* Akteri: 
+    - Korisnik
+
+* Preduslovi: 
+	- Aplikacija je pokrenuta.
+	- Posoji prethodno sminljana matrica.
+
+* Postuslovi: 
+	- Datoteka je snimljena na disk.
+
+* Osnovni tok:
+1. Korisnik pritiska dugme za cuvanje snimljenog zapisa.
+2. Aplikacija otvara Windows dijalog za cuvanje datoteka.
+3. Preko prozora, korisnik bira lokaciju za cuvanje datoteke.
+4. Korisnik bira ime za datoteku koja ce biti sacuvana.
+5. Korisnik potvrdjuje ili ponistava izbor
+	5.1 Ukoliko korisnik ponisti izbor
+		5.1.1 Aplikacija zatvara Windows dijalog i vraca se na glavni prozor.
+	5.2 Ukoliko korisnik potvrdi izbor
+		5.2.1 Aplikacija cuva snimljenu datoteku na izabranu lokaciju sa izabranim imenom.
+		5.2.2 Aplikacija zatvara Windows dijalog i vraca se na glavni prozor.
+
+
+* Alternativni tokovi:
+- A1: Neocekivan izlaz iz aplikacije. Ukoliko se aplikacija naglo iskljuci, prestaje reprodukcija.
+
+* Podtokovi: /
+
+* Specijalni zahtevi: Racunar ima dovoljno skladisne memorije za cuvanje datoteke.
+
+* Dodatne informacije: /
