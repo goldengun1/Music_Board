@@ -1,0 +1,35 @@
+* Kratak opis: Korisnik mapira zvuk na taster.
+Korisnik bira zvuk koji ce biti zabelezen i povezan za taster u aplikaciji.
+
+* Akteri: 
+	- Korisnik
+
+* Preduslovi: Aplikacija je pokrenuta.
+
+* Postuslovi: Zvuk je povezan za odabran taster.
+
+* Osnovni tok:
+1. Korisnik pritisne desni taster misa na jedan od tastera na grafickom interfejsu
+2. Aplikacija otvara Windows dijalog za otvaranje datoteka
+3. Uz pomoc otvorenog prozora, korisnik pretrazuje datoteke na disku
+4. Korisnik odabere jednu datoteku
+5. Korisnik pritisne Open na prozoru za biranje datoteke
+6. Aplikacija zatvara prozor za biranje datoteke
+7. Aplikacija proverava validnost izabrane datoteke
+	7.1 Ukoliko izabrana datoteka ima ekstenziju .wav
+		7.1.1 Aplikacija ucitava datoteku u memoriju
+		7.1.2 Aplikacija pamti da je ucitan zvuk vezan za odabran taster na grafickom interfejsu, slucaj upotrebe se zavrsava.
+	7.2 Ukoliko izabrana datoteka nema ekstenziju .wav
+		7.2.1 Aplikacija prikazuje prozor sa porukom o gresci
+		7.2.2 Korisnik zatvara poruku
+		7.2.3 Aplikacija ne menja stanje, slucaj upotrebe se zavrsava.
+
+* Alternativni tokovi:
+- A1: Korisnik odustaje od biranja datoteke. Stanje tastera se ne menja i stanje aplikacije ostaje neizmenjen. Slucaj upotrebe se zavrsava.
+- A2: Neocekivan izlaz iz aplikacije. Ukoliko se aplikacija na bilo koji nacin naglo iskljuci, sve potencijalno zapamcene informacije o trenutnom stanju aplikacije se brisu i aplikacija zavrsava rad. Slucaj upotrebe se zavrsava.
+
+* Podtokovi: /
+
+* Specijalni zahtevi: Racunar ima dovoljno radne memorije za ucitavanje cele datoteke.
+
+* Dodatne informacije: /
