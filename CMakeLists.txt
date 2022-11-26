@@ -30,6 +30,8 @@ set(PROJECT_SOURCES
         src/teme/Darkeum.qss
         src/soundbutton.h
         src/soundbutton.cpp
+        src/recorder.h
+        src/recorder.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
