@@ -480,7 +480,7 @@ border-radius:15px</string>
   <customwidget>
    <class>SoundButton</class>
    <extends>QPushButton</extends>
-   <header>soundbutton.h</header>
+   <header>src/soundbutton.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
