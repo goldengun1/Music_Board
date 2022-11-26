@@ -19,11 +19,7 @@ SoundPlayer::Play(const sid index)
 
     if(sound.has_value())
     {
-        qDebug() << "sound has value";
         played = sound->get()->Play();
-
-    }else{
-        qDebug() << "sound has no value";
     }
 
     return played;

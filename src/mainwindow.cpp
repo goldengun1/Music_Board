@@ -26,10 +26,9 @@ void MainWindow::openFileDialog(SoundButton *button)
 void MainWindow::playSound()
 {
     auto button = qobject_cast<SoundButton *>(sender());
-    qDebug() << "playSound";
     if(!player->Play(button->id)){
        //TODO
-        qDebug() << "play fail";
+       qDebug() << "play fail";
     }
 }
 
