@@ -28,6 +28,8 @@ set(PROJECT_SOURCES
         headers/utlis.cpp
         headers/utlis.h
         src/teme/Darkeum.qss
+        src/soundbutton.h
+        src/soundbutton.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
