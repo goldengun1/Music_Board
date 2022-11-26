@@ -1,0 +1,27 @@
+* Kratak opis: Korisnik brise zvuk sa tastera.
+Korisnik brise zvuk koji je bio mapiran za taster u aplikaciji.
+
+* Akteri: 
+	- Korisnik
+
+* Preduslovi: Aplikacija je pokrenuta.
+
+* Postuslovi: Odabran taster vise ne proizvodi zvuk.
+
+* Osnovni tok:
+1. Korisnik pritisne srednji taster misa na jedan od tastera na grafickom interfejsu
+2. Aplikacija otvara Windows dijalog za potvrdjivanje brisanja zvuka sa tastera
+3. Aplikacija zatvara Windows dijalog
+	3.1 Ukoliko je korisnik odgovori potvrdno
+		3.1.1 Zvuk sa tastera se brise, slucaj upotrebe se zavrsava
+	3.2 Ukoliko je korisnik odgovori odricno
+		3.2.1 Zvuk sa tastera se ne brise, slucaj upotrebe se zavrsava
+
+* Alternativni tokovi:
+- A1: Neocekivan izlaz iz aplikacije. Ukoliko se aplikacija na bilo koji nacin naglo iskljuci, sve potencijalno zapamcene informacije o trenutnom stanju aplikacije se brisu i aplikacija zavrsava rad. Slucaj upotrebe se zavrsava.
+
+* Podtokovi: /
+
+* Specijalni zahtevi: /
+
+* Dodatne informacije: /
