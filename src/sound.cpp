@@ -1,8 +1,8 @@
 #include <QDebug>
 #include "sound.h"
 
-Sound::Sound(const QUrl &source)
-    :source(source)
+Sound::Sound(const QUrl &source):
+    source(source)
 {
     qDebug() << "Create sound" << source;
     effect.setSource(source);

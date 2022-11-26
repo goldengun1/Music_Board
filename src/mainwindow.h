@@ -2,7 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QWidget>
-#include <iostream>
+#include <QFileDialog>
+#include <QDebug>
+#include "soundplayer.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -20,9 +22,14 @@ public:
     ~MainWindow();
 
 private slots:
-    void onRightClicked(SoundButton *button);
+    void openFileDialog(SoundButton *button);
+    void playSound();
 
 private:
     Ui::MainWindow *ui;
+    std::unique_ptr<SoundPlayer> player;
+    std::shared_ptr<SoundBank> bank;
+
+    void initButtons();
 };
 #endif // MAINWINDOW_H
