@@ -17,13 +17,8 @@ Sound::~Sound(void)
 bool
 Sound::Play(void)
 {
-    if (!effect.isPlaying())
-    {
-        effect.play();
-        return true;
-    }
-
-    return false;
+    effect.play();
+    return true;
 }
 
 bool
