@@ -18,9 +18,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::openFileDialog(SoundButton *button)
 {
+    QUrl qUrl = QUrl("/");
+    qUrl.setScheme("file");
     auto url = QFileDialog::getOpenFileUrl(this,
-        tr("Open audio file"), QUrl("/"), tr("Audio files (*.wav)"));
-    bank.get()->Assign(button->id, url);
+        tr("Open audio file"), qUrl, tr("Audio files (*.wav)"));
+    if(!url.isEmpty()){
+        bank.get()->Assign(button->id, url);
+    }
 }
 
 void MainWindow::playSound()
