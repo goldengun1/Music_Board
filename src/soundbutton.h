@@ -9,9 +9,10 @@ class SoundButton : public QPushButton
     Q_OBJECT
 public:
     SoundButton(QWidget *parent = 0);
+    uint32_t id;
 
 private slots:
-    void mousePressEvent(QMouseEvent *e);
+    void mouseReleaseEvent(QMouseEvent *e);
 
 signals:
     void rightClicked(SoundButton *button);

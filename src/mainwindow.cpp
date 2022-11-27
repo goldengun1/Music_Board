@@ -4,24 +4,11 @@
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MainWindow)
+    , bank(std::make_shared<SoundBank>(SoundBank()))
 {
     ui->setupUi(this);
-
-    connect(ui->pbQ, &SoundButton::rightClicked, this, &MainWindow::onRightClicked);
-    connect(ui->pbW, &SoundButton::rightClicked, this, &MainWindow::onRightClicked);
-    connect(ui->pbE, &SoundButton::rightClicked, this, &MainWindow::onRightClicked);
-    connect(ui->pbR, &SoundButton::rightClicked, this, &MainWindow::onRightClicked);
-
-    connect(ui->pbA, &SoundButton::rightClicked, this, &MainWindow::onRightClicked);
-    connect(ui->pbS, &SoundButton::rightClicked, this, &MainWindow::onRightClicked);
-    connect(ui->pbD, &SoundButton::rightClicked, this, &MainWindow::onRightClicked);
-    connect(ui->pbF, &SoundButton::rightClicked, this, &MainWindow::onRightClicked);
-
-    connect(ui->pbZ, &SoundButton::rightClicked, this, &MainWindow::onRightClicked);
-    connect(ui->pbX, &SoundButton::rightClicked, this, &MainWindow::onRightClicked);
-    connect(ui->pbC, &SoundButton::rightClicked, this, &MainWindow::onRightClicked);
-    connect(ui->pbV, &SoundButton::rightClicked, this, &MainWindow::onRightClicked);
-
+    player = std::make_unique<SoundPlayer>(SoundPlayer(bank));
+    initButtons();
 }
 
 MainWindow::~MainWindow()
@@ -29,7 +16,70 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::onRightClicked(SoundButton *button)
+void MainWindow::openFileDialog(SoundButton *button)
 {
-    std::cout << "User right clicked " + button->text().toStdString() << std::endl;
+    QUrl qUrl = QUrl("/");
+    qUrl.setScheme("file");
+    auto url = QFileDialog::getOpenFileUrl(this,
+        tr("Open audio file"), qUrl, tr("Audio files (*.wav)"));
+    if(!url.isEmpty()){
+        bank.get()->Assign(button->id, url);
+    }
+}
+
+void MainWindow::playSound()
+{
+    auto button = qobject_cast<SoundButton *>(sender());
+    if(!player->Play(button->id)){
+       //TODO
+       qDebug() << "play fail";
+    }
+}
+
+void MainWindow::initButtons()
+{
+    ui->pbQ->id = 0;
+    ui->pbW->id = 1;
+    ui->pbE->id = 2;
+    ui->pbR->id = 3;
+
+    ui->pbA->id = 4;
+    ui->pbS->id = 5;
+    ui->pbW->id = 6;
+    ui->pbD->id = 7;
+
+    ui->pbZ->id = 8;
+    ui->pbX->id = 9;
+    ui->pbC->id = 10;
+    ui->pbV->id = 11;
+
+    connect(ui->pbQ, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
+    connect(ui->pbW, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
+    connect(ui->pbE, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
+    connect(ui->pbR, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
+
+    connect(ui->pbA, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
+    connect(ui->pbS, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
+    connect(ui->pbD, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
+    connect(ui->pbF, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
+
+    connect(ui->pbZ, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
+    connect(ui->pbX, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
+    connect(ui->pbC, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
+    connect(ui->pbV, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
+
+    connect(ui->pbQ, &SoundButton::clicked, this, &MainWindow::playSound);
+    connect(ui->pbW, &SoundButton::clicked, this, &MainWindow::playSound);
+    connect(ui->pbE, &SoundButton::clicked, this, &MainWindow::playSound);
+    connect(ui->pbR, &SoundButton::clicked, this, &MainWindow::playSound);
+
+    connect(ui->pbA, &SoundButton::clicked, this, &MainWindow::playSound);
+    connect(ui->pbS, &SoundButton::clicked, this, &MainWindow::playSound);
+    connect(ui->pbD, &SoundButton::clicked, this, &MainWindow::playSound);
+    connect(ui->pbF, &SoundButton::clicked, this, &MainWindow::playSound);
+
+    connect(ui->pbZ, &SoundButton::clicked, this, &MainWindow::playSound);
+    connect(ui->pbX, &SoundButton::clicked, this, &MainWindow::playSound);
+    connect(ui->pbC, &SoundButton::clicked, this, &MainWindow::playSound);
+    connect(ui->pbV, &SoundButton::clicked, this, &MainWindow::playSound);
 }

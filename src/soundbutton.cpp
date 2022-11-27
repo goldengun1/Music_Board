@@ -5,8 +5,9 @@ SoundButton::SoundButton(QWidget *parent):
 {
 }
 
-void SoundButton::mousePressEvent(QMouseEvent *e)
+void SoundButton::mouseReleaseEvent(QMouseEvent *e)
 {
+    QPushButton::mouseReleaseEvent(e);
     if(e->button()==Qt::RightButton)
         emit rightClicked(this);
 }
