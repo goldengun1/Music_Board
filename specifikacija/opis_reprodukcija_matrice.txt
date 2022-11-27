@@ -1,0 +1,32 @@
+* Kratak opis: Reporoukcija snimljene matrice.
+
+
+* Akteri: 
+    - Korisnik
+
+* Preduslovi: 
+	- Aplikacija je pokrenuta.
+	- Posoji prethodno sminljana matrica.
+
+* Postuslovi: 
+	- Zvuk matrice je reprodukovan na audio uredjaju.
+
+* Osnovni tok:
+1. Korisnik pritiskom na plej dugme na grafickom interfejsu aplkacije zapocinje reprodukciju.
+2. Aplikacija reprodukuje zvuk na audio uredjaj.
+3. Ukoliko korisnik pritisne dugme za pauzu
+	3.1 Aplikacija prekida reprodukciju u zabelezenom vremenu kada se desila pauza.
+	3.2 Korisnik ponovnim pritiskom na taster plej nastavlja reprodukciju matrice.
+4. Ukoliko korisnik pritisne dugme za stop
+	4.1 Aplikacija zaustavlja reprodukciju, i vraca vreme reprodukcije na pocetak.
+5. Ukoliko se matrica reprodukovala u celosti
+	5.5 Aplikacija vraca vreme reprodukcije na pocetak.
+
+* Alternativni tokovi:
+- A1: Neocekivan izlaz iz aplikacije. Ukoliko se aplikacija naglo iskljuci, prestaje reprodukcija.
+
+* Podtokovi: /
+
+* Specijalni zahtevi: Racunar ima izlazne audio uredjaje.
+
+* Dodatne informacije: /
