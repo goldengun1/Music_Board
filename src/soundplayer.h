@@ -3,7 +3,6 @@
 #include <vector>
 #include <memory>
 #include <optional>
-#include <QDebug>
 #include "soundbank.h"
 
 ///

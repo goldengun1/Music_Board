@@ -1,7 +1,7 @@
 #include "soundplayer.h"
 
-SoundPlayer::SoundPlayer(std::shared_ptr<SoundBank> bank):
-    bank(bank)
+SoundPlayer::SoundPlayer(std::shared_ptr<SoundBank> bank)
+    :bank(bank)
 {
 
 }

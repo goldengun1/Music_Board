@@ -10,7 +10,6 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QTextStream>
-#include <QDebug>
 
 
 
