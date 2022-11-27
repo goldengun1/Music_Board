@@ -3,7 +3,7 @@
 void
 Recorder::Start(void)
 {
-    matrix.clear();
+    matrix.Clear();
     stopwatch.restart();
     last = 0;
 }
@@ -11,11 +11,11 @@ Recorder::Start(void)
 uint64_t
 Recorder::Mark(sid sound)
 {
-    return matrix.emplace_back((last = stopwatch.elapsed()), sound).first;
+    return (last = matrix.Append(stopwatch.elapsed(), sound));
 }
 
-std::pair<uint64_t, matrix_t>
+Matrix
 Recorder::Stop(void)
 {
-    return std::make_pair(last, matrix);
+    return matrix;
 }

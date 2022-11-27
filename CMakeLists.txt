@@ -32,6 +32,8 @@ set(PROJECT_SOURCES
         src/soundbutton.cpp
         src/recorder.h
         src/recorder.cpp
+        src/matrix.cpp
+        src/matrix.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
