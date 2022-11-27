@@ -14,8 +14,8 @@ Recorder::Mark(sid sound)
     return (last = matrix.Append(stopwatch.elapsed(), sound));
 }
 
-Matrix
+std::pair<uint64_t, Matrix>
 Recorder::Stop(void)
 {
-    return matrix;
+    return { last, matrix };
 }

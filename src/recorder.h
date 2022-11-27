@@ -18,6 +18,7 @@ class Recorder
 public:
     void     Start(void); // Restart stopwatch and start (internally) counting time passed.
     uint64_t Mark(sid);   // New mark with current stopwatch time and given sound id. Return current time.
+
     [[nodiscard("RECORDED MATRIX IS NOT USED")]]
-    Matrix   Stop(void);  // Return last mark's time and entire recorded matrix.
+    std::pair<uint64_t, Matrix> Stop(void); // Return last mark's time and recorded matrix.
 };
