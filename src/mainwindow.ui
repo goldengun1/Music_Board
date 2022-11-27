@@ -65,9 +65,34 @@
           </sizepolicy>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #b3ffda , stop:1 #80ffbf);
+          <string notr="true">
+
+QPushButton{
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #b3ffda , stop:1 #80ffbf);
 border:1px solid white ;
-border-radius:15px</string>
+font: 50px;
+border-radius:15px;
+font: 900 50pt &quot;Segoe UI Black&quot;;
+color: #4969ff;
+}
+
+QPushButton::hover{
+border-color: #4969ff;
+border-width: 3px;
+}
+
+
+QPushButton::pressed
+{
+    background-color: #4969ff;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 3px;
+
+    border-color: #051a39;
+
+
+}</string>
          </property>
          <property name="text">
           <string>E</string>
@@ -83,9 +108,33 @@ border-radius:15px</string>
           </sizepolicy>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ffffff , stop:1 #cceeff);
+          <string notr="true">
+QPushButton{
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ffffff , stop:1 #cceeff);
 border:1px solid white ;
-border-radius:15px</string>
+font: 50px;
+border-radius:15px;
+font: 900 50pt &quot;Segoe UI Black&quot;;
+color: #4969ff;
+}
+
+QPushButton::hover{
+border-color: #4969ff;
+border-width: 3px;
+}
+
+
+QPushButton::pressed
+{
+    background-color: #4969ff;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 3px;
+
+    border-color: #051a39;
+
+
+}</string>
          </property>
          <property name="text">
           <string>Z</string>
@@ -101,9 +150,34 @@ border-radius:15px</string>
           </sizepolicy>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #66ccff , stop:1 #33bbff);
+          <string notr="true">
+
+QPushButton{
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #66ccff , stop:1 #33bbff);
 border:1px solid white ;
-border-radius:15px</string>
+font: 50px;
+border-radius:15px;
+font: 900 50pt &quot;Segoe UI Black&quot;;
+color: #4969ff;
+}
+
+QPushButton::hover{
+border-color: #4969ff;
+border-width: 3px;
+}
+
+
+QPushButton::pressed
+{
+    background-color: #4969ff;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 3px;
+
+    border-color: #051a39;
+
+
+}</string>
          </property>
          <property name="text">
           <string>V</string>
@@ -129,9 +203,33 @@ border-radius:15px</string>
           </sizepolicy>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #cceeff , stop:1 #99ddff);
+          <string notr="true">
+QPushButton{
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #cceeff , stop:1 #99ddff);
 border:1px solid white ;
-border-radius:15px</string>
+font: 50px;
+border-radius:15px;
+font: 900 50pt &quot;Segoe UI Black&quot;;
+color: #4969ff;
+}
+
+QPushButton::hover{
+border-color: #4969ff;
+border-width: 3px;
+}
+
+
+QPushButton::pressed
+{
+    background-color: #4969ff;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 3px;
+
+    border-color: #051a39;
+
+
+}</string>
          </property>
          <property name="text">
           <string>X</string>
@@ -147,9 +245,33 @@ border-radius:15px</string>
           </sizepolicy>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #99ffff , stop:1 #66ffff);
+          <string notr="true">
+QPushButton{
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #99ffff , stop:1 #66ffff);
 border:1px solid white ;
-border-radius:15px</string>
+font: 50px;
+border-radius:15px;
+font: 900 50pt &quot;Segoe UI Black&quot;;
+color: #4969ff;
+}
+
+QPushButton::hover{
+border-color: #4969ff;
+border-width: 3px;
+}
+
+
+QPushButton::pressed
+{
+    background-color: #4969ff;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 3px;
+
+    border-color: #051a39;
+
+
+}</string>
          </property>
          <property name="text">
           <string>D</string>
@@ -165,9 +287,34 @@ border-radius:15px</string>
           </sizepolicy>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ccffff , stop:1 #99ffff);
+          <string notr="true">
+
+QPushButton{
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ccffff , stop:1 #99ffff);
 border:1px solid white ;
-border-radius:15px</string>
+font: 50px;
+border-radius:15px;
+font: 900 50pt &quot;Segoe UI Black&quot;;
+color: #4969ff;
+}
+
+QPushButton::hover{
+border-color: #4969ff;
+border-width: 3px;
+}
+
+
+QPushButton::pressed
+{
+    background-color: #4969ff;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 3px;
+
+    border-color: #051a39;
+
+
+}</string>
          </property>
          <property name="text">
           <string>S</string>
@@ -183,9 +330,34 @@ border-radius:15px</string>
           </sizepolicy>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ccffe6 , stop:1 #b3ffd9 );
+          <string notr="true">
+
+QPushButton{
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ccffe6 , stop:1 #b3ffd9 );
 border:1px solid white ;
-border-radius:15px</string>
+font: 50px;
+border-radius:15px;
+font: 900 50pt &quot;Segoe UI Black&quot;;
+color: #4969ff;
+}
+
+QPushButton::hover{
+border-color: #4969ff;
+border-width: 3px;
+}
+
+
+QPushButton::pressed
+{
+    background-color: #4969ff;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 3px;
+
+    border-color: #051a39;
+
+
+}</string>
          </property>
          <property name="text">
           <string>W</string>
@@ -211,9 +383,35 @@ border-radius:15px</string>
           </sizepolicy>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ffffff , stop:1 #ccffff);
+          <string notr="true">
+
+QPushButton{
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ffffff , stop:1 #ccffff);
 border:1px solid white ;
-border-radius:15px</string>
+font: 50px;
+border-radius:15px;
+font: 900 50pt &quot;Segoe UI Black&quot;;
+color: #4969ff;
+
+}
+
+QPushButton::hover{
+border-color: #4969ff;
+border-width: 3px;
+}
+
+
+QPushButton::pressed
+{
+    background-color: #4969ff;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 3px;
+
+    border-color: #051a39;
+
+
+}</string>
          </property>
          <property name="text">
           <string>A</string>
@@ -283,9 +481,34 @@ QPushButton::pressed
           </sizepolicy>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #80ffbf , stop:1 #4dffa6);
+          <string notr="true">
+
+QPushButton{
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #80ffbf , stop:1 #4dffa6);
 border:1px solid white ;
-border-radius:15px</string>
+font: 50px;
+border-radius:15px;
+font: 900 50pt &quot;Segoe UI Black&quot;;
+color: #4969ff;
+}
+
+QPushButton::hover{
+border-color: #4969ff;
+border-width: 3px;
+}
+
+
+QPushButton::pressed
+{
+    background-color: #4969ff;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 3px;
+
+    border-color: #051a39;
+
+
+}</string>
          </property>
          <property name="text">
           <string>R</string>
@@ -301,9 +524,33 @@ border-radius:15px</string>
           </sizepolicy>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #99ddff , stop:1 #66ccff);
+          <string notr="true">
+QPushButton{
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #99ddff , stop:1 #66ccff);
 border:1px solid white ;
-border-radius:15px</string>
+font: 50px;
+border-radius:15px;
+font: 900 50pt &quot;Segoe UI Black&quot;;
+color: #4969ff;
+}
+
+QPushButton::hover{
+border-color: #4969ff;
+border-width: 3px;
+}
+
+
+QPushButton::pressed
+{
+    background-color: #4969ff;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 3px;
+
+    border-color: #051a39;
+
+
+}</string>
          </property>
          <property name="text">
           <string>C</string>
@@ -319,9 +566,33 @@ border-radius:15px</string>
           </sizepolicy>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #66ffff , stop:1 #33ffff);
+          <string notr="true">
+
+QPushButton{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #66ffff , stop:1 #33ffff);
 border:1px solid white ;
-border-radius:15px</string>
+font: 50px;
+border-radius:15px;
+font: 900 50pt &quot;Segoe UI Black&quot;;
+color: #4969ff;
+}
+
+QPushButton::hover{
+border-color: #4969ff;
+border-width: 3px;
+}
+
+
+QPushButton::pressed
+{
+    background-color: #4969ff;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 3px;
+
+    border-color: #051a39;
+
+
+}</string>
          </property>
          <property name="text">
           <string>F</string>
