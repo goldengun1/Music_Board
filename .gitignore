@@ -1,3 +1,11 @@
+# Cmake
 /CMakeLists.txt.user
 /.vs
 /out/build/x64-Debug
+/cmake-build-debug
+
+# Mac OS
+.DS_Store
+
+# Jetbrains
+/.idea
