@@ -1,8 +1,9 @@
 #include "mainwindow.h"
 #include "headers/utlis.h"
 #include <QApplication>
-#include<QFile>
+#include <QFile>
 #include<QVector>
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
