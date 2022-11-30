@@ -34,6 +34,7 @@ set(PROJECT_SOURCES
         src/recorder.cpp
         src/matrix.cpp
         src/matrix.h
+        src/resursi/
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
