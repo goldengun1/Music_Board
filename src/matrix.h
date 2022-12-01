@@ -9,6 +9,8 @@ struct Matrix
     const QString FILE_EXT = ".matrix";
     std::vector<std::pair<uint32_t, sid>> timeline;
 
+    Matrix &operator=(Matrix other) { timeline = other.timeline; return *this; }
+
     void            Clear(void);
     uint32_t        Append(std::pair<uint32_t, sid>);
     uint32_t        Append(uint32_t, sid);
