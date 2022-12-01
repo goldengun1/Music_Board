@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+#include <headers/utlis.h>
+
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MainWindow)
@@ -34,6 +36,22 @@ void MainWindow::playSound()
        //TODO
        qDebug() << "play fail";
     }
+}
+
+void MainWindow::on_verticalSlider_valueChanged(int value)
+{
+    ui->lcdVolDisplay->display(value);
+}
+
+
+void MainWindow::on_radioTheme2_clicked()
+{
+    //prebaciti na drugu temu
+}
+
+void MainWindow::on_radioTheme1_clicked()
+{
+    //staviti main temu
 }
 
 void MainWindow::initButtons()
@@ -83,3 +101,7 @@ void MainWindow::initButtons()
     connect(ui->pbC, &SoundButton::clicked, this, &MainWindow::playSound);
     connect(ui->pbV, &SoundButton::clicked, this, &MainWindow::playSound);
 }
+
+
+
+

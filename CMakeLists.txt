@@ -27,7 +27,6 @@ set(PROJECT_SOURCES
         src/sound.cpp
         headers/utlis.cpp
         headers/utlis.h
-        src/teme/Darkeum.qss
         src/soundbutton.h
         src/soundbutton.cpp
         src/recorder.h
@@ -35,6 +34,7 @@ set(PROJECT_SOURCES
         src/matrix.cpp
         src/matrix.h
         src/resursi/
+        src/teme/
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

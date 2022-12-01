@@ -25,6 +25,12 @@ private slots:
     void openFileDialog(SoundButton *button);
     void playSound();
 
+    void on_verticalSlider_valueChanged(int value);
+
+    void on_radioTheme2_clicked();
+    void on_radioTheme1_clicked();
+
+
 private:
     Ui::MainWindow *ui;
     std::unique_ptr<SoundPlayer> player;
