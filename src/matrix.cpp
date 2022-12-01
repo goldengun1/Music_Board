@@ -5,7 +5,7 @@
 void
 Matrix::Clear(void)
 {
-    timeline.clear();
+    timeline = std::priority_queue<mark_t, std::vector<mark_t>, std::greater<mark_t>>();
 }
 
 uint32_t
@@ -17,7 +17,7 @@ Matrix::Append(std::pair<uint32_t, sid> mark)
 uint32_t
 Matrix::Append(uint32_t marktime, sid marksound)
 {
-    return timeline.emplace_back(marktime, marksound).first;
+    return timeline.emplace(marktime, marksound), marktime;
 }
 
 void Matrix::Export(const QString & path)
@@ -32,8 +32,13 @@ void Matrix::Export(const QString & path)
 
     QTextStream out(&file);
 
-    for (auto &pair : timeline) {
-        out << pair.first << ' ' << pair.second << '\n';
+    std::priority_queue<mark_t, std::vector<mark_t>, std::greater<mark_t>> buffer(timeline);
+    while (!buffer.empty())
+    {
+       std::pair<uint32_t, sid> pair = buffer.top();
+
+       out << pair.first << ' ' << pair.second << '\n';
+       buffer.pop();
     }
 
     file.close();

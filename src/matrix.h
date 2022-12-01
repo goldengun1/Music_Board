@@ -1,13 +1,15 @@
 #pragma once
 
-#include <vector>
+#include <queue>
 #include <QString>
 #include "soundbank.h" // For "sid" type.
+
+using mark_t = std::pair<uint32_t, sid>;
 
 struct Matrix
 {
     const QString FILE_EXT = ".matrix";
-    std::vector<std::pair<uint32_t, sid>> timeline;
+    std::priority_queue<mark_t, std::vector<mark_t>, std::greater<mark_t>> timeline;
 
     Matrix &operator=(Matrix other) { timeline = other.timeline; return *this; }
 
