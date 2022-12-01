@@ -5,6 +5,7 @@
 #include <QFileDialog>
 #include <QDebug>
 #include "soundplayer.h"
+#include "matrixplayer.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -34,6 +35,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     std::unique_ptr<SoundPlayer> player;
+    std::unique_ptr<MatrixPlayer> matrixPlayer;
     std::shared_ptr<SoundBank> bank;
 
     void initButtons();

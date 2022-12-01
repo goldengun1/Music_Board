@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     player = std::make_unique<SoundPlayer>(SoundPlayer(bank));
+    matrixPlayer = std::make_unique<MatrixPlayer>(bank, this);
+    qRegisterMetaType<sid>("sid");
     initButtons();
 }
 
@@ -100,6 +102,17 @@ void MainWindow::initButtons()
     connect(ui->pbX, &SoundButton::clicked, this, &MainWindow::playSound);
     connect(ui->pbC, &SoundButton::clicked, this, &MainWindow::playSound);
     connect(ui->pbV, &SoundButton::clicked, this, &MainWindow::playSound);
+
+    Matrix m;
+
+    m.Append(0, 1);
+    m.Append(1, 3);
+    m.Append(5, 10);
+    m.Append(6, 0);
+    m.Append(10, 3);
+    m.Append(11, 1);
+
+    matrixPlayer->PlayMatrix(m);
 }
 
 
