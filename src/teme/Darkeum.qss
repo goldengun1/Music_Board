@@ -154,7 +154,7 @@ QPushButton
 	color: #ffffff;
 	border-style: solid;
 	border-width: 1px;
-	border-radius: 3px;
+        border-radius: 10px;
 	border-color: #051a39;
 	padding: 5px;
 
@@ -172,27 +172,14 @@ QPushButton::disabled
 
 QPushButton::hover
 {
-	background-color: #8399ff;
-	color: #ffffff;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 3px;
-	border-color: #051a39;
-	padding: 5px;
-
+     background-color: #364690;
+     border: 2px solid#1d1d1d;
 }
-
 
 QPushButton::pressed
 {
-	background-color: #4969ff;
-	color: #ffffff;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 3px;
-	border-color: #051a39;
-	padding: 5px;
-
+     background-color: #364690;
+     border: 4px solid#1d1d1d;
 }
 
 
@@ -466,39 +453,40 @@ QTextEdit::disabled
 
 
 /*-----QGroupBox-----*/
-QGroupBox 
+QGroupBox
 {
     border: 1px solid;
-    border-color: #607cff;
+    border-color: #B3FFDA;
     margin-top: 22px;
 
 }
 
 
-QGroupBox::title  
+QGroupBox::title
 {
-    background-color: #607cff;
-    color: #ffffff;
+    background-color: #B3FFDA;
+    color: #000000;
     subcontrol-origin: margin;
     subcontrol-position: top left;
     padding: 5px;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
 
 }
 
 
 QGroupBox::title::disabled
 {
-	background-color: #404040;
-	color: #656565;
+        background-color: #404040;
+        color: #656565;
     subcontrol-origin: margin;
     subcontrol-position: top left;
     padding: 5px;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
 
 }
+
 
 
 /*-----QCheckBox-----*/
@@ -571,7 +559,7 @@ QRadioButton::indicator::checked
 { 
 	border: 2px inset darkgray; 
 	border-radius: 5px; 
-	background-color: #4969ff; 
+        background-color: #4969ff;
 	width: 9px; 
 	height: 9px; 
 

@@ -46,12 +46,18 @@ void MainWindow::on_verticalSlider_valueChanged(int value)
 
 void MainWindow::on_radioTheme2_clicked()
 {
-    //prebaciti na drugu temu
+    QString stylePath = "/SyNet.qss";
+
+    QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
+    this->setStyleSheet(styleSheetData);
 }
 
 void MainWindow::on_radioTheme1_clicked()
 {
-    //staviti main temu
+    QString stylePath = "/Darkeum.qss";
+
+    QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
+    this->setStyleSheet(styleSheetData);
 }
 
 void MainWindow::initButtons()
