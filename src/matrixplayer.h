@@ -1,5 +1,11 @@
 #pragma once
 
-class MatrixPlayer {
+#include <QObject>
 
+class MatrixPlayer: public QObject {
+    Q_OBJECT
+
+public:
+    explicit MatrixPlayer(QObject *parent = nullptr);
+    void PlayMatrix();
 };
