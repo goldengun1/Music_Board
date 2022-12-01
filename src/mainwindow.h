@@ -6,6 +6,7 @@
 #include <QDebug>
 #include "soundplayer.h"
 #include "matrixplayer.h"
+#include "recorder.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -25,6 +26,10 @@ public:
 private slots:
     void openFileDialog(SoundButton *button);
     void playSound();
+    void recordStart();
+    void recordDelete();
+    void recordStop();
+    void recordPlay();
 
     void on_verticalSlider_valueChanged(int value);
 
@@ -36,7 +41,9 @@ private:
     Ui::MainWindow *ui;
     std::unique_ptr<SoundPlayer> player;
     std::unique_ptr<MatrixPlayer> matrixPlayer;
+    std::unique_ptr<Recorder> recorder;
     std::shared_ptr<SoundBank> bank;
+    Matrix matrix;
 
     void initButtons();
 };

@@ -11,8 +11,28 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     player = std::make_unique<SoundPlayer>(SoundPlayer(bank));
     matrixPlayer = std::make_unique<MatrixPlayer>(bank, this);
+    recorder = std::make_unique<Recorder>();
     qRegisterMetaType<sid>("sid");
     initButtons();
+
+    // Default bank configuration.
+    bank->Assign(0, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Ay.wav"));
+    bank->Assign(1, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Bass1.wav"));
+    bank->Assign(2, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Bass2.wav"));
+    bank->Assign(3, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Bass4.wav"));
+    bank->Assign(4, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Gitara1.wav"));
+    bank->Assign(5, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Gitara2.wav"));
+    bank->Assign(6, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Gitara3.wav"));
+    bank->Assign(7, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Gitara4.wav"));
+    bank->Assign(8, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Cinela1.wav"));
+    bank->Assign(9, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Cinela2.wav"));
+    bank->Assign(10, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Tam1.wav"));
+    bank->Assign(11, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Tam2.wav"));
+
+    connect(ui->pbRecord, &QPushButton::clicked, this, &MainWindow::recordStart);
+    connect(ui->pbPlay, &QPushButton::clicked, this, &MainWindow::recordPlay);
+    connect(ui->pbStop, &QPushButton::clicked, this, &MainWindow::recordStop);
+    connect(ui->pbDelete, &QPushButton::clicked, this, &MainWindow::recordDelete);
 }
 
 MainWindow::~MainWindow()
@@ -38,6 +58,36 @@ void MainWindow::playSound()
        //TODO
        qDebug() << "play fail";
     }
+    if (recorder->Recording())
+    {
+        recorder->Mark(button->id);
+    }
+}
+
+void MainWindow::recordStart()
+{
+    qDebug() << "Recording: start!";
+    recorder->Start();
+}
+
+void MainWindow::recordDelete()
+{
+    qDebug() << "Recording: reset!";
+    recorder->Reset();
+}
+
+void MainWindow::recordStop()
+{
+    uint64_t length;
+    qDebug() << "Recording: stop!";
+
+    std::tie(length, matrix) = recorder->Stop();
+}
+
+void MainWindow::recordPlay()
+{
+    qDebug() << "Recording: play!";
+    matrixPlayer->PlayMatrix(matrix);
 }
 
 void MainWindow::on_verticalSlider_valueChanged(int value)
@@ -103,8 +153,8 @@ void MainWindow::initButtons()
     connect(ui->pbC, &SoundButton::clicked, this, &MainWindow::playSound);
     connect(ui->pbV, &SoundButton::clicked, this, &MainWindow::playSound);
 
+#if 0
     Matrix m;
-
     m.Append(0, 1);
     m.Append(1, 3);
     m.Append(5, 10);
@@ -113,6 +163,7 @@ void MainWindow::initButtons()
     m.Append(11, 1);
 
     matrixPlayer->PlayMatrix(m);
+#endif
 }
 
 
