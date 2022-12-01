@@ -10,6 +10,12 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="minimumSize">
    <size>
     <width>800</width>
@@ -19,7 +25,7 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2" rowstretch="3,0" columnstretch="1,7,3">
+  <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,0,0" columnstretch="1,7,1">
    <property name="leftMargin">
     <number>35</number>
    </property>
@@ -32,7 +38,94 @@
    <property name="bottomMargin">
     <number>20</number>
    </property>
-   <item row="0" column="1" rowspan="2">
+   <item row="0" column="0" colspan="3">
+    <widget class="QLabel" name="label_2">
+     <property name="styleSheet">
+      <string notr="true">text-align: &quot;center&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Muzicka Tabla</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" rowspan="2">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>PushButton</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+      <widget class="QGroupBox" name="groupBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title">
+        <string>Themes</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QRadioButton" name="radioTheme1">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Theme1</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioTheme2">
+          <property name="text">
+           <string>MATF Theme</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="1" rowspan="2">
     <layout class="QVBoxLayout" name="verticalLayout" stretch="4,0,1">
      <item>
       <layout class="QGridLayout" name="gridLayout">
@@ -637,7 +730,114 @@ QPushButton::pressed
      </item>
     </layout>
    </item>
-   <item row="0" column="2">
+   <item row="3" column="0" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbRecord">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: &quot;#FF0000&quot;;
+height: &quot;30px&quot;;
+width: &quot;30px&quot;;
+font: 40px;
+padding-bottom: &quot;10px&quot;;</string>
+       </property>
+       <property name="text">
+        <string>●</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+       <property name="autoRepeat">
+        <bool>true</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbPlay">
+       <property name="styleSheet">
+        <string notr="true">color: &quot;#FFFFFF&quot;;
+height: &quot;30px&quot;;
+width: &quot;30px&quot;;
+font: 50px;
+padding-bottom: &quot;10px&quot;;</string>
+       </property>
+       <property name="text">
+        <string>▶</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbPause">
+       <property name="styleSheet">
+        <string notr="true">color: &quot;#FFFFFF&quot;;
+height: 30px;
+width: 30px;
+font: 25px;
+font-weight: 900;
+padding-top: 8px;
+padding-bottom: 8px;</string>
+       </property>
+       <property name="text">
+        <string notr="true">||</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbStop">
+       <property name="styleSheet">
+        <string notr="true">color: &quot;#FFFFFF&quot;;
+height: &quot;30px&quot;;
+width: &quot;30px&quot;;
+font: 45px;
+text-align: &quot;center:&quot;;
+padding-bottom: 12px;</string>
+       </property>
+       <property name="text">
+        <string>■</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="2">
     <layout class="QGridLayout" name="gridLayout_3">
      <item row="1" column="0">
       <spacer name="verticalSpacer_2">
@@ -678,6 +878,12 @@ QPushButton::pressed
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="maximum">
+        <number>100</number>
+       </property>
+       <property name="value">
+        <number>50</number>
        </property>
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -730,16 +936,22 @@ QPushButton::pressed
       <widget class="QDial" name="dial_3"/>
      </item>
      <item row="2" column="0" colspan="5">
-      <widget class="QDial" name="dial"/>
+      <widget class="QDial" name="dial">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+      </widget>
      </item>
-    </layout>
-   </item>
-   <item row="0" column="0" rowspan="2">
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <widget class="QPushButton" name="pushButton_8">
-       <property name="text">
-        <string>PushButton</string>
+     <item row="1" column="1" colspan="4">
+      <widget class="QLCDNumber" name="lcdVolDisplay">
+       <property name="digitCount">
+        <number>3</number>
+       </property>
+       <property name="value" stdset="0">
+        <double>50.000000000000000</double>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>50</number>
        </property>
       </widget>
      </item>
