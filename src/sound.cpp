@@ -32,3 +32,15 @@ Sound::Stop(void)
 
     return false;
 }
+
+void Sound::setVolume(int volume)
+{
+    effect.setVolume(volume/100.0);
+}
+
+int Sound::getVolume()
+{
+    return effect.volume()*100;
+}
+
+

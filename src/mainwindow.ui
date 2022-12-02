@@ -839,7 +839,7 @@ padding-bottom: 12px;</string>
    </item>
    <item row="1" column="2">
     <layout class="QGridLayout" name="gridLayout_3">
-     <item row="1" column="0">
+     <item row="2" column="0">
       <spacer name="verticalSpacer_2">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -855,7 +855,46 @@ padding-bottom: 12px;</string>
        </property>
       </spacer>
      </item>
-     <item row="0" column="2">
+     <item row="4" column="0" colspan="5">
+      <widget class="QDial" name="dial_3"/>
+     </item>
+     <item row="1" column="0">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="2" column="1" colspan="4">
+      <widget class="QLCDNumber" name="lcdVolDisplay">
+       <property name="digitCount">
+        <number>3</number>
+       </property>
+       <property name="value" stdset="0">
+        <double>50.000000000000000</double>
+       </property>
+       <property name="intValue" stdset="0">
+        <number>50</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QSlider" name="verticalSlider_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -871,8 +910,8 @@ padding-bottom: 12px;</string>
        </property>
       </spacer>
      </item>
-     <item row="0" column="1">
-      <widget class="QSlider" name="verticalSlider">
+     <item row="1" column="1">
+      <widget class="QSlider" name="volumeSlider">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -890,23 +929,7 @@ padding-bottom: 12px;</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="0" column="4">
+     <item row="1" column="4">
       <spacer name="horizontalSpacer_3">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -922,36 +945,20 @@ padding-bottom: 12px;</string>
        </property>
       </spacer>
      </item>
-     <item row="4" column="0" colspan="5">
-      <widget class="QDial" name="dial_2"/>
-     </item>
-     <item row="0" column="3">
-      <widget class="QSlider" name="verticalSlider_2">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-      </widget>
-     </item>
      <item row="3" column="0" colspan="5">
-      <widget class="QDial" name="dial_3"/>
-     </item>
-     <item row="2" column="0" colspan="5">
       <widget class="QDial" name="dial">
        <property name="styleSheet">
         <string notr="true"/>
        </property>
       </widget>
      </item>
-     <item row="1" column="1" colspan="4">
-      <widget class="QLCDNumber" name="lcdVolDisplay">
-       <property name="digitCount">
-        <number>3</number>
-       </property>
-       <property name="value" stdset="0">
-        <double>50.000000000000000</double>
-       </property>
-       <property name="intValue" stdset="0">
-        <number>50</number>
+     <item row="5" column="0" colspan="5">
+      <widget class="QDial" name="dial_2"/>
+     </item>
+     <item row="0" column="0" colspan="5">
+      <widget class="QCheckBox" name="oneShotCB">
+       <property name="text">
+        <string>One shot</string>
        </property>
       </widget>
      </item>

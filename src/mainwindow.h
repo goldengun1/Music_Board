@@ -23,7 +23,8 @@ public:
 
 private slots:
     void openFileDialog(SoundButton *button);
-    void playSound();
+    void handleSoundButtonClick();
+    void handleVolumeChange(int volume);
 
     void on_verticalSlider_valueChanged(int value);
 
@@ -35,7 +36,9 @@ private:
     Ui::MainWindow *ui;
     std::unique_ptr<SoundPlayer> player;
     std::shared_ptr<SoundBank> bank;
+    SoundButton *lastClickedBtn;
 
     void initButtons();
+    void initSoundEditing();
 };
 #endif // MAINWINDOW_H
