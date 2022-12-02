@@ -23,8 +23,10 @@ public:
 
 private slots:
     void openFileDialog(SoundButton *button);
-    void handleSoundButtonClick();
+    void handleSoundButtonPress();
+    void handleSoundButtonRelease();
     void handleVolumeChange(int volume);
+    void handleOneShotChange(bool state);
 
     void on_volumeSlider_valueChanged(int value);
 

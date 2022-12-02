@@ -31,7 +31,7 @@ void MainWindow::openFileDialog(SoundButton *button)
     }
 }
 
-void MainWindow::handleSoundButtonClick()
+void MainWindow::handleSoundButtonPress()
 {
     auto button = qobject_cast<SoundButton *>(sender());
     if(!player->Play(button->id)){
@@ -42,9 +42,19 @@ void MainWindow::handleSoundButtonClick()
     lastClickedBtn = button;
     std::optional<std::shared_ptr<Sound>> mappedSound = bank->Assigned(button->id);
     if(mappedSound.has_value()){
-        ui->oneShotCB->setCheckState(Qt::Checked);
-        ui->volumeSlider->setSliderPosition(mappedSound->get()->getVolume());
-        ui->lcdVolDisplay->display(mappedSound->get()->getVolume());
+        Sound* s = mappedSound->get();
+        ui->oneShotCB->setChecked(s->oneShot);
+        ui->volumeSlider->setSliderPosition(s->getVolume());
+        ui->lcdVolDisplay->display(s->getVolume());
+    }
+}
+
+void MainWindow::handleSoundButtonRelease()
+{
+    auto button = qobject_cast<SoundButton *>(sender());
+    std::optional<std::shared_ptr<Sound>> mappedSound = bank->Assigned(button->id);
+    if (mappedSound.has_value() && !mappedSound->get()->oneShot){
+        player->Stop(button->id);
     }
 }
 
@@ -53,6 +63,14 @@ void MainWindow::handleVolumeChange(int volume)
     std::optional<std::shared_ptr<Sound>> mappedSound = bank->Assigned(lastClickedBtn->id);
     if(mappedSound.has_value()){
         mappedSound->get()->setVolume(volume);
+    }
+}
+
+void MainWindow::handleOneShotChange(bool state)
+{
+    std::optional<std::shared_ptr<Sound>> mappedSound = bank->Assigned(lastClickedBtn->id);
+    if(mappedSound.has_value()){
+        mappedSound->get()->oneShot = state;
     }
 }
 
@@ -110,25 +128,37 @@ void MainWindow::initButtons()
     connect(ui->pbC, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
     connect(ui->pbV, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
 
-    connect(ui->pbQ, &SoundButton::clicked, this, &MainWindow::handleSoundButtonClick);
-    connect(ui->pbW, &SoundButton::clicked, this, &MainWindow::handleSoundButtonClick);
-    connect(ui->pbE, &SoundButton::clicked, this, &MainWindow::handleSoundButtonClick);
-    connect(ui->pbR, &SoundButton::clicked, this, &MainWindow::handleSoundButtonClick);
+    connect(ui->pbQ, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
+    connect(ui->pbW, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
+    connect(ui->pbE, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
+    connect(ui->pbR, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
+    connect(ui->pbA, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
+    connect(ui->pbS, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
+    connect(ui->pbD, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
+    connect(ui->pbF, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
+    connect(ui->pbZ, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
+    connect(ui->pbX, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
+    connect(ui->pbC, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
+    connect(ui->pbV, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
 
-    connect(ui->pbA, &SoundButton::clicked, this, &MainWindow::handleSoundButtonClick);
-    connect(ui->pbS, &SoundButton::clicked, this, &MainWindow::handleSoundButtonClick);
-    connect(ui->pbD, &SoundButton::clicked, this, &MainWindow::handleSoundButtonClick);
-    connect(ui->pbF, &SoundButton::clicked, this, &MainWindow::handleSoundButtonClick);
-
-    connect(ui->pbZ, &SoundButton::clicked, this, &MainWindow::handleSoundButtonClick);
-    connect(ui->pbX, &SoundButton::clicked, this, &MainWindow::handleSoundButtonClick);
-    connect(ui->pbC, &SoundButton::clicked, this, &MainWindow::handleSoundButtonClick);
-    connect(ui->pbV, &SoundButton::clicked, this, &MainWindow::handleSoundButtonClick);
+    connect(ui->pbQ, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
+    connect(ui->pbW, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
+    connect(ui->pbE, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
+    connect(ui->pbR, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
+    connect(ui->pbA, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
+    connect(ui->pbS, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
+    connect(ui->pbD, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
+    connect(ui->pbF, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
+    connect(ui->pbZ, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
+    connect(ui->pbX, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
+    connect(ui->pbC, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
+    connect(ui->pbV, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
 }
 
 void MainWindow::initSoundEditing()
 {
     connect(ui->volumeSlider, &QSlider::valueChanged, this, &MainWindow::handleVolumeChange);
+    connect(ui->oneShotCB, &QCheckBox::clicked, this, &MainWindow::handleOneShotChange);
 }
 
 
