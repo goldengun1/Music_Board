@@ -44,6 +44,7 @@ void MainWindow::handleSoundButtonClick()
     if(mappedSound.has_value()){
         ui->oneShotCB->setCheckState(Qt::Checked);
         ui->volumeSlider->setSliderPosition(mappedSound->get()->getVolume());
+        ui->lcdVolDisplay->display(mappedSound->get()->getVolume());
     }
 }
 
@@ -55,7 +56,7 @@ void MainWindow::handleVolumeChange(int volume)
     }
 }
 
-void MainWindow::on_verticalSlider_valueChanged(int value)
+void MainWindow::on_volumeSlider_valueChanged(int value)
 {
     ui->lcdVolDisplay->display(value);
 }

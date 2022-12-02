@@ -26,7 +26,7 @@ private slots:
     void handleSoundButtonClick();
     void handleVolumeChange(int volume);
 
-    void on_verticalSlider_valueChanged(int value);
+    void on_volumeSlider_valueChanged(int value);
 
     void on_radioTheme2_clicked();
     void on_radioTheme1_clicked();
