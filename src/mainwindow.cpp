@@ -96,6 +96,98 @@ void MainWindow::on_radioTheme1_clicked()
     this->setStyleSheet(styleSheetData);
 }
 
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if(!event->isAutoRepeat()){
+        switch (event->key()) {
+        case Qt::Key_Q:
+            emit ui->pbQ->pressed();
+            break;
+        case Qt::Key_W:
+            emit ui->pbW->pressed();
+            break;
+        case Qt::Key_E:
+            emit ui->pbE->pressed();
+            break;
+        case Qt::Key_R:
+            emit ui->pbR->pressed();
+            break;
+        case Qt::Key_A:
+            emit ui->pbA->pressed();
+            break;
+        case Qt::Key_S:
+            emit ui->pbS->pressed();
+            break;
+        case Qt::Key_D:
+            emit ui->pbD->pressed();
+            break;
+        case Qt::Key_F:
+            emit ui->pbF->pressed();
+            break;
+        case Qt::Key_Z:
+            emit ui->pbZ->pressed();
+            break;
+        case Qt::Key_X:
+            emit ui->pbX->pressed();
+            break;
+        case Qt::Key_C:
+            emit ui->pbC->pressed();
+            break;
+        case Qt::Key_V:
+            emit ui->pbV->pressed();
+            break;
+        default:
+            QWidget::keyPressEvent(event);
+        }
+    }
+}
+
+void MainWindow::keyReleaseEvent(QKeyEvent *event)
+{
+    if(!event->isAutoRepeat()){
+        switch (event->key()) {
+        case Qt::Key_Q:
+            emit ui->pbQ->released();
+            break;
+        case Qt::Key_W:
+            emit ui->pbW->released();
+            break;
+        case Qt::Key_E:
+            emit ui->pbE->released();
+            break;
+        case Qt::Key_R:
+            emit ui->pbR->released();
+            break;
+        case Qt::Key_A:
+            emit ui->pbA->released();
+            break;
+        case Qt::Key_S:
+            emit ui->pbS->released();
+            break;
+        case Qt::Key_D:
+            emit ui->pbD->released();
+            break;
+        case Qt::Key_F:
+            emit ui->pbF->released();
+            break;
+        case Qt::Key_Z:
+            emit ui->pbZ->released();
+            break;
+        case Qt::Key_X:
+            emit ui->pbX->released();
+            break;
+        case Qt::Key_C:
+            emit ui->pbC->released();
+            break;
+        case Qt::Key_V:
+            emit ui->pbV->released();
+            break;
+        default:
+            QWidget::keyPressEvent(event);
+        }
+    }
+}
+
 void MainWindow::initButtons()
 {
     ui->pbQ->id = 0;
