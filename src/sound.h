@@ -2,6 +2,8 @@
 
 #include <QSoundEffect>
 #include <QUrl>
+#include <thread>
+#include <chrono>
 
 ///
 /// Play sound files.
@@ -12,6 +14,8 @@ class Sound
 {
     QSoundEffect effect;
     const QUrl source;
+    int _volume = 100;
+    const std::chrono::milliseconds fadeTime = std::chrono::milliseconds{500};
 
 public:
     Sound(const QUrl &source);
@@ -25,5 +29,7 @@ public:
     bool oneShot {true};
 
     void setVolume(int volume);
-    int getVolume();
+    int volume();
+
+    void fadeVolume(int start_value, int end_value, std::chrono::milliseconds time);
 };

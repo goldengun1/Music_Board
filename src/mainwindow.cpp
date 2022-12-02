@@ -44,8 +44,8 @@ void MainWindow::handleSoundButtonPress()
     if(mappedSound.has_value()){
         Sound* s = mappedSound->get();
         ui->oneShotCB->setChecked(s->oneShot);
-        ui->volumeSlider->setSliderPosition(s->getVolume());
-        ui->lcdVolDisplay->display(s->getVolume());
+        ui->volumeSlider->setSliderPosition(s->volume());
+        ui->lcdVolDisplay->display(s->volume());
     }
 }
 
