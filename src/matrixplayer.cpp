@@ -4,18 +4,20 @@
 
 MatrixPlayer::MatrixPlayer(std::shared_ptr<SoundBank> &bank, QObject *parent)
     : QObject(parent)
-    , bank{bank} {
-    player = std::make_unique<SoundPlayer>(bank);
-
-    playerthread = new PlayerThread(this);
-    connect(playerthread, &QThread::finished, playerthread, &QThread::deleteLater);
-    connect(playerthread, &PlayerThread::playFinished, this, &MatrixPlayer::onPlayFinished);
-    connect(playerthread, &PlayerThread::markHit, this, &MatrixPlayer::playSound);
-    playerthread->start();
+    , bank{bank},
+    player(std::make_unique<SoundPlayer>(bank)),
+    playerthread(this)
+{
+    connect(&playerthread, &PlayerThread::playFinished, this, &MatrixPlayer::onPlayFinished);
+    connect(&playerthread, &PlayerThread::markHit, this, &MatrixPlayer::playSound);
+    playerthread.start();
 }
-
+MatrixPlayer::~MatrixPlayer()
+{
+    playerthread.terminate();
+}
 void MatrixPlayer::PlayMatrix(const Matrix &matrix) {
-    playerthread->NewMatrix(matrix);
+    playerthread.NewMatrix(matrix);
 }
 
 void MatrixPlayer::onPlayFinished() {
