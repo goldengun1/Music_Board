@@ -25,16 +25,21 @@ public:
 
 private slots:
     void openFileDialog(SoundButton *button);
-    void playSound();
     void recordStart();
     void recordDelete();
     void recordStop();
     void recordPlay();
-
-    void on_verticalSlider_valueChanged(int value);
-
+    void handleSoundButtonPress();
+    void handleSoundButtonRelease();
+    void handleVolumeChange(int volume);
+    void handleOneShotChange(bool state);
+    void on_volumeSlider_valueChanged(int value);
     void on_radioTheme2_clicked();
     void on_radioTheme1_clicked();
+
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
 
 
 private:
@@ -44,7 +49,9 @@ private:
     std::unique_ptr<Recorder> recorder;
     std::shared_ptr<SoundBank> bank;
     Matrix matrix;
+    SoundButton *lastClickedBtn;
 
     void initButtons();
+    void initSoundEditing();
 };
 #endif // MAINWINDOW_H

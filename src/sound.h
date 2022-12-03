@@ -21,4 +21,9 @@ public:
     bool Stop(void); // Stop sound, return true if it was previously playing.
 
     QUrl Source(void) const { return source; }
+
+    bool oneShot {true};
+
+    void setVolume(int volume);
+    int getVolume();
 };

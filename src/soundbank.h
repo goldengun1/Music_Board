@@ -22,7 +22,7 @@ public:
     ~SoundBank(void);
 
     sid Assign(const sid index, std::shared_ptr<Sound> sound);
-    sid Assign(const sid index, QUrl& url);
+    sid Assign(const sid index, const QUrl& url);
     void Unassign(const sid index) { return sound[index].reset(); }
     std::optional<std::shared_ptr<Sound>> Assigned(const sid index);
 };

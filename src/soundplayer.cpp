@@ -24,3 +24,16 @@ SoundPlayer::Play(const sid index)
 
     return played;
 }
+
+bool SoundPlayer::Stop(const sid index)
+{
+    bool played = false;
+    std::optional<std::shared_ptr<Sound>> sound = bank->Assigned(index);
+
+    if(sound.has_value())
+    {
+        played = sound->get()->Stop();
+    }
+
+    return played;
+}

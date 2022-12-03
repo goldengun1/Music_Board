@@ -18,4 +18,5 @@ public:
 
     [[nodiscard("HANDLE INVALID INDEX")]]
     bool Play(const sid index);
+    bool Stop(const sid index);
 };

@@ -26,7 +26,7 @@ SoundBank::Assign(const sid index, std::shared_ptr<Sound> sound)
 }
 
 sid
-SoundBank::Assign(const sid index, QUrl& url)
+SoundBank::Assign(const sid index, const QUrl& url)
 {
     auto it = this->sound.find(index);
 
