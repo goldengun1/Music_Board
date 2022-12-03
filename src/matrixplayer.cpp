@@ -14,6 +14,7 @@ MatrixPlayer::MatrixPlayer(std::shared_ptr<SoundBank> &bank, QObject *parent)
 }
 MatrixPlayer::~MatrixPlayer()
 {
+    // @TODO: ispitati da li je ovo najbolji nacin da se thread gasi kada se gasi i sama aplikacija
     playerthread.terminate();
 }
 void MatrixPlayer::PlayMatrix(const Matrix &matrix) {
