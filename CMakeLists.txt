@@ -39,6 +39,7 @@ set(PROJECT_SOURCES
         src/playerthread.h
         src/resursi/
         src/teme/
+        zvukovi.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

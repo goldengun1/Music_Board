@@ -16,18 +16,18 @@ MainWindow::MainWindow(QWidget *parent)
     initButtons();
 
     // Default bank configuration.
-    bank->Assign(0, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Ay.wav"));
-    bank->Assign(1, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Bass1.wav"));
-    bank->Assign(2, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Bass2.wav"));
-    bank->Assign(3, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Bass4.wav"));
-    bank->Assign(4, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Gitara1.wav"));
-    bank->Assign(5, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Gitara2.wav"));
-    bank->Assign(6, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Gitara3.wav"));
-    bank->Assign(7, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Gitara4.wav"));
-    bank->Assign(8, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Cinela1.wav"));
-    bank->Assign(9, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Cinela2.wav"));
-    bank->Assign(10, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Tam1.wav"));
-    bank->Assign(11, QUrl::fromLocalFile("../05-muzicka-tabla/src/resursi/zvukovi/Tam2.wav"));
+    bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ay.wav"));
+    bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass1.wav"));
+    bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass2.wav"));
+    bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass4.wav"));
+    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara1.wav"));
+    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara2.wav"));
+    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara3.wav"));
+    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara4.wav"));
+    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/Cinela1.wav"));
+    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/Cinela2.wav"));
+    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/Tam1.wav"));
+    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/Tam2.wav"));
 
     connect(ui->pbRecord, &QPushButton::clicked, this, &MainWindow::recordStart);
     connect(ui->pbPlay, &QPushButton::clicked, this, &MainWindow::recordPlay);
