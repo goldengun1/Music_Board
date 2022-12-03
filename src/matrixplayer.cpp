@@ -16,6 +16,7 @@ MatrixPlayer::~MatrixPlayer()
 {
     // @TODO: ispitati da li je ovo najbolji nacin da se thread gasi kada se gasi i sama aplikacija
     playerthread.terminate();
+    playerthread.wait();
 }
 void MatrixPlayer::PlayMatrix(const Matrix &matrix) {
     playerthread.NewMatrix(matrix);
