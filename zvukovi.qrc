@@ -1,0 +1,17 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/">
+        <file>src/resursi/zvukovi/Ay.wav</file>
+        <file>src/resursi/zvukovi/Bass1.wav</file>
+        <file>src/resursi/zvukovi/Bass2.wav</file>
+        <file>src/resursi/zvukovi/Bass4.wav</file>
+        <file>src/resursi/zvukovi/Gitara1.wav</file>
+        <file>src/resursi/zvukovi/Gitara2.wav</file>
+        <file>src/resursi/zvukovi/Gitara3.wav</file>
+        <file>src/resursi/zvukovi/Gitara4.wav</file>
+        <file>src/resursi/zvukovi/Cinela1.wav</file>
+        <file>src/resursi/zvukovi/Cinela2.wav</file>
+        <file>src/resursi/zvukovi/Tam1.wav</file>
+        <file>src/resursi/zvukovi/Tam2.wav</file>
+    </qresource>
+</RCC>

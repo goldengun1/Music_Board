@@ -10,7 +10,29 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     player = std::make_unique<SoundPlayer>(SoundPlayer(bank));
+    matrixPlayer = std::make_unique<MatrixPlayer>(bank, this);
+    recorder = std::make_unique<Recorder>();
+    qRegisterMetaType<sid>("sid");
     initButtons();
+
+    // Default bank configuration.
+    bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ay.wav"));
+    bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass1.wav"));
+    bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass2.wav"));
+    bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass4.wav"));
+    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara1.wav"));
+    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara2.wav"));
+    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara3.wav"));
+    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara4.wav"));
+    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/Cinela1.wav"));
+    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/Cinela2.wav"));
+    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/Tam1.wav"));
+    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/Tam2.wav"));
+
+    connect(ui->pbRecord, &QPushButton::clicked, this, &MainWindow::recordStart);
+    connect(ui->pbPlay, &QPushButton::clicked, this, &MainWindow::recordPlay);
+    connect(ui->pbStop, &QPushButton::clicked, this, &MainWindow::recordStop);
+    connect(ui->pbDelete, &QPushButton::clicked, this, &MainWindow::recordDelete);
     lastClickedBtn = ui->pbQ;
     initSoundEditing();
 }
@@ -47,6 +69,37 @@ void MainWindow::handleSoundButtonPress()
         ui->volumeSlider->setSliderPosition(s->getVolume());
         ui->lcdVolDisplay->display(s->getVolume());
     }
+
+    if (recorder->Recording())
+    {
+        recorder->Mark(button->id);
+    }
+}
+
+void MainWindow::recordStart()
+{
+    qDebug() << "Recording: start!";
+    recorder->Start();
+}
+
+void MainWindow::recordDelete()
+{
+    qDebug() << "Recording: reset!";
+    recorder->Reset();
+}
+
+void MainWindow::recordStop()
+{
+    uint64_t length;
+    qDebug() << "Recording: stop!";
+
+    std::tie(length, matrix) = recorder->Stop();
+}
+
+void MainWindow::recordPlay()
+{
+    qDebug() << "Recording: play!";
+    matrixPlayer->PlayMatrix(matrix);
 }
 
 void MainWindow::handleSoundButtonRelease()
