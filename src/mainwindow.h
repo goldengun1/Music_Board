@@ -37,6 +37,8 @@ private slots:
     void on_radioTheme2_clicked();
     void on_radioTheme1_clicked();
 
+    void on_radioTheme3_clicked();
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;

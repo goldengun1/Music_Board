@@ -132,6 +132,14 @@ void MainWindow::on_volumeSlider_valueChanged(int value)
     ui->lcdVolDisplay->display(value);
 }
 
+void MainWindow::on_radioTheme3_clicked()
+{
+    QString stylePath = "/MatfTheme.qss";
+
+    QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
+    this->setStyleSheet(styleSheetData);
+}
+
 
 void MainWindow::on_radioTheme2_clicked()
 {
@@ -149,6 +157,13 @@ void MainWindow::on_radioTheme1_clicked()
     this->setStyleSheet(styleSheetData);
 }
 
+void MainWindow::initSoundEditing()
+{
+    connect(ui->volumeSlider, &QSlider::valueChanged, this, &MainWindow::handleVolumeChange);
+    connect(ui->oneShotCB, &QCheckBox::clicked, this, &MainWindow::handleOneShotChange);
+}
+
+//dodati vizualizaciju pritiska tastera preko tastature
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if(!event->isAutoRepeat()){
@@ -300,11 +315,9 @@ void MainWindow::initButtons()
     connect(ui->pbV, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
 }
 
-void MainWindow::initSoundEditing()
-{
-    connect(ui->volumeSlider, &QSlider::valueChanged, this, &MainWindow::handleVolumeChange);
-    connect(ui->oneShotCB, &QCheckBox::clicked, this, &MainWindow::handleOneShotChange);
-}
+
+
+
 
 
 

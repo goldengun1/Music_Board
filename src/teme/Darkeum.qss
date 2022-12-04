@@ -1177,3 +1177,255 @@ QStatusBar
 }
 
 
+/*KEYBOARD KEY BUTTON STYLES*/
+QPushButton#pbQ{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ffffff , stop:1 #ccffe6 );
+    border:1px solid white ;
+    font: 50px;
+    border-radius:15px;
+    font: 900 50pt "Segoe UI Black";
+    color: #4969ff;
+}
+QPushButton#pbQ:hover{
+    border-color: #4969ff;
+    border-width: 3px;
+}
+QPushButton#pbQ:pressed{
+    background-color: #4969ff;
+   color: #ffffff;
+   border-style: solid;
+   border-width: 3px;
+
+   border-color: #051a39;
+}
+
+QPushButton#pbW{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ccffe6 , stop:1 #b3ffd9 );
+    border:1px solid white ;
+    font: 50px;
+    border-radius:15px;
+    font: 900 50pt "Segoe UI Black";
+    color: #4969ff;
+}
+QPushButton#pbW:hover{
+    border-color: #4969ff;
+    border-width: 3px;
+}
+QPushButton#pbW:pressed{
+    background-color: #4969ff;
+   color: #ffffff;
+   border-style: solid;
+   border-width: 3px;
+
+   border-color: #051a39;
+}
+
+QPushButton#pbE{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #b3ffda , stop:1 #80ffbf);
+    border:1px solid white ;
+    font: 50px;
+    border-radius:15px;
+    font: 900 50pt "Segoe UI Black";
+    color: #4969ff;
+}
+QPushButton#pbE:hover{
+    border-color: #4969ff;
+    border-width: 3px;
+}
+QPushButton#pbE:pressed{
+    background-color: #4969ff;
+   color: #ffffff;
+   border-style: solid;
+   border-width: 3px;
+
+   border-color: #051a39;
+}
+
+QPushButton#pbR{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #80ffbf , stop:1 #4dffa6);
+    border:1px solid white ;
+    font: 50px;
+    border-radius:15px;
+    font: 900 50pt "Segoe UI Black";
+    color: #4969ff;
+}
+QPushButton#pbR:hover{
+    border-color: #4969ff;
+    border-width: 3px;
+}
+QPushButton#pbR:pressed{
+    background-color: #4969ff;
+   color: #ffffff;
+   border-style: solid;
+   border-width: 3px;
+
+   border-color: #051a39;
+}
+
+QPushButton#pbA{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ffffff , stop:1 #ccffff);
+    border:1px solid white ;
+    font: 50px;
+    border-radius:15px;
+    font: 900 50pt "Segoe UI Black";
+    color: #4969ff;
+}
+QPushButton#pbA:hover{
+    border-color: #4969ff;
+    border-width: 3px;
+}
+QPushButton#pbA:pressed{
+    background-color: #4969ff;
+   color: #ffffff;
+   border-style: solid;
+   border-width: 3px;
+
+   border-color: #051a39;
+}
+
+QPushButton#pbS{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ccffff , stop:1 #99ffff);
+    border:1px solid white ;
+    font: 50px;
+    border-radius:15px;
+    font: 900 50pt "Segoe UI Black";
+    color: #4969ff;
+}
+QPushButton#pbS:hover{
+    border-color: #4969ff;
+    border-width: 3px;
+}
+QPushButton#pbS:pressed{
+    background-color: #4969ff;
+   color: #ffffff;
+   border-style: solid;
+   border-width: 3px;
+
+   border-color: #051a39;
+}
+
+QPushButton#pbD{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #99ffff , stop:1 #66ffff);
+    border:1px solid white ;
+    font: 50px;
+    border-radius:15px;
+    font: 900 50pt "Segoe UI Black";
+    color: #4969ff;
+}
+QPushButton#pbD:hover{
+    border-color: #4969ff;
+    border-width: 3px;
+}
+QPushButton#pbD:pressed{
+    background-color: #4969ff;
+   color: #ffffff;
+   border-style: solid;
+   border-width: 3px;
+
+   border-color: #051a39;
+}
+
+QPushButton#pbF{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #66ffff , stop:1 #33ffff);
+    border:1px solid white ;
+    font: 50px;
+    border-radius:15px;
+    font: 900 50pt "Segoe UI Black";
+    color: #4969ff;
+}
+QPushButton#pbF:hover{
+    border-color: #4969ff;
+    border-width: 3px;
+}
+QPushButton#pbF:pressed{
+    background-color: #4969ff;
+   color: #ffffff;
+   border-style: solid;
+   border-width: 3px;
+
+   border-color: #051a39;
+}
+
+QPushButton#pbZ{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #ffffff , stop:1 #cceeff);
+    border:1px solid white ;
+    font: 50px;
+    border-radius:15px;
+    font: 900 50pt "Segoe UI Black";
+    color: #4969ff;
+}
+QPushButton#pbZ:hover{
+    border-color: #4969ff;
+    border-width: 3px;
+}
+QPushButton#pbZ:pressed{
+    background-color: #4969ff;
+   color: #ffffff;
+   border-style: solid;
+   border-width: 3px;
+
+   border-color: #051a39;
+}
+
+QPushButton#pbX{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #cceeff , stop:1 #99ddff);
+    border:1px solid white ;
+    font: 50px;
+    border-radius:15px;
+    font: 900 50pt "Segoe UI Black";
+    color: #4969ff;
+}
+QPushButton#pbX:hover{
+    border-color: #4969ff;
+    border-width: 3px;
+}
+QPushButton#pbX:pressed{
+    background-color: #4969ff;
+   color: #ffffff;
+   border-style: solid;
+   border-width: 3px;
+
+   border-color: #051a39;
+}
+
+QPushButton#pbC{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #99ddff , stop:1 #66ccff);
+    border:1px solid white ;
+    font: 50px;
+    border-radius:15px;
+    font: 900 50pt "Segoe UI Black";
+    color: #4969ff;
+}
+QPushButton#pbC:hover{
+    border-color: #4969ff;
+    border-width: 3px;
+}
+QPushButton#pbC:pressed{
+    background-color: #4969ff;
+   color: #ffffff;
+   border-style: solid;
+   border-width: 3px;
+
+   border-color: #051a39;
+}
+
+QPushButton#pbV{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #66ccff , stop:1 #33bbff);
+     border:1px solid white ;
+     font: 50px;
+     border-radius:15px;
+     font: 900 50pt "Segoe UI Black";
+     color: #4969ff;
+}
+QPushButton#pbV:hover{
+     border-color: #4969ff;
+     border-width: 3px;
+}
+QPushButton#pbV:pressed{
+     background-color: #4969ff;
+    color: #ffffff;
+    border-style: solid;
+    border-width: 3px;
+
+    border-color: #051a39;
+}
