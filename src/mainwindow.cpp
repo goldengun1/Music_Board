@@ -289,8 +289,8 @@ void MainWindow::initButtons()
 
     ui->pbA->id = 4;
     ui->pbS->id = 5;
-    ui->pbW->id = 6;
-    ui->pbD->id = 7;
+    ui->pbD->id = 6;
+    ui->pbF->id = 7;
 
     ui->pbZ->id = 8;
     ui->pbX->id = 9;
