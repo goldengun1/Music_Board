@@ -170,39 +170,51 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         switch (event->key()) {
         case Qt::Key_Q:
             emit ui->pbQ->pressed();
+            ui->pbQ->setDown(true);
             break;
         case Qt::Key_W:
             emit ui->pbW->pressed();
+            ui->pbW->setDown(true);
             break;
         case Qt::Key_E:
             emit ui->pbE->pressed();
+            ui->pbE->setDown(true);
             break;
         case Qt::Key_R:
             emit ui->pbR->pressed();
+            ui->pbR->setDown(true);
             break;
         case Qt::Key_A:
             emit ui->pbA->pressed();
+            ui->pbA->setDown(true);
             break;
         case Qt::Key_S:
             emit ui->pbS->pressed();
+            ui->pbS->setDown(true);
             break;
         case Qt::Key_D:
             emit ui->pbD->pressed();
+            ui->pbD->setDown(true);
             break;
         case Qt::Key_F:
             emit ui->pbF->pressed();
+            ui->pbF->setDown(true);
             break;
         case Qt::Key_Z:
             emit ui->pbZ->pressed();
+            ui->pbZ->setDown(true);
             break;
         case Qt::Key_X:
             emit ui->pbX->pressed();
+            ui->pbX->setDown(true);
             break;
         case Qt::Key_C:
             emit ui->pbC->pressed();
+            ui->pbC->setDown(true);
             break;
         case Qt::Key_V:
             emit ui->pbV->pressed();
+            ui->pbV->setDown(true);
             break;
         default:
             QWidget::keyPressEvent(event);
@@ -216,39 +228,51 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
         switch (event->key()) {
         case Qt::Key_Q:
             emit ui->pbQ->released();
+            ui->pbQ->setDown(false);
             break;
         case Qt::Key_W:
             emit ui->pbW->released();
+            ui->pbW->setDown(false);
             break;
         case Qt::Key_E:
             emit ui->pbE->released();
+            ui->pbE->setDown(false);
             break;
         case Qt::Key_R:
             emit ui->pbR->released();
+            ui->pbR->setDown(false);
             break;
         case Qt::Key_A:
             emit ui->pbA->released();
+            ui->pbA->setDown(false);
             break;
         case Qt::Key_S:
             emit ui->pbS->released();
+            ui->pbS->setDown(false);
             break;
         case Qt::Key_D:
             emit ui->pbD->released();
+            ui->pbD->setDown(false);
             break;
         case Qt::Key_F:
             emit ui->pbF->released();
+            ui->pbF->setDown(false);
             break;
         case Qt::Key_Z:
             emit ui->pbZ->released();
+            ui->pbZ->setDown(false);
             break;
         case Qt::Key_X:
             emit ui->pbX->released();
+            ui->pbX->setDown(false);
             break;
         case Qt::Key_C:
             emit ui->pbC->released();
+            ui->pbC->setDown(false);
             break;
         case Qt::Key_V:
             emit ui->pbV->released();
+            ui->pbV->setDown(false);
             break;
         default:
             QWidget::keyPressEvent(event);
