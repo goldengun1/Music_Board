@@ -20,14 +20,14 @@ MainWindow::MainWindow(QWidget *parent)
     bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass1.wav"));
     bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass2.wav"));
     bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass4.wav"));
-    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara1.wav"));
-    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara2.wav"));
-    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara3.wav"));
-    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara4.wav"));
-    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/Cinela1.wav"));
-    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/Cinela2.wav"));
-    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/Tam1.wav"));
-    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/Tam2.wav"));
+    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/Kick.wav"));
+    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/Dobos1.wav"));
+    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/Dobos2.wav"));
+    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/Clap.wav"));
+    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/Prsti.wav"));
+    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ks1.wav"));
+    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/Cinela1.wav"));
+    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ding.wav"));
 
     connect(ui->pbRecord, &QPushButton::clicked, this, &MainWindow::recordStart);
     connect(ui->pbPlay, &QPushButton::clicked, this, &MainWindow::recordPlay);
@@ -341,8 +341,39 @@ void MainWindow::initButtons()
 
 
 
+void MainWindow::on_radioPreset1_toggled(bool checked)
+{
+    if(!checked)
+        return;
+    bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ay.wav"));
+    bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass1.wav"));
+    bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass2.wav"));
+    bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass4.wav"));
+    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/Kick.wav"));
+    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/Dobos1.wav"));
+    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/Dobos2.wav"));
+    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/Clap.wav"));
+    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/Prsti.wav"));
+    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ks1.wav"));
+    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/Cinela1.wav"));
+    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ding.wav"));
+}
 
 
+void MainWindow::on_radioPreset2_clicked()
+{
 
-
+    bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/Kick.wav"));
+    bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ks1.wav"));
+    bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/Cinela1.wav"));
+    bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/Prsti.wav"));
+    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara1.wav"));
+    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara2.wav"));
+    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara3.wav"));
+    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara4.wav"));
+    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/Orgulje1.wav"));
+    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/Orgulje2.wav"));
+    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/Orgulje3.wav"));
+    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/Orgulje4.wav"));
+}
 
