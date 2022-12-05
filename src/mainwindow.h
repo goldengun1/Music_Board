@@ -44,6 +44,10 @@ private slots:
 
     void on_radioPreset2_clicked();
 
+    void on_radioPreset3_clicked();
+
+    void on_radioPreset4_clicked();
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;

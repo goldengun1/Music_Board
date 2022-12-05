@@ -30,5 +30,29 @@
         <file>src/resursi/zvukovi/Tam2.wav</file>
         <file>src/resursi/zvukovi/Ugh.wav</file>
         <file>src/resursi/zvukovi/Yeah.wav</file>
+        <file>src/resursi/zvukovi/piano1.wav</file>
+        <file>src/resursi/zvukovi/piano2.wav</file>
+        <file>src/resursi/zvukovi/piano3.wav</file>
+        <file>src/resursi/zvukovi/piano4.wav</file>
+        <file>src/resursi/zvukovi/piano5.wav</file>
+        <file>src/resursi/zvukovi/piano6.wav</file>
+        <file>src/resursi/zvukovi/piano7.wav</file>
+        <file>src/resursi/zvukovi/piano8.wav</file>
+        <file>src/resursi/zvukovi/piano9.wav</file>
+        <file>src/resursi/zvukovi/piano10.wav</file>
+        <file>src/resursi/zvukovi/piano11.wav</file>
+        <file>src/resursi/zvukovi/piano12.wav</file>
+        <file>src/resursi/zvukovi/meme1.wav</file>
+        <file>src/resursi/zvukovi/meme2.wav</file>
+        <file>src/resursi/zvukovi/meme4.wav</file>
+        <file>src/resursi/zvukovi/meme5.wav</file>
+        <file>src/resursi/zvukovi/meme6.wav</file>
+        <file>src/resursi/zvukovi/meme7.wav</file>
+        <file>src/resursi/zvukovi/meme8.wav</file>
+        <file>src/resursi/zvukovi/meme9.wav</file>
+        <file>src/resursi/zvukovi/meme10.wav</file>
+        <file>src/resursi/zvukovi/meme11.wav</file>
+        <file>src/resursi/zvukovi/meme12.wav</file>
+        <file>src/resursi/zvukovi/meme3.wav</file>
     </qresource>
 </RCC>

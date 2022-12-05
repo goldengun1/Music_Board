@@ -377,3 +377,37 @@ void MainWindow::on_radioPreset2_clicked()
     bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/Orgulje4.wav"));
 }
 
+
+void MainWindow::on_radioPreset3_clicked()
+{
+    bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano1.wav"));
+    bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano2.wav"));
+    bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano3.wav"));
+    bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano4.wav"));
+    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano5.wav"));
+    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano6.wav"));
+    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano7.wav"));
+    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano8.wav"));
+    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano9.wav"));
+    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano10.wav"));
+    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano11.wav"));
+    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano12.wav"));
+}
+
+
+void MainWindow::on_radioPreset4_clicked()
+{
+    bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme1.wav"));
+    bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme2.wav"));
+    bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme3.wav"));
+    bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme4.wav"));
+    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme5.wav"));
+    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme6.wav"));
+    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme7.wav"));
+    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme8.wav"));
+    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme9.wav"));
+    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme10.wav"));
+    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme11.wav"));
+    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme12.wav"));
+}
+

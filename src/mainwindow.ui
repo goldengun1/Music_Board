@@ -89,6 +89,20 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QRadioButton" name="radioPreset3">
+          <property name="text">
+           <string> Preset Piano</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioPreset4">
+          <property name="text">
+           <string>Preset Meme</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </item>
