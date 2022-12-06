@@ -86,6 +86,7 @@ void MainWindow::recordDelete()
 {
     qDebug() << "Recording: reset!";
     recorder->Reset();
+    matrixPlayer->DeleteMatrix();
 }
 
 void MainWindow::recordStop()
