@@ -503,7 +503,7 @@ QCheckBox::indicator
 
 QCheckBox::indicator:checked
 {
-    image:url(://checkbox.png);
+    image:url(://src/resursi/slike/icons8_Checkmark_80px.png);
     border: 1px solid #607cff;
 
 }

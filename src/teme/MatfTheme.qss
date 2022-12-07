@@ -2,7 +2,7 @@
 QWidget
 {
      background-color: #282828;
-	color: #d4d4d4;
+        color: #d4d4d4;
 
 }
 
@@ -85,7 +85,7 @@ QSlider::handle:vertical:hover
 /*-----QDial-----*/
 QDial
 {
-        background-color: #ffffff;
+        background-color: #FFFFFF;
 
 }
 
@@ -170,9 +170,7 @@ QCheckBox::indicator
 
 QCheckBox::indicator:checked
 {
-     background-color: #D62828;
-     border: 1px solid #D62828;
-     border-style: outset;
+     image:url(://src/resursi/slike/icons8_Checkmark_48px.png);
 
 }
 

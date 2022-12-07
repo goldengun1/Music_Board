@@ -411,3 +411,20 @@ void MainWindow::on_radioPreset4_clicked()
     bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme12.wav"));
 }
 
+
+void MainWindow::on_radioPreset5_clicked()
+{
+    bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShady1.wav"));
+    bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShady2.wav"));
+    bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShady3.wav"));
+    bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShady4.wav"));
+    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShady5.wav"));
+    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/Kick.wav"));
+    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyDrum1.wav"));
+    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ks1.wav"));
+    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyBass1.wav"));
+    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyBass3.wav"));
+    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyBass4.wav"));
+    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyBass5.wav"));
+}
+

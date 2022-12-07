@@ -48,6 +48,8 @@ private slots:
 
     void on_radioPreset4_clicked();
 
+    void on_radioPreset5_clicked();
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;
