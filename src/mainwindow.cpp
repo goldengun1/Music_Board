@@ -78,7 +78,16 @@ void MainWindow::handleSoundButtonPress()
 
 void MainWindow::recordStart()
 {
+    uint64_t length;
+    bool     playprevious;
     qDebug() << "Recording: start!";
+
+    std::tie(length, matrix) = recorder->Stop();
+    playprevious             = true;
+    if (playprevious)
+    {
+        matrixPlayer->PlayMatrix(matrix);
+    }
     recorder->Start();
 }
 
