@@ -9,12 +9,12 @@ MatrixPlayer::MatrixPlayer(std::shared_ptr<SoundBank> &bank, QObject *parent)
 {
     playerthread = nullptr;
 }
+
 MatrixPlayer::~MatrixPlayer()
 {
-    // @TODO: ispitati da li je ovo najbolji nacin da se thread gasi kada se gasi i sama aplikacija
-    playerthread->terminate();
-    playerthread->wait();
+    DeleteMatrix();
 }
+
 void MatrixPlayer::PlayMatrix(const Matrix &matrix) {
     if (playerthread)
     {
@@ -38,9 +38,13 @@ void MatrixPlayer::PlayMatrix(const Matrix &matrix) {
 
 void MatrixPlayer::DeleteMatrix(void)
 {
-    playerthread->terminate();
-    playerthread->wait();
-    playerthread = nullptr;
+    if (playerthread)
+    {
+        // @TODO: ispitati da li je ovo najbolji nacin da se thread gasi kada se gasi i sama aplikacija
+        playerthread->terminate();
+        playerthread->wait();
+        playerthread = nullptr;
+    }
 }
 
 void MatrixPlayer::onPlayFinished() {
@@ -72,4 +76,5 @@ void MatrixPlayer::markHit(mark_t mark)
         }
         break;
     }
+
 }
