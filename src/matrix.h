@@ -4,7 +4,13 @@
 #include <QString>
 #include "soundbank.h" // For "sid" type.
 
-using mark_t = std::pair<uint32_t, sid>;
+enum marktype_t
+{
+    MARK_PUSH,
+    MARK_RELEASE
+};
+using markinfo_t = std::pair<uint32_t, marktype_t>;
+using mark_t     = std::pair<markinfo_t, sid>;
 
 struct Matrix
 {
@@ -13,9 +19,9 @@ struct Matrix
 
     Matrix &operator=(Matrix other) { timeline = other.timeline; return *this; }
 
-    void            Clear(void);
-    uint32_t        Append(std::pair<uint32_t, sid>);
-    uint32_t        Append(uint32_t, sid);
-    void            Export(const QString &);
-    static Matrix   Import(const QString &);
+    void          Clear(void);
+    marktype_t    Append(mark_t);
+    marktype_t    Append(uint32_t, marktype_t, sid);
+    void          Export(const QString &);
+    static Matrix Import(const QString &);
 };

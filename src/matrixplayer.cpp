@@ -26,7 +26,7 @@ void MatrixPlayer::PlayMatrix(const Matrix &matrix) {
     {
         playerthread = new PlayerThread(this);
         connect(playerthread, &PlayerThread::playFinished, this, &MatrixPlayer::onPlayFinished);
-        connect(playerthread, &PlayerThread::markHit, this, &MatrixPlayer::playSound);
+        connect(playerthread, &PlayerThread::markHit, this, &MatrixPlayer::markHit);
     }
 
     if (playerthread)
@@ -47,9 +47,29 @@ void MatrixPlayer::onPlayFinished() {
     qDebug("Play finished (main thread)");
 }
 
-void MatrixPlayer::playSound(sid sound) {
-    if (playerthread && !player->Play(sound)) {
-        // @TODO: handle error
-        qDebug("Matrix player play fail");
+void MatrixPlayer::markHit(mark_t mark)
+{
+    //
+    // No need to do anything if stopping fails,
+    // as this can only happen if the sound already finished playing.
+    //
+    // If this is not a valid sound, MARK_PUSH will too do nothing.
+    //
+    switch (mark.first.second)
+    {
+    default:
+    case MARK_PUSH:
+        if (playerthread && !player->Play(mark.second))
+        {
+            // @TODO: handle error
+            qDebug("Matrix player: invalid sound id?");
+        }
+        break;
+    case MARK_RELEASE:
+        if (playerthread)
+        {
+            player->Stop(mark.second);
+        }
+        break;
     }
 }

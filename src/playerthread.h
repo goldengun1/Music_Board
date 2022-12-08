@@ -24,5 +24,5 @@ private:
 
 signals:
     void playFinished();
-    void markHit(sid sound);
+    void markHit(mark_t info);
 };

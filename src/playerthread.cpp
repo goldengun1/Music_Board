@@ -19,9 +19,9 @@ void PlayerThread::run() {
         timer.start();
         elapsed = 0;
         while (!matrix.timeline.empty()) {
-            while (!matrix.timeline.empty() && matrix.timeline.top().first <= elapsed) {
+            while (!matrix.timeline.empty() && matrix.timeline.top().first.first <= elapsed) {
                 qDebug() << matrix.timeline.top().first << " <= " << elapsed << ", size=" << matrix.timeline.size();
-                emit markHit(matrix.timeline.top().second);
+                emit markHit(matrix.timeline.top());
                 matrix.timeline.pop();
             }
 

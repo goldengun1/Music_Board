@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     matrixPlayer = std::make_unique<MatrixPlayer>(bank, this);
     recorder = std::make_unique<Recorder>();
     qRegisterMetaType<sid>("sid");
+    qRegisterMetaType<mark_t>("mark_t");
     initButtons();
 
     // Default bank configuration.
@@ -56,6 +57,7 @@ void MainWindow::openFileDialog(SoundButton *button)
 void MainWindow::handleSoundButtonPress()
 {
     auto button = qobject_cast<SoundButton *>(sender());
+
     if(!player->Play(button->id)){
        //TODO
        qDebug() << "play fail";
@@ -68,22 +70,23 @@ void MainWindow::handleSoundButtonPress()
         ui->oneShotCB->setChecked(s->oneShot);
         ui->volumeSlider->setSliderPosition(s->getVolume());
         ui->lcdVolDisplay->display(s->getVolume());
+
+        // TODO: Record a press only if a sound is assigned to the button?
     }
 
     if (recorder->Recording())
     {
-        recorder->Mark(button->id);
+        recorder->Mark(button->id, MARK_PUSH);
     }
 }
 
 void MainWindow::recordStart()
 {
-    uint64_t length;
-    bool     playprevious;
+    bool playprevious;
     qDebug() << "Recording: start!";
 
-    std::tie(length, matrix) = recorder->Stop();
-    playprevious             = true;
+    matrix       = recorder->Stop();
+    playprevious = true;
     if (playprevious)
     {
         matrixPlayer->PlayMatrix(matrix);
@@ -100,10 +103,9 @@ void MainWindow::recordDelete()
 
 void MainWindow::recordStop()
 {
-    uint64_t length;
     qDebug() << "Recording: stop!";
 
-    std::tie(length, matrix) = recorder->Stop();
+    matrix = recorder->Stop();
 }
 
 void MainWindow::recordPlay()
@@ -118,6 +120,10 @@ void MainWindow::handleSoundButtonRelease()
     std::optional<std::shared_ptr<Sound>> mappedSound = bank->Assigned(button->id);
     if (mappedSound.has_value() && !mappedSound->get()->oneShot){
         player->Stop(button->id);
+        if (recorder->Recording())
+        {
+            recorder->Mark(button->id, MARK_RELEASE);
+        }
     }
 }
 

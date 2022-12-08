@@ -23,5 +23,5 @@ private:
 
 private slots:
     void onPlayFinished();
-    void playSound(sid sound);
+    void markHit(mark_t mark);
 };
