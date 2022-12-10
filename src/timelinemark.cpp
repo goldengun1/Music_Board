@@ -23,5 +23,9 @@ QRectF TimelineMark::boundingRect() const {
 void TimelineMark::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     painter->fillRect(boundingRect(), color);
     painter->drawText(boundingRect().adjusted(10, 0, 0, 0), Qt::AlignLeft | Qt::AlignVCenter, "Hello");
-    painter->setPen(Qt::SolidLine);
+    QPen pen{QBrush(Qt::NoBrush), 5, Qt::SolidLine, Qt::FlatCap};
+    pen.setColor(Qt::white);
+    painter->setPen(pen);
+    painter->drawLine(boundingRect().bottomLeft(), boundingRect().topLeft());
+    painter->drawLine(boundingRect().bottomRight(), boundingRect().topRight());
 }
