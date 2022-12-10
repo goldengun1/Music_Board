@@ -186,7 +186,6 @@ void MainWindow::on_radioTheme1_clicked()
     this->setStyleSheet(styleSheetData);
 }
 
-<<<<<<< HEAD
 void MainWindow::handleMatrixEnd()
 {
     qDebug() << "main window matrix end" << matrixPlayer->loopPlaying;
@@ -195,7 +194,6 @@ void MainWindow::handleMatrixEnd()
     }
 }
 
-=======
 void MainWindow::initSoundEditing()
 {
     connect(ui->volumeSlider, &QSlider::valueChanged, this, &MainWindow::handleVolumeChange);
@@ -203,7 +201,6 @@ void MainWindow::initSoundEditing()
 }
 
 //dodati vizualizaciju pritiska tastera preko tastature
->>>>>>> main
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if(!event->isAutoRepeat()){
