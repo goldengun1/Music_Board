@@ -30,6 +30,7 @@ private slots:
     void recordStop();
     void recordPlay();
     void saveMatrix();
+    void importMatrix();
     void handleSoundButtonPress();
     void handleSoundButtonRelease();
     void handleVolumeChange(int volume);
