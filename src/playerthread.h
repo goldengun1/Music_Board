@@ -2,25 +2,33 @@
 
 #include <QThread>
 #include <QSemaphore>
+#include <QMutex>
 
 #include "matrix.h"
 
 class PlayerThread: public QThread {
     Q_OBJECT
 public:
-    QSemaphore sem_waitplay;
-    bool stop;
+    bool pause;
+    QMutex *mutex;
 
-    explicit PlayerThread(QObject *parent = nullptr);
+    explicit PlayerThread(QMutex *mutex, QObject *parent = nullptr);
+    ~PlayerThread(void) { }
 
-    void Stop(void) { stop = true; }
-    void NewMatrix(const Matrix& matrix) { this->matrix = matrix; sem_waitplay.release(); }
+    void Pause(void) { pause = true; pausetime.restart(); pausetime.start(); }
+	void Resume(void) { pause = false; pausetime_accumulated += pausetime.elapsed(); }
+    void NewMatrix(const Matrix& matrix) { this->matrix = matrix; }
+
+	bool Paused(void) const { return pause; }
 
 protected:
     void run() override;
 
 private:
     Matrix matrix;
+    
+    uint32_t pausetime_accumulated;
+    QElapsedTimer pausetime;
 
 signals:
     void playFinished();

@@ -12,43 +12,64 @@ MatrixPlayer::MatrixPlayer(std::shared_ptr<SoundBank> &bank, QObject *parent)
 
 MatrixPlayer::~MatrixPlayer()
 {
-    DeleteMatrix();
+    DeleteThread();
 }
 
 void MatrixPlayer::PlayMatrix(const Matrix &matrix) {
+    
     if (playerthread)
     {
-        playerthread->terminate();
-        playerthread->wait();
+        DeleteThread();
     }
 
-    if (!playerthread)
-    {
-        playerthread = new PlayerThread(this);
-        connect(playerthread, &PlayerThread::playFinished, this, &MatrixPlayer::onPlayFinished);
-        connect(playerthread, &PlayerThread::markHit, this, &MatrixPlayer::markHit);
-    }
-
-    if (playerthread)
-    {
-        playerthread->NewMatrix(matrix);
-        playerthread->start();
-    }
+    playerthread = new PlayerThread(&mutex, this);
+    connect(playerthread, &PlayerThread::playFinished, this, &MatrixPlayer::onPlayFinished);
+    connect(playerthread, &PlayerThread::markHit, this, &MatrixPlayer::markHit);
+    playerthread->NewMatrix(matrix);
+    playerthread->start();
 }
 
-void MatrixPlayer::DeleteMatrix(void)
+void MatrixPlayer::DeleteThread(void)
 {
     if (playerthread)
     {
         // @TODO: ispitati da li je ovo najbolji nacin da se thread gasi kada se gasi i sama aplikacija
+        if (!playerthread->Paused())
+        {
+            mutex.lock();
+        }
         playerthread->terminate();
         playerthread->wait();
         playerthread = nullptr;
+        mutex.unlock();
+    }
+}
+
+void MatrixPlayer::Stop(void)
+{
+    DeleteThread();
+}
+
+void MatrixPlayer::Pause(void)
+{
+    if (playerthread)
+    {
+        if (playerthread->Paused())
+        {
+            mutex.unlock();
+            playerthread->Resume();
+        }
+        else
+        {
+            mutex.lock();
+            playerthread->Pause();
+        }
     }
 }
 
 void MatrixPlayer::onPlayFinished() {
     qDebug("Play finished (main thread)");
+    DeleteThread();
 }
 
 void MatrixPlayer::markHit(mark_t mark)

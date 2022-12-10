@@ -32,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->pbRecord, &QPushButton::clicked, this, &MainWindow::recordStart);
     connect(ui->pbPlay, &QPushButton::clicked, this, &MainWindow::recordPlay);
+    connect(ui->pbPause, &QPushButton::clicked, this, &MainWindow::recordPause);
     connect(ui->pbStop, &QPushButton::clicked, this, &MainWindow::recordStop);
     connect(ui->pbDelete, &QPushButton::clicked, this, &MainWindow::recordDelete);
     lastClickedBtn = ui->pbQ;
@@ -98,7 +99,7 @@ void MainWindow::recordDelete()
 {
     qDebug() << "Recording: reset!";
     recorder->Reset();
-    matrixPlayer->DeleteMatrix();
+    matrixPlayer->Stop();
 }
 
 void MainWindow::recordStop()
@@ -112,6 +113,11 @@ void MainWindow::recordPlay()
 {
     qDebug() << "Recording: play!";
     matrixPlayer->PlayMatrix(matrix);
+}
+
+void MainWindow::recordPause()
+{
+    matrixPlayer->Pause();
 }
 
 void MainWindow::handleSoundButtonRelease()

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <QMutex>
 
 #include "soundbank.h"
 #include "soundplayer.h"
@@ -14,12 +15,16 @@ public:
     explicit MatrixPlayer(std::shared_ptr<SoundBank> &bank, QObject *parent = nullptr);
     ~MatrixPlayer();
     void PlayMatrix(const Matrix &);
-    void DeleteMatrix(void);
+    void Stop(void);
+    void Pause(void);
 
 private:
     std::shared_ptr<SoundBank> bank;
     std::unique_ptr<SoundPlayer> player;
     PlayerThread *playerthread;
+    QMutex mutex;
+
+    void DeleteThread(void);
 
 private slots:
     void onPlayFinished();
