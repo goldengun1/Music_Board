@@ -20,7 +20,7 @@ Matrix::Append(uint32_t marktime, sid marksound)
     return timeline.emplace(marktime, marksound), marktime;
 }
 
-void Matrix::Export(const QString & path)
+void Matrix::Export(const QString & path) const
 {
     QFile file(path);
 
@@ -67,4 +67,8 @@ Matrix Matrix::Import(const QString & path) {
     file.close();
 
     return m;
+}
+
+bool Matrix::Empty() const {
+    return timeline.empty();
 }

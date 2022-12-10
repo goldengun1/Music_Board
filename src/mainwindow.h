@@ -29,6 +29,7 @@ private slots:
     void recordDelete();
     void recordStop();
     void recordPlay();
+    void saveMatrix();
     void handleSoundButtonPress();
     void handleSoundButtonRelease();
     void handleVolumeChange(int volume);

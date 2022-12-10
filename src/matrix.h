@@ -16,6 +16,7 @@ struct Matrix
     void            Clear(void);
     uint32_t        Append(std::pair<uint32_t, sid>);
     uint32_t        Append(uint32_t, sid);
-    void            Export(const QString &);
+    void            Export(const QString &) const;
+    bool            Empty() const;
     static Matrix   Import(const QString &);
 };

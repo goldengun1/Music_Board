@@ -3,6 +3,8 @@
 
 #include <headers/utlis.h>
 
+#include <iostream>
+
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MainWindow)
@@ -33,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pbPlay, &QPushButton::clicked, this, &MainWindow::recordPlay);
     connect(ui->pbStop, &QPushButton::clicked, this, &MainWindow::recordStop);
     connect(ui->pbDelete, &QPushButton::clicked, this, &MainWindow::recordDelete);
+    connect(ui->pbSaveButton, &QPushButton::clicked, this, &MainWindow::saveMatrix);
     lastClickedBtn = ui->pbQ;
     initSoundEditing();
 }
@@ -278,6 +281,20 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
             QWidget::keyPressEvent(event);
         }
     }
+}
+
+void MainWindow::saveMatrix() {
+    if (matrix.Empty()) {
+        QMessageBox::information(this, "Poruka", "Matrica još uvek nije snimljena pa je nije moguće sačuvati.");
+        return;
+    }
+    auto filePath = QFileDialog::getSaveFileName(
+            this,
+            tr("Save Matrix"),
+            QDir::homePath(),
+            tr("Matrix files (*.matrix)")
+        );
+    this->matrix.Export(filePath);
 }
 
 void MainWindow::initButtons()
