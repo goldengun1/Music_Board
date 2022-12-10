@@ -12,8 +12,10 @@ MainWindow::MainWindow(QWidget *parent)
     player = std::make_unique<SoundPlayer>(SoundPlayer(bank));
     matrixPlayer = std::make_unique<MatrixPlayer>(bank, this);
     recorder = std::make_unique<Recorder>();
+    timeline = std::make_unique<Timeline>(bank, this);
     qRegisterMetaType<sid>("sid");
     initButtons();
+    initTimeline();
 
     // Default bank configuration.
     bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ay.wav"));
@@ -339,7 +341,12 @@ void MainWindow::initButtons()
     connect(ui->pbV, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
 }
 
-
+void MainWindow::initTimeline() {
+    timeline->setSceneRect(ui->gvTimeline->rect());
+    ui->gvTimeline->setScene(timeline.get());
+    ui->gvTimeline->setRenderHint(QPainter::Antialiasing);
+    ui->gvTimeline->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+}
 
 void MainWindow::on_radioPreset1_toggled(bool checked)
 {
