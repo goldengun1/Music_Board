@@ -70,6 +70,7 @@ void MatrixPlayer::Pause(void)
 void MatrixPlayer::onPlayFinished() {
     qDebug("Play finished (main thread)");
     DeleteThread();
+    emit matrixEnd();
 }
 
 void MatrixPlayer::markHit(mark_t mark)
@@ -95,6 +96,8 @@ void MatrixPlayer::markHit(mark_t mark)
         {
             player->Stop(mark.second);
         }
+        break;
+    case MARK_REC_STOP:
         break;
     }
 

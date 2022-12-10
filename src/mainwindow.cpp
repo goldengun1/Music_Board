@@ -35,8 +35,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pbPause, &QPushButton::clicked, this, &MainWindow::recordPause);
     connect(ui->pbStop, &QPushButton::clicked, this, &MainWindow::recordStop);
     connect(ui->pbDelete, &QPushButton::clicked, this, &MainWindow::recordDelete);
+    connect(ui->pbLoop, &QPushButton::toggled, this, &MainWindow::loopToggle);
     lastClickedBtn = ui->pbQ;
     initSoundEditing();
+
+    connect(matrixPlayer.get(), &MatrixPlayer::matrixEnd, recorder.get(), &Recorder::handleMatrixEnd);
+    connect(matrixPlayer.get(), &MatrixPlayer::matrixEnd, this, &MainWindow::handleMatrixEnd);
 }
 
 MainWindow::~MainWindow()
@@ -83,15 +87,10 @@ void MainWindow::handleSoundButtonPress()
 
 void MainWindow::recordStart()
 {
-    bool playprevious;
     qDebug() << "Recording: start!";
-
-    matrix       = recorder->Stop();
-    playprevious = true;
-    if (playprevious)
-    {
-        matrixPlayer->PlayMatrix(matrix);
-    }
+    if(recorder->firstRecordingDuration != 0)
+        matrix = recorder->Stop();
+    matrixPlayer->PlayMatrix(matrix);
     recorder->Start();
 }
 
@@ -105,8 +104,8 @@ void MainWindow::recordDelete()
 void MainWindow::recordStop()
 {
     qDebug() << "Recording: stop!";
-
-    matrix = recorder->Stop();
+    if(recorder->Recording())
+        matrix = recorder->Stop();
 }
 
 void MainWindow::recordPlay()
@@ -115,9 +114,17 @@ void MainWindow::recordPlay()
     matrixPlayer->PlayMatrix(matrix);
 }
 
+
 void MainWindow::recordPause()
 {
     matrixPlayer->Pause();
+}
+
+void MainWindow::loopToggle(bool checked)
+{
+    qDebug() << "looping" << checked;
+    matrixPlayer->loopPlaying = checked;
+    recorder->loopRecording = checked;
 }
 
 void MainWindow::handleSoundButtonRelease()
@@ -169,6 +176,14 @@ void MainWindow::on_radioTheme1_clicked()
 
     QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
     this->setStyleSheet(styleSheetData);
+}
+
+void MainWindow::handleMatrixEnd()
+{
+    qDebug() << "main window matrix end" << matrixPlayer->loopPlaying;
+    if (matrixPlayer->loopPlaying){
+        matrixPlayer->PlayMatrix(matrix);
+    }
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)

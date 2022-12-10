@@ -9,8 +9,10 @@ using matrix_t = std::vector<std::pair<uint64_t, sid>>; // This should be its ow
 //
 // Construct matrix with timestamps.
 //
-class Recorder
+class Recorder: public QObject
 {
+    Q_OBJECT
+
     Matrix        matrix;
     QElapsedTimer stopwatch;
     bool          recording;
@@ -25,4 +27,10 @@ public:
 
     [[nodiscard("RECORDED MATRIX IS NOT USED")]]
     Matrix Stop(void); // Return last mark's time and recorded matrix.
+
+    bool   loopRecording = false;
+    qint64 firstRecordingDuration = 0;
+
+public slots:
+    void handleMatrixEnd();
 };

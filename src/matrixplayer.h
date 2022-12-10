@@ -17,6 +17,8 @@ public:
     void PlayMatrix(const Matrix &);
     void Stop(void);
     void Pause(void);
+    void DeleteMatrix(void);
+    bool loopPlaying = false;
 
 private:
     std::shared_ptr<SoundBank> bank;
@@ -29,4 +31,7 @@ private:
 private slots:
     void onPlayFinished();
     void markHit(mark_t mark);
+
+signals:
+    void matrixEnd();
 };

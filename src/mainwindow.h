@@ -30,6 +30,7 @@ private slots:
     void recordStop();
     void recordPlay();
     void recordPause();
+    void loopToggle(bool checked);
     void handleSoundButtonPress();
     void handleSoundButtonRelease();
     void handleVolumeChange(int volume);
@@ -37,6 +38,7 @@ private slots:
     void on_volumeSlider_valueChanged(int value);
     void on_radioTheme2_clicked();
     void on_radioTheme1_clicked();
+    void handleMatrixEnd();
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;

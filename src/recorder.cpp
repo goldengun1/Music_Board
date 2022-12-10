@@ -26,13 +26,25 @@ Recorder::Rewind(void)
 Matrix
 Recorder::Stop(void)
 {
+    if(firstRecordingDuration == 0) {
+        firstRecordingDuration = stopwatch.elapsed();
+        Mark(0, MARK_REC_STOP);
+    }
     recording = false;
     return matrix;
+}
+
+void Recorder::handleMatrixEnd()
+{
+    if(loopRecording){
+        Rewind();
+    }
 }
 
 void
 Recorder::Reset(void)
 {
+    firstRecordingDuration = 0;
     matrix.Clear();
     Rewind();
 }

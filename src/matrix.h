@@ -7,7 +7,8 @@
 enum marktype_t
 {
     MARK_PUSH,
-    MARK_RELEASE
+    MARK_RELEASE,
+    MARK_REC_STOP
 };
 using markinfo_t = std::pair<uint32_t, marktype_t>;
 using mark_t     = std::pair<markinfo_t, sid>;
