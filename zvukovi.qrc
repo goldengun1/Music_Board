@@ -1,17 +1,70 @@
-<!DOCTYPE RCC>
-<RCC version="1.0">
+<RCC>
     <qresource prefix="/">
         <file>src/resursi/zvukovi/Ay.wav</file>
         <file>src/resursi/zvukovi/Bass1.wav</file>
         <file>src/resursi/zvukovi/Bass2.wav</file>
         <file>src/resursi/zvukovi/Bass4.wav</file>
+        <file>src/resursi/zvukovi/Cinela1.wav</file>
+        <file>src/resursi/zvukovi/Cinela2.wav</file>
+        <file>src/resursi/zvukovi/Clap.wav</file>
+        <file>src/resursi/zvukovi/Conga.wav</file>
+        <file>src/resursi/zvukovi/Ding.wav</file>
+        <file>src/resursi/zvukovi/Dobos1.wav</file>
+        <file>src/resursi/zvukovi/Dobos2.wav</file>
+        <file>src/resursi/zvukovi/Drvo.wav</file>
         <file>src/resursi/zvukovi/Gitara1.wav</file>
         <file>src/resursi/zvukovi/Gitara2.wav</file>
         <file>src/resursi/zvukovi/Gitara3.wav</file>
         <file>src/resursi/zvukovi/Gitara4.wav</file>
-        <file>src/resursi/zvukovi/Cinela1.wav</file>
-        <file>src/resursi/zvukovi/Cinela2.wav</file>
+        <file>src/resursi/zvukovi/HoldUp.wav</file>
+        <file>src/resursi/zvukovi/Kapljica.wav</file>
+        <file>src/resursi/zvukovi/Kick.wav</file>
+        <file>src/resursi/zvukovi/Ks1.wav</file>
+        <file>src/resursi/zvukovi/Orgulje1.wav</file>
+        <file>src/resursi/zvukovi/Orgulje2.wav</file>
+        <file>src/resursi/zvukovi/Orgulje3.wav</file>
+        <file>src/resursi/zvukovi/Orgulje4.wav</file>
+        <file>src/resursi/zvukovi/Pistolj.wav</file>
+        <file>src/resursi/zvukovi/Prsti.wav</file>
         <file>src/resursi/zvukovi/Tam1.wav</file>
         <file>src/resursi/zvukovi/Tam2.wav</file>
+        <file>src/resursi/zvukovi/Ugh.wav</file>
+        <file>src/resursi/zvukovi/Yeah.wav</file>
+        <file>src/resursi/zvukovi/piano1.wav</file>
+        <file>src/resursi/zvukovi/piano2.wav</file>
+        <file>src/resursi/zvukovi/piano3.wav</file>
+        <file>src/resursi/zvukovi/piano4.wav</file>
+        <file>src/resursi/zvukovi/piano5.wav</file>
+        <file>src/resursi/zvukovi/piano6.wav</file>
+        <file>src/resursi/zvukovi/piano7.wav</file>
+        <file>src/resursi/zvukovi/piano8.wav</file>
+        <file>src/resursi/zvukovi/piano9.wav</file>
+        <file>src/resursi/zvukovi/piano10.wav</file>
+        <file>src/resursi/zvukovi/piano11.wav</file>
+        <file>src/resursi/zvukovi/piano12.wav</file>
+        <file>src/resursi/zvukovi/meme1.wav</file>
+        <file>src/resursi/zvukovi/meme2.wav</file>
+        <file>src/resursi/zvukovi/meme4.wav</file>
+        <file>src/resursi/zvukovi/meme5.wav</file>
+        <file>src/resursi/zvukovi/meme6.wav</file>
+        <file>src/resursi/zvukovi/meme7.wav</file>
+        <file>src/resursi/zvukovi/meme8.wav</file>
+        <file>src/resursi/zvukovi/meme9.wav</file>
+        <file>src/resursi/zvukovi/meme10.wav</file>
+        <file>src/resursi/zvukovi/meme11.wav</file>
+        <file>src/resursi/zvukovi/meme12.wav</file>
+        <file>src/resursi/zvukovi/meme3.wav</file>
+        <file>src/resursi/zvukovi/SlimShady1.wav</file>
+        <file>src/resursi/zvukovi/SlimShady2.wav</file>
+        <file>src/resursi/zvukovi/SlimShady3.wav</file>
+        <file>src/resursi/zvukovi/SlimShady4.wav</file>
+        <file>src/resursi/zvukovi/SlimShady5.wav</file>
+        <file>src/resursi/zvukovi/SlimShady6.wav</file>
+        <file>src/resursi/zvukovi/SlimShadyBass1.wav</file>
+        <file>src/resursi/zvukovi/SlimShadyBass2.wav</file>
+        <file>src/resursi/zvukovi/SlimShadyBass3.wav</file>
+        <file>src/resursi/zvukovi/SlimShadyBass4.wav</file>
+        <file>src/resursi/zvukovi/SlimShadyBass5.wav</file>
+        <file>src/resursi/zvukovi/SlimShadyDrum1.wav</file>
     </qresource>
 </RCC>

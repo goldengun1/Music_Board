@@ -40,6 +40,19 @@ private slots:
     void on_radioTheme1_clicked();
     void handleMatrixEnd();
 
+    void on_radioTheme3_clicked();
+
+
+    void on_radioPreset1_toggled(bool checked);
+
+    void on_radioPreset2_clicked();
+
+    void on_radioPreset3_clicked();
+
+    void on_radioPreset4_clicked();
+
+    void on_radioPreset5_clicked();
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;
