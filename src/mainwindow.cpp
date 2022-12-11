@@ -3,8 +3,6 @@
 
 #include <headers/utlis.h>
 
-#include <iostream>
-
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MainWindow)
