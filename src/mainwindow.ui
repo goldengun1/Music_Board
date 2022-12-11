@@ -602,15 +602,20 @@
      <item>
       <widget class="QPushButton" name="pbLoop">
        <property name="styleSheet">
-        <string notr="true">color: &quot;#FFFFFF&quot;;
-height: &quot;30px&quot;;
-width: &quot;30px&quot;;
-font: 45px;
-text-align: &quot;center:&quot;;
-padding-bottom: 12px;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
-        <string>@</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../slika.qrc">
+         <normaloff>:/src/resursi/slike/icons8_repeat_52px_1.png</normaloff>:/src/resursi/slike/icons8_repeat_52px_1.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>25</width>
+         <height>32</height>
+        </size>
        </property>
        <property name="checkable">
         <bool>true</bool>
