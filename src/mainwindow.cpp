@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     matrixPlayer = std::make_unique<MatrixPlayer>(bank, this);
     recorder = std::make_unique<Recorder>();
     qRegisterMetaType<sid>("sid");
+    qRegisterMetaType<mark_t>("mark_t");
     initButtons();
 
     // Default bank configuration.
@@ -33,12 +34,17 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->pbRecord, &QPushButton::clicked, this, &MainWindow::recordStart);
     connect(ui->pbPlay, &QPushButton::clicked, this, &MainWindow::recordPlay);
+    connect(ui->pbPause, &QPushButton::clicked, this, &MainWindow::recordPause);
     connect(ui->pbStop, &QPushButton::clicked, this, &MainWindow::recordStop);
     connect(ui->pbDelete, &QPushButton::clicked, this, &MainWindow::recordDelete);
     connect(ui->pbSaveButton, &QPushButton::clicked, this, &MainWindow::saveMatrix);
     connect(ui->pbImport, &QPushButton::clicked, this, &MainWindow::importMatrix);
+    connect(ui->pbLoop, &QPushButton::toggled, this, &MainWindow::loopToggle);
     lastClickedBtn = ui->pbQ;
     initSoundEditing();
+
+    connect(matrixPlayer.get(), &MatrixPlayer::matrixEnd, recorder.get(), &Recorder::handleMatrixEnd);
+    connect(matrixPlayer.get(), &MatrixPlayer::matrixEnd, this, &MainWindow::handleMatrixEnd);
 }
 
 MainWindow::~MainWindow()
@@ -60,6 +66,7 @@ void MainWindow::openFileDialog(SoundButton *button)
 void MainWindow::handleSoundButtonPress()
 {
     auto button = qobject_cast<SoundButton *>(sender());
+
     if(!player->Play(button->id)){
        //TODO
        qDebug() << "play fail";
@@ -72,17 +79,22 @@ void MainWindow::handleSoundButtonPress()
         ui->oneShotCB->setChecked(s->oneShot);
         ui->volumeSlider->setSliderPosition(s->getVolume());
         ui->lcdVolDisplay->display(s->getVolume());
+
+        // TODO: Record a press only if a sound is assigned to the button?
     }
 
     if (recorder->Recording())
     {
-        recorder->Mark(button->id);
+        recorder->Mark(button->id, MARK_PUSH);
     }
 }
 
 void MainWindow::recordStart()
 {
     qDebug() << "Recording: start!";
+    if(recorder->firstRecordingDuration != 0)
+        matrix = recorder->Stop();
+    matrixPlayer->PlayMatrix(matrix);
     recorder->Start();
 }
 
@@ -90,14 +102,14 @@ void MainWindow::recordDelete()
 {
     qDebug() << "Recording: reset!";
     recorder->Reset();
+    matrixPlayer->Stop();
 }
 
 void MainWindow::recordStop()
 {
-    uint64_t length;
     qDebug() << "Recording: stop!";
-
-    std::tie(length, matrix) = recorder->Stop();
+    if(recorder->Recording())
+        matrix = recorder->Stop();
 }
 
 void MainWindow::recordPlay()
@@ -106,12 +118,29 @@ void MainWindow::recordPlay()
     matrixPlayer->PlayMatrix(matrix);
 }
 
+
+void MainWindow::recordPause()
+{
+    matrixPlayer->Pause();
+}
+
+void MainWindow::loopToggle(bool checked)
+{
+    qDebug() << "looping" << checked;
+    matrixPlayer->loopPlaying = checked;
+    recorder->loopRecording = checked;
+}
+
 void MainWindow::handleSoundButtonRelease()
 {
     auto button = qobject_cast<SoundButton *>(sender());
     std::optional<std::shared_ptr<Sound>> mappedSound = bank->Assigned(button->id);
     if (mappedSound.has_value() && !mappedSound->get()->oneShot){
         player->Stop(button->id);
+        if (recorder->Recording())
+        {
+            recorder->Mark(button->id, MARK_RELEASE);
+        }
     }
 }
 
@@ -159,6 +188,14 @@ void MainWindow::on_radioTheme1_clicked()
 
     QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
     this->setStyleSheet(styleSheetData);
+}
+
+void MainWindow::handleMatrixEnd()
+{
+    qDebug() << "main window matrix end" << matrixPlayer->loopPlaying;
+    if (matrixPlayer->loopPlaying){
+        matrixPlayer->PlayMatrix(matrix);
+    }
 }
 
 void MainWindow::initSoundEditing()

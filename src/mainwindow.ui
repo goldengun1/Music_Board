@@ -600,6 +600,24 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pbLoop">
+       <property name="styleSheet">
+        <string notr="true">color: &quot;#FFFFFF&quot;;
+height: &quot;30px&quot;;
+width: &quot;30px&quot;;
+font: 45px;
+text-align: &quot;center:&quot;;
+padding-bottom: 12px;</string>
+       </property>
+       <property name="text">
+        <string>@</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer_4">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>

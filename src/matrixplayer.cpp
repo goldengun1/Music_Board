@@ -4,31 +4,101 @@
 
 MatrixPlayer::MatrixPlayer(std::shared_ptr<SoundBank> &bank, QObject *parent)
     : QObject(parent)
-    , bank{bank},
-    player(std::make_unique<SoundPlayer>(bank)),
-    playerthread(this)
+    , bank(bank),
+    player(std::make_unique<SoundPlayer>(bank))
 {
-    connect(&playerthread, &PlayerThread::playFinished, this, &MatrixPlayer::onPlayFinished);
-    connect(&playerthread, &PlayerThread::markHit, this, &MatrixPlayer::playSound);
-    playerthread.start();
+    playerthread = nullptr;
 }
+
 MatrixPlayer::~MatrixPlayer()
 {
-    // @TODO: ispitati da li je ovo najbolji nacin da se thread gasi kada se gasi i sama aplikacija
-    playerthread.terminate();
-    playerthread.wait();
+    DeleteThread();
 }
+
 void MatrixPlayer::PlayMatrix(const Matrix &matrix) {
-    playerthread.NewMatrix(matrix);
+    
+    if (playerthread)
+    {
+        DeleteThread();
+    }
+
+    playerthread = new PlayerThread(&mutex, this);
+    connect(playerthread, &PlayerThread::playFinished, this, &MatrixPlayer::onPlayFinished);
+    connect(playerthread, &PlayerThread::markHit, this, &MatrixPlayer::markHit);
+    playerthread->NewMatrix(matrix);
+    playerthread->start();
+}
+
+void MatrixPlayer::DeleteThread(void)
+{
+    if (playerthread)
+    {
+        // @TODO: ispitati da li je ovo najbolji nacin da se thread gasi kada se gasi i sama aplikacija
+        if (!playerthread->Paused())
+        {
+            mutex.lock();
+        }
+        playerthread->terminate();
+        playerthread->wait();
+        playerthread = nullptr;
+        mutex.unlock();
+    }
+}
+
+void MatrixPlayer::Stop(void)
+{
+    DeleteThread();
+}
+
+void MatrixPlayer::Pause(void)
+{
+    if (playerthread)
+    {
+        if (playerthread->Paused())
+        {
+            mutex.unlock();
+            playerthread->Resume();
+        }
+        else
+        {
+            mutex.lock();
+            playerthread->Pause();
+        }
+    }
 }
 
 void MatrixPlayer::onPlayFinished() {
     qDebug("Play finished (main thread)");
+    DeleteThread();
+    emit matrixEnd();
 }
 
-void MatrixPlayer::playSound(sid sound) {
-    if (!player->Play(sound)) {
-        // @TODO: handle error
-        qDebug("Matrix player play fail");
+void MatrixPlayer::markHit(mark_t mark)
+{
+    //
+    // No need to do anything if stopping fails,
+    // as this can only happen if the sound already finished playing.
+    //
+    // If this is not a valid sound, MARK_PUSH will too do nothing.
+    //
+    switch (mark.first.second)
+    {
+    default:
+    case MARK_PUSH:
+        if (playerthread && !player->Play(mark.second))
+        {
+            // @TODO: handle error
+            qDebug("Matrix player: invalid sound id?");
+        }
+        break;
+    case MARK_RELEASE:
+        if (playerthread)
+        {
+            player->Stop(mark.second);
+        }
+        break;
+    case MARK_REC_STOP:
+        break;
     }
+
 }

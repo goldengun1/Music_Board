@@ -8,13 +8,13 @@ Recorder::Start(void)
     recording = true;
 }
 
-uint64_t
-Recorder::Mark(sid sound)
+marktype_t
+Recorder::Mark(sid sound, marktype_t type)
 {
     const qint64 time = stopwatch.elapsed();
 
     qDebug() << "Mark at " << time << ".";
-    return (last = matrix.Append(time, sound));
+    return matrix.Append(time, type, sound);
 }
 
 void
@@ -23,17 +23,28 @@ Recorder::Rewind(void)
     stopwatch.restart();
 }
 
-std::pair<uint64_t, Matrix>
+Matrix
 Recorder::Stop(void)
 {
+    if(firstRecordingDuration == 0) {
+        firstRecordingDuration = stopwatch.elapsed();
+        Mark(0, MARK_REC_STOP);
+    }
     recording = false;
-    return { last, matrix };
+    return matrix;
+}
+
+void Recorder::handleMatrixEnd()
+{
+    if(loopRecording){
+        Rewind();
+    }
 }
 
 void
 Recorder::Reset(void)
 {
+    firstRecordingDuration = 0;
     matrix.Clear();
     Rewind();
-    last = 0;
 }
