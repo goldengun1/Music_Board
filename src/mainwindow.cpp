@@ -163,7 +163,7 @@ void MainWindow::on_volumeSlider_valueChanged(int value)
 
 void MainWindow::on_radioTheme3_clicked()
 {
-    QString stylePath = "/MatfTheme.qss";
+    QString stylePath = ":/src/teme/MatfTheme.qss";
 
     QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
     this->setStyleSheet(styleSheetData);
@@ -172,7 +172,7 @@ void MainWindow::on_radioTheme3_clicked()
 
 void MainWindow::on_radioTheme2_clicked()
 {
-    QString stylePath = "/SyNet.qss";
+    QString stylePath = ":/src/teme/SyNet.qss";
 
     QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
     this->setStyleSheet(styleSheetData);
@@ -180,7 +180,7 @@ void MainWindow::on_radioTheme2_clicked()
 
 void MainWindow::on_radioTheme1_clicked()
 {
-    QString stylePath = "/Darkeum.qss";
+    QString stylePath = ":/src/teme/Darkeum.qss";
 
     QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
     this->setStyleSheet(styleSheetData);
