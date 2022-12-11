@@ -11,6 +11,7 @@
         <file>src/resursi/slike/icons8_stop_48px.png</file>
         <file>src/resursi/slike/icons8_trash_can_48px.png</file>
         <file>src/resursi/slike/icons8_record_160px.png</file>
+        <file>src/resursi/slike/icons8_repeat_52px_1.png</file>
         <file>src/resursi/slike/file-import-solid.svg</file>
     </qresource>
 </RCC>

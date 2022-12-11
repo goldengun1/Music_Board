@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QString stylePath = "/Darkeum.qss";
+    QString stylePath = ":/src/teme/Darkeum.qss";
 
     QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
       a.setStyleSheet(styleSheetData);
