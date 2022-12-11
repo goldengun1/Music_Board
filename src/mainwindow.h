@@ -29,6 +29,8 @@ private slots:
     void recordDelete();
     void recordStop();
     void recordPlay();
+    void saveMatrix();
+    void importMatrix();
     void recordPause();
     void loopToggle(bool checked);
     void handleSoundButtonPress();

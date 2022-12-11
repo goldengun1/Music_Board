@@ -23,6 +23,7 @@ struct Matrix
     void          Clear(void);
     marktype_t    Append(mark_t);
     marktype_t    Append(uint32_t, marktype_t, sid);
-    void          Export(const QString &);
+    void          Export(const QString &) const;
     static Matrix Import(const QString &);
+    bool          Empty() const;
 };

@@ -661,6 +661,32 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="pbImport">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../slika.qrc">
+         <normaloff>:/src/resursi/slike/file-import-solid.svg</normaloff>:/src/resursi/slike/file-import-solid.svg</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item row="1" column="2">

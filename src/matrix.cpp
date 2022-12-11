@@ -20,7 +20,7 @@ Matrix::Append(uint32_t marktime, marktype_t marktype, sid marksound)
     return timeline.emplace(std::make_pair(marktime, marktype), marksound), marktype;
 }
 
-void Matrix::Export(const QString & path)
+void Matrix::Export(const QString & path) const
 {
     QFile file(path);
 
@@ -39,7 +39,7 @@ void Matrix::Export(const QString & path)
         std::pair<uint32_t, marktype_t> pair2 = pair1.first;
 
         // time, type, sid
-        out << pair2.first << ' ' << pair2.second << pair1.second << '\n';
+        out << pair2.first << ' ' << pair2.second << ' ' << pair1.second << '\n';
         buffer.pop();
     }
 
@@ -71,4 +71,8 @@ Matrix Matrix::Import(const QString & path) {
     file.close();
 
     return m;
+}
+
+bool Matrix::Empty() const {
+    return timeline.empty();
 }

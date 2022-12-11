@@ -35,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pbPause, &QPushButton::clicked, this, &MainWindow::recordPause);
     connect(ui->pbStop, &QPushButton::clicked, this, &MainWindow::recordStop);
     connect(ui->pbDelete, &QPushButton::clicked, this, &MainWindow::recordDelete);
+    connect(ui->pbSaveButton, &QPushButton::clicked, this, &MainWindow::saveMatrix);
+    connect(ui->pbImport, &QPushButton::clicked, this, &MainWindow::importMatrix);
     connect(ui->pbLoop, &QPushButton::toggled, this, &MainWindow::loopToggle);
     lastClickedBtn = ui->pbQ;
     initSoundEditing();
@@ -314,6 +316,32 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
         default:
             QWidget::keyPressEvent(event);
         }
+    }
+}
+
+void MainWindow::saveMatrix() {
+    if (matrix.Empty()) {
+        QMessageBox::information(this, "Poruka", "Matrica još uvek nije snimljena pa je nije moguće sačuvati.");
+        return;
+    }
+    auto filePath = QFileDialog::getSaveFileName(
+            this,
+            tr("Save Matrix"),
+            QDir::homePath(),
+            tr("Matrix files (*.matrix)")
+        );
+    this->matrix.Export(filePath);
+}
+
+void MainWindow::importMatrix() {
+    QMessageBox::StandardButton reply = QMessageBox::Yes;
+    if (!matrix.Empty()) {
+        reply = QMessageBox::question(this, "Poruka", "Ovo će obrisati trenutno snimljenu matricu. Da li ste sigurni da želite da učitate matricu?");
+    }
+
+    if (reply == QMessageBox::Yes) {
+        auto filePath = QFileDialog::getOpenFileName(this, tr("Open Matrix"), QDir::homePath(), tr("Matrix files (*.matrix)"));
+        matrix = Matrix::Import(filePath);
     }
 }
 
