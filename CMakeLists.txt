@@ -45,6 +45,7 @@ set(PROJECT_SOURCES
         src/teme/
         zvukovi.qrc
         slika.qrc
+        teme.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     recorder = std::make_unique<Recorder>();
     timeline = std::make_unique<Timeline>(bank, this);
     qRegisterMetaType<sid>("sid");
+    qRegisterMetaType<mark_t>("mark_t");
     initButtons();
     initTimeline();
 
@@ -33,10 +34,17 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->pbRecord, &QPushButton::clicked, this, &MainWindow::recordStart);
     connect(ui->pbPlay, &QPushButton::clicked, this, &MainWindow::recordPlay);
+    connect(ui->pbPause, &QPushButton::clicked, this, &MainWindow::recordPause);
     connect(ui->pbStop, &QPushButton::clicked, this, &MainWindow::recordStop);
     connect(ui->pbDelete, &QPushButton::clicked, this, &MainWindow::recordDelete);
+    connect(ui->pbSaveButton, &QPushButton::clicked, this, &MainWindow::saveMatrix);
+    connect(ui->pbImport, &QPushButton::clicked, this, &MainWindow::importMatrix);
+    connect(ui->pbLoop, &QPushButton::toggled, this, &MainWindow::loopToggle);
     lastClickedBtn = ui->pbQ;
     initSoundEditing();
+
+    connect(matrixPlayer.get(), &MatrixPlayer::matrixEnd, recorder.get(), &Recorder::handleMatrixEnd);
+    connect(matrixPlayer.get(), &MatrixPlayer::matrixEnd, this, &MainWindow::handleMatrixEnd);
 }
 
 MainWindow::~MainWindow()
@@ -58,6 +66,7 @@ void MainWindow::openFileDialog(SoundButton *button)
 void MainWindow::handleSoundButtonPress()
 {
     auto button = qobject_cast<SoundButton *>(sender());
+
     if(!player->Play(button->id)){
        //TODO
        qDebug() << "play fail";
@@ -70,17 +79,22 @@ void MainWindow::handleSoundButtonPress()
         ui->oneShotCB->setChecked(s->oneShot);
         ui->volumeSlider->setSliderPosition(s->getVolume());
         ui->lcdVolDisplay->display(s->getVolume());
+
+        // TODO: Record a press only if a sound is assigned to the button?
     }
 
     if (recorder->Recording())
     {
-        recorder->Mark(button->id);
+        recorder->Mark(button->id, MARK_PUSH);
     }
 }
 
 void MainWindow::recordStart()
 {
     qDebug() << "Recording: start!";
+    if(recorder->firstRecordingDuration != 0)
+        matrix = recorder->Stop();
+    matrixPlayer->PlayMatrix(matrix);
     recorder->Start();
 }
 
@@ -88,14 +102,14 @@ void MainWindow::recordDelete()
 {
     qDebug() << "Recording: reset!";
     recorder->Reset();
+    matrixPlayer->Stop();
 }
 
 void MainWindow::recordStop()
 {
-    uint64_t length;
     qDebug() << "Recording: stop!";
-
-    std::tie(length, matrix) = recorder->Stop();
+    if(recorder->Recording())
+        matrix = recorder->Stop();
 }
 
 void MainWindow::recordPlay()
@@ -104,12 +118,29 @@ void MainWindow::recordPlay()
     matrixPlayer->PlayMatrix(matrix);
 }
 
+
+void MainWindow::recordPause()
+{
+    matrixPlayer->Pause();
+}
+
+void MainWindow::loopToggle(bool checked)
+{
+    qDebug() << "looping" << checked;
+    matrixPlayer->loopPlaying = checked;
+    recorder->loopRecording = checked;
+}
+
 void MainWindow::handleSoundButtonRelease()
 {
     auto button = qobject_cast<SoundButton *>(sender());
     std::optional<std::shared_ptr<Sound>> mappedSound = bank->Assigned(button->id);
     if (mappedSound.has_value() && !mappedSound->get()->oneShot){
         player->Stop(button->id);
+        if (recorder->Recording())
+        {
+            recorder->Mark(button->id, MARK_RELEASE);
+        }
     }
 }
 
@@ -136,7 +167,7 @@ void MainWindow::on_volumeSlider_valueChanged(int value)
 
 void MainWindow::on_radioTheme3_clicked()
 {
-    QString stylePath = "/MatfTheme.qss";
+    QString stylePath = ":/src/teme/MatfTheme.qss";
 
     QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
     this->setStyleSheet(styleSheetData);
@@ -145,7 +176,7 @@ void MainWindow::on_radioTheme3_clicked()
 
 void MainWindow::on_radioTheme2_clicked()
 {
-    QString stylePath = "/SyNet.qss";
+    QString stylePath = ":/src/teme/SyNet.qss";
 
     QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
     this->setStyleSheet(styleSheetData);
@@ -153,10 +184,18 @@ void MainWindow::on_radioTheme2_clicked()
 
 void MainWindow::on_radioTheme1_clicked()
 {
-    QString stylePath = "/Darkeum.qss";
+    QString stylePath = ":/src/teme/Darkeum.qss";
 
     QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
     this->setStyleSheet(styleSheetData);
+}
+
+void MainWindow::handleMatrixEnd()
+{
+    qDebug() << "main window matrix end" << matrixPlayer->loopPlaying;
+    if (matrixPlayer->loopPlaying){
+        matrixPlayer->PlayMatrix(matrix);
+    }
 }
 
 void MainWindow::initSoundEditing()
@@ -279,6 +318,32 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
         default:
             QWidget::keyPressEvent(event);
         }
+    }
+}
+
+void MainWindow::saveMatrix() {
+    if (matrix.Empty()) {
+        QMessageBox::information(this, "Poruka", "Matrica još uvek nije snimljena pa je nije moguće sačuvati.");
+        return;
+    }
+    auto filePath = QFileDialog::getSaveFileName(
+            this,
+            tr("Save Matrix"),
+            QDir::homePath(),
+            tr("Matrix files (*.matrix)")
+        );
+    this->matrix.Export(filePath);
+}
+
+void MainWindow::importMatrix() {
+    QMessageBox::StandardButton reply = QMessageBox::Yes;
+    if (!matrix.Empty()) {
+        reply = QMessageBox::question(this, "Poruka", "Ovo će obrisati trenutno snimljenu matricu. Da li ste sigurni da želite da učitate matricu?");
+    }
+
+    if (reply == QMessageBox::Yes) {
+        auto filePath = QFileDialog::getOpenFileName(this, tr("Open Matrix"), QDir::homePath(), tr("Matrix files (*.matrix)"));
+        matrix = Matrix::Import(filePath);
     }
 }
 

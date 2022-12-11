@@ -577,6 +577,29 @@
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="pbLoop">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../slika.qrc">
+         <normaloff>:/src/resursi/slike/icons8_repeat_52px_1.png</normaloff>:/src/resursi/slike/icons8_repeat_52px_1.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>25</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer_4">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -606,6 +629,32 @@
        <property name="icon">
         <iconset resource="../slika.qrc">
          <normaloff>:/src/resursi/slike/icons8_save_200px.png</normaloff>:/src/resursi/slike/icons8_save_200px.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbImport">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../slika.qrc">
+         <normaloff>:/src/resursi/slike/file-import-solid.svg</normaloff>:/src/resursi/slike/file-import-solid.svg</iconset>
        </property>
        <property name="iconSize">
         <size>

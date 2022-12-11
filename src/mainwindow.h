@@ -30,6 +30,10 @@ private slots:
     void recordDelete();
     void recordStop();
     void recordPlay();
+    void saveMatrix();
+    void importMatrix();
+    void recordPause();
+    void loopToggle(bool checked);
     void handleSoundButtonPress();
     void handleSoundButtonRelease();
     void handleVolumeChange(int volume);
@@ -37,6 +41,7 @@ private slots:
     void on_volumeSlider_valueChanged(int value);
     void on_radioTheme2_clicked();
     void on_radioTheme1_clicked();
+    void handleMatrixEnd();
 
     void on_radioTheme3_clicked();
 

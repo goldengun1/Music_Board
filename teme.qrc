@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>src/teme/Darkeum.qss</file>
+        <file>src/teme/MatfTheme.qss</file>
+        <file>src/teme/SyNet.qss</file>
+    </qresource>
+</RCC>

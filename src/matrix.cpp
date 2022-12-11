@@ -8,19 +8,19 @@ Matrix::Clear(void)
     timeline = std::priority_queue<mark_t, std::vector<mark_t>, std::greater<mark_t>>();
 }
 
-uint32_t
-Matrix::Append(std::pair<uint32_t, sid> mark)
+marktype_t
+Matrix::Append(mark_t mark)
 {
-    return Append(mark.first, mark.second);
+    return Append(mark.first.first, mark.first.second, mark.second), mark.first.second;
 }
 
-uint32_t
-Matrix::Append(uint32_t marktime, sid marksound)
+marktype_t
+Matrix::Append(uint32_t marktime, marktype_t marktype, sid marksound)
 {
-    return timeline.emplace(marktime, marksound), marktime;
+    return timeline.emplace(std::make_pair(marktime, marktype), marksound), marktype;
 }
 
-void Matrix::Export(const QString & path)
+void Matrix::Export(const QString & path) const
 {
     QFile file(path);
 
@@ -35,10 +35,12 @@ void Matrix::Export(const QString & path)
     std::priority_queue<mark_t, std::vector<mark_t>, std::greater<mark_t>> buffer(timeline);
     while (!buffer.empty())
     {
-       std::pair<uint32_t, sid> pair = buffer.top();
+        std::pair<markinfo_t, sid>      pair1 = buffer.top();
+        std::pair<uint32_t, marktype_t> pair2 = pair1.first;
 
-       out << pair.first << ' ' << pair.second << '\n';
-       buffer.pop();
+        // time, type, sid
+        out << pair2.first << ' ' << pair2.second << ' ' << pair1.second << '\n';
+        buffer.pop();
     }
 
     file.close();
@@ -57,14 +59,20 @@ Matrix Matrix::Import(const QString & path) {
 
     Matrix m;
     uint32_t markTime;
+    uint32_t markTypeint;
     sid markSound;
-    while (!in.atEnd()) {
-        in >> markTime >> markSound;
+    while (!in.atEnd())
+    {
+        in >> markTime >> markTypeint >> markSound;
         in.seek(in.pos() + 1); // Preskacemo `\n` karaktere.
-        m.Append(markTime, markSound);
+        m.Append(markTime, static_cast<marktype_t>(markTypeint), markSound);
     }
 
     file.close();
 
     return m;
+}
+
+bool Matrix::Empty() const {
+    return timeline.empty();
 }
