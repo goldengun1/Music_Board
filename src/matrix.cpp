@@ -39,7 +39,7 @@ void Matrix::Export(const QString & path) const
         std::pair<uint32_t, marktype_t> pair2 = pair1.first;
 
         // time, type, sid
-        out << pair2.first << ' ' << pair2.second << pair1.second << '\n';
+        out << pair2.first << ' ' << pair2.second << ' ' << pair1.second << '\n';
         buffer.pop();
     }
 
