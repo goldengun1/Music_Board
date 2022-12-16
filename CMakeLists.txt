@@ -44,6 +44,20 @@ set(PROJECT_SOURCES
         teme.qrc
 )
 
+#
+# MSVC options.
+#
+# If compiling on MSVC and in RELEASE, use non-standard conforming floating point operations, /fp:fast.
+# During linking, use the /LTCG flag to enable link-time code generation,
+# /OPT:REF to remove unreferenced functions and /OPT:ICF to remove duplicate comdata sections.
+#
+if (MSVC AND CMAKE_BUILD_TYPE EQUAL "Release")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /fp:fast")
+    add_link_options(/INCREMENTAL:NO /OPT:REF /OPT:ICF /LTCG)
+    message(STATUS "MSVC: Using non-standard floating point operations (/fp:fast) and link-time code generation (/LTCG).")
+endif()
+
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(05-muzicka-tabla
         MANUAL_FINALIZATION
