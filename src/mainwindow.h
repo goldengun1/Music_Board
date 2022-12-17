@@ -55,6 +55,10 @@ private slots:
 
     void on_radioPreset5_clicked();
 
+    void on_progressBar_valueChanged(int value);
+
+    void on_progresBarr_setup(int min,int max);
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;

@@ -31,7 +31,9 @@ private:
 private slots:
     void onPlayFinished();
     void markHit(mark_t mark);
+    void onValueChanged(int value);
 
 signals:
     void matrixEnd();
+    void valueChanged(int value);
 };

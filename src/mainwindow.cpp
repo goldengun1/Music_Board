@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-
+#include <thread>
 #include <headers/utlis.h>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -43,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(matrixPlayer.get(), &MatrixPlayer::matrixEnd, recorder.get(), &Recorder::handleMatrixEnd);
     connect(matrixPlayer.get(), &MatrixPlayer::matrixEnd, this, &MainWindow::handleMatrixEnd);
+    connect(matrixPlayer.get(),&MatrixPlayer::valueChanged,this,&MainWindow::on_progressBar_valueChanged);
 }
 
 MainWindow::~MainWindow()
@@ -112,6 +113,7 @@ void MainWindow::recordStop()
 
 void MainWindow::recordPlay()
 {
+    ui->progressBar->setRange(0,(int)recorder->firstRecordingDuration);
     qDebug() << "Recording: play!";
     matrixPlayer->PlayMatrix(matrix);
 }
@@ -202,7 +204,6 @@ void MainWindow::initSoundEditing()
     connect(ui->oneShotCB, &QCheckBox::clicked, this, &MainWindow::handleOneShotChange);
 }
 
-//dodati vizualizaciju pritiska tastera preko tastature
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if(!event->isAutoRepeat()){
@@ -342,6 +343,14 @@ void MainWindow::importMatrix() {
     if (reply == QMessageBox::Yes) {
         auto filePath = QFileDialog::getOpenFileName(this, tr("Open Matrix"), QDir::homePath(), tr("Matrix files (*.matrix)"));
         matrix = Matrix::Import(filePath);
+        //TODO:set min and max value for timeline, this is not working properly
+        int matrixSize = (int)matrix.timeline.size();
+        qDebug()<<matrixSize;
+        ui->progressBar->setRange(0,matrixSize * 500);
+
+        //NOTE: trebalo bi ili promeniti tip skladista za matrix, da ne bude std::priority_queue,
+        //jer nije moguce pronaci na jednostavan nacin posledji element, ili omoguciti da se info o poslednjem unosu
+        //moze naci u samoj klasi kao neki field.
     }
 }
 
@@ -491,5 +500,16 @@ void MainWindow::on_radioPreset5_clicked()
     bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyBass3.wav"));
     bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyBass4.wav"));
     bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyBass5.wav"));
+}
+
+
+void MainWindow::on_progressBar_valueChanged(int value)
+{
+    ui->progressBar->setValue(value);
+}
+
+void MainWindow::on_progresBarr_setup(int min, int max)
+{
+    ui->progressBar->setRange(min,max);
 }
 
