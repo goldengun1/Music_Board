@@ -101,6 +101,7 @@ void MainWindow::recordDelete()
     qDebug() << "Recording: reset!";
     recorder->Reset();
     matrixPlayer->Stop();
+    matrix.Clear();
 }
 
 void MainWindow::recordStop()
