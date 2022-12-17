@@ -38,21 +38,15 @@ private slots:
     void handleVolumeChange(int volume);
     void handleOneShotChange(bool state);
     void on_volumeSlider_valueChanged(int value);
+    void on_masterVolumeSlider_valueChanged(int value);
     void on_radioTheme2_clicked();
     void on_radioTheme1_clicked();
     void handleMatrixEnd();
-
     void on_radioTheme3_clicked();
-
-
     void on_radioPreset1_toggled(bool checked);
-
     void on_radioPreset2_clicked();
-
     void on_radioPreset3_clicked();
-
     void on_radioPreset4_clicked();
-
     void on_radioPreset5_clicked();
 
 protected:
@@ -62,7 +56,7 @@ protected:
 
 private:
     Ui::MainWindow *ui;
-    std::unique_ptr<SoundPlayer> player;
+    std::shared_ptr<SoundPlayer> player;
     std::unique_ptr<MatrixPlayer> matrixPlayer;
     std::unique_ptr<Recorder> recorder;
     std::shared_ptr<SoundBank> bank;

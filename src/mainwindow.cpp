@@ -6,11 +6,11 @@
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MainWindow)
-    , bank(std::make_shared<SoundBank>(SoundBank()))
+    , bank(std::make_shared<SoundBank>())
 {
     ui->setupUi(this);
-    player = std::make_unique<SoundPlayer>(SoundPlayer(bank));
-    matrixPlayer = std::make_unique<MatrixPlayer>(bank, this);
+    player = std::make_shared<SoundPlayer>(bank);
+    matrixPlayer = std::make_unique<MatrixPlayer>(bank, player, this);
     recorder = std::make_unique<Recorder>();
     qRegisterMetaType<sid>("sid");
     qRegisterMetaType<mark_t>("mark_t");
@@ -164,6 +164,10 @@ void MainWindow::on_volumeSlider_valueChanged(int value)
     ui->lcdVolDisplay->display(value);
 }
 
+void MainWindow::on_masterVolumeSlider_valueChanged(int value)
+{
+    ui->lcdVolDisplay->display(value);
+}
 void MainWindow::on_radioTheme3_clicked()
 {
     QString stylePath = ":/src/teme/MatfTheme.qss";
@@ -201,6 +205,7 @@ void MainWindow::initSoundEditing()
 {
     connect(ui->volumeSlider, &QSlider::valueChanged, this, &MainWindow::handleVolumeChange);
     connect(ui->oneShotCB, &QCheckBox::clicked, this, &MainWindow::handleOneShotChange);
+    connect(ui->masterVolumeSlider, &QSlider::valueChanged, player.get(), &SoundPlayer::handleMasterVolumeChange);
 }
 
 //dodati vizualizaciju pritiska tastera preko tastature

@@ -15,8 +15,9 @@ Sound::~Sound(void)
 }
 
 bool
-Sound::Play(void)
+Sound::Play(int masterVolume)
 {
+    effect.setVolume(effectVolume*(masterVolume/100.0));
     effect.play();
     return true;
 }
@@ -35,12 +36,12 @@ Sound::Stop(void)
 
 void Sound::setVolume(int volume)
 {
-    effect.setVolume(volume/100.0);
+    effectVolume = volume/100.0;
 }
 
 int Sound::getVolume()
 {
-    return effect.volume()*100;
+    return effectVolume*100;
 }
 
 
