@@ -483,3 +483,35 @@ QPushButton#pbQ{
  
     border-color: #FFFFFF;
  }
+
+
+QProgressBar
+{
+        background-color: white;
+        color: #ffffff;
+
+        border: 1px solid #fff;
+        border-radius: 8px;
+
+        text-align: center;
+
+}
+
+
+QProgressBar::chunk {
+
+background-color:qlineargradient(spread:pad, x1:0.221, y1:1, x2:1, y2:1, stop:0.856354 #D62828, stop:1 rgba(255, 255, 255, 255));
+
+
+        border-radius: 8px;
+    color: #fff;
+
+}
+
+
+QProgressBar::chunk:disabled {
+border-radius: 8px;
+        background-color: #656565;
+        border: 1px solid #aaa;
+        color: #656565;
+}

@@ -140,7 +140,7 @@
            <string notr="true"/>
           </property>
           <property name="text">
-           <string>Theme1</string>
+           <string>Smurf</string>
           </property>
           <property name="checked">
            <bool>true</bool>
@@ -150,14 +150,14 @@
         <item>
          <widget class="QRadioButton" name="radioTheme2">
           <property name="text">
-           <string>Theme2</string>
+           <string>Grinch</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QRadioButton" name="radioTheme3">
           <property name="text">
-           <string>Matf Theme</string>
+           <string>Matf</string>
           </property>
          </widget>
         </item>
@@ -444,6 +444,12 @@
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
         <widget class="QProgressBar" name="progressBar">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">Height:16px;</string>
+         </property>
          <property name="maximum">
           <number>5000</number>
          </property>
@@ -638,7 +644,7 @@
        </property>
        <property name="icon">
         <iconset resource="../slika.qrc">
-         <normaloff>:/src/resursi/slike/icons8_save_200px.png</normaloff>:/src/resursi/slike/icons8_save_200px.png</iconset>
+         <normaloff>:/src/resursi/slike/icons8_save_48px (1).png</normaloff>:/src/resursi/slike/icons8_save_48px (1).png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -664,7 +670,7 @@
        </property>
        <property name="icon">
         <iconset resource="../slika.qrc">
-         <normaloff>:/src/resursi/slike/file-import-solid.svg</normaloff>:/src/resursi/slike/file-import-solid.svg</iconset>
+         <normaloff>:/src/resursi/slike/icons8_import_48px_1.png</normaloff>:/src/resursi/slike/icons8_import_48px_1.png</iconset>
        </property>
        <property name="iconSize">
         <size>
