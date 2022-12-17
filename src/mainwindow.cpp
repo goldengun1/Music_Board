@@ -192,7 +192,7 @@ void MainWindow::on_radioTheme1_clicked()
 void MainWindow::handleMatrixEnd()
 {
     qDebug() << "main window matrix end" << matrixPlayer->loopPlaying;
-    if (matrixPlayer->loopPlaying){
+    if (matrixPlayer->loopPlaying && !matrix.Empty()){
         matrixPlayer->PlayMatrix(matrix);
     }
 }
