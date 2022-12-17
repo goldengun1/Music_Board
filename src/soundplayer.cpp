@@ -19,7 +19,7 @@ SoundPlayer::Play(const sid index)
 
     if(sound.has_value())
     {
-        played = sound->get()->Play();
+        played = sound->get()->Play(masterVolume);
     }
 
     return played;
@@ -36,4 +36,9 @@ bool SoundPlayer::Stop(const sid index)
     }
 
     return played;
+}
+
+void SoundPlayer::handleMasterVolumeChange(const int newVolume)
+{
+    masterVolume = newVolume;
 }

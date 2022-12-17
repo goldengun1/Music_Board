@@ -2,10 +2,10 @@
 
 #include <iostream>
 
-MatrixPlayer::MatrixPlayer(std::shared_ptr<SoundBank> &bank, QObject *parent)
+MatrixPlayer::MatrixPlayer(std::shared_ptr<SoundBank> bank, std::shared_ptr<SoundPlayer> player, QObject *parent)
     : QObject(parent)
-    , bank(bank),
-    player(std::make_unique<SoundPlayer>(bank))
+    , bank(bank)
+    , player(player)
 {
     playerthread = nullptr;
 }
