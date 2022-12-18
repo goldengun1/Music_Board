@@ -1,16 +1,16 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-
+#include <thread>
 #include <headers/utlis.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MainWindow)
-    , bank(std::make_shared<SoundBank>(SoundBank()))
+    , bank(std::make_shared<SoundBank>())
 {
     ui->setupUi(this);
-    player = std::make_unique<SoundPlayer>(SoundPlayer(bank));
-    matrixPlayer = std::make_unique<MatrixPlayer>(bank, this);
+    player = std::make_shared<SoundPlayer>(bank);
+    matrixPlayer = std::make_unique<MatrixPlayer>(bank, player, this);
     recorder = std::make_unique<Recorder>();
     timeline = std::make_unique<Timeline>(bank, this);
     qRegisterMetaType<sid>("sid");
@@ -45,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(matrixPlayer.get(), &MatrixPlayer::matrixEnd, recorder.get(), &Recorder::handleMatrixEnd);
     connect(matrixPlayer.get(), &MatrixPlayer::matrixEnd, this, &MainWindow::handleMatrixEnd);
+    connect(matrixPlayer.get(),&MatrixPlayer::valueChanged,this,&MainWindow::on_progressBar_valueChanged);
 }
 
 MainWindow::~MainWindow()
@@ -103,6 +104,8 @@ void MainWindow::recordDelete()
     qDebug() << "Recording: reset!";
     recorder->Reset();
     matrixPlayer->Stop();
+    matrix.Clear();
+    ui->progressBar->setValue(0);
 }
 
 void MainWindow::recordStop()
@@ -114,6 +117,8 @@ void MainWindow::recordStop()
 
 void MainWindow::recordPlay()
 {
+    if(recorder->longestRecordingDuration != 0)
+        ui->progressBar->setRange(0,(int)recorder->longestRecordingDuration);
     qDebug() << "Recording: play!";
     matrixPlayer->PlayMatrix(matrix);
 }
@@ -165,6 +170,10 @@ void MainWindow::on_volumeSlider_valueChanged(int value)
     ui->lcdVolDisplay->display(value);
 }
 
+void MainWindow::on_masterVolumeSlider_valueChanged(int value)
+{
+    ui->lcdVolDisplay->display(value);
+}
 void MainWindow::on_radioTheme3_clicked()
 {
     QString stylePath = ":/src/teme/MatfTheme.qss";
@@ -193,7 +202,7 @@ void MainWindow::on_radioTheme1_clicked()
 void MainWindow::handleMatrixEnd()
 {
     qDebug() << "main window matrix end" << matrixPlayer->loopPlaying;
-    if (matrixPlayer->loopPlaying){
+    if (matrixPlayer->loopPlaying && !matrix.Empty()){
         matrixPlayer->PlayMatrix(matrix);
     }
 }
@@ -202,9 +211,9 @@ void MainWindow::initSoundEditing()
 {
     connect(ui->volumeSlider, &QSlider::valueChanged, this, &MainWindow::handleVolumeChange);
     connect(ui->oneShotCB, &QCheckBox::clicked, this, &MainWindow::handleOneShotChange);
+    connect(ui->masterVolumeSlider, &QSlider::valueChanged, player.get(), &SoundPlayer::handleMasterVolumeChange);
 }
 
-//dodati vizualizaciju pritiska tastera preko tastature
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if(!event->isAutoRepeat()){
@@ -343,7 +352,18 @@ void MainWindow::importMatrix() {
 
     if (reply == QMessageBox::Yes) {
         auto filePath = QFileDialog::getOpenFileName(this, tr("Open Matrix"), QDir::homePath(), tr("Matrix files (*.matrix)"));
-        matrix = Matrix::Import(filePath);
+        auto matrixDurationPair = Matrix::Import(filePath);
+        matrix = matrixDurationPair.first;
+        //TODO:set min and max value for timeline, this is not working properly
+
+        auto duration = matrixDurationPair.second;
+        ui->progressBar->setRange(0, (int)duration);
+        recorder->firstRecordingDuration = (qint64)duration;
+        recorder->longestRecordingDuration = (qint64)duration;
+        recorder->setMatrix(matrix);
+        //NOTE: trebalo bi ili promeniti tip skladista za matrix, da ne bude std::priority_queue,
+        //jer nije moguce pronaci na jednostavan nacin posledji element, ili omoguciti da se info o poslednjem unosu
+        //moze naci u samoj klasi kao neki field.
     }
 }
 
@@ -498,5 +518,16 @@ void MainWindow::on_radioPreset5_clicked()
     bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyBass3.wav"));
     bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyBass4.wav"));
     bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyBass5.wav"));
+}
+
+
+void MainWindow::on_progressBar_valueChanged(int value)
+{
+    ui->progressBar->setValue(value);
+}
+
+void MainWindow::on_progresBarr_setup(int min, int max)
+{
+    ui->progressBar->setRange(min,max);
 }
 

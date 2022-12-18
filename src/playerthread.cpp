@@ -18,9 +18,13 @@ void PlayerThread::run() {
     while (!matrix.timeline.empty())
     {
         elapsed = timer.elapsed() - pausetime_accumulated;
+        if(elapsed % 100 == 0)
+        {
+            emit valueChanged(elapsed);
+        }
         QMutexLocker lock(mutex);
         while (!matrix.timeline.empty() && matrix.timeline.top().first.first <= elapsed) {
-            qDebug() << matrix.timeline.top().first << " <= " << elapsed << ", size=" << matrix.timeline.size();
+//            qDebug() << matrix.timeline.top().first << " <= " << elapsed << ", size=" << matrix.timeline.size();
             emit markHit(matrix.timeline.top());
             matrix.timeline.pop();
         }
@@ -28,4 +32,5 @@ void PlayerThread::run() {
 
     qDebug() << "emit playFinished();";
     emit playFinished();
+    emit valueChanged(0);
 }

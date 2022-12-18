@@ -12,12 +12,13 @@ class Sound
 {
     QSoundEffect effect;
     const QUrl source;
+    qreal effectVolume {1};
 
 public:
     Sound(const QUrl &source);
     ~Sound(void);
 
-    bool Play(void); // Play sound, return true if it was previously stopped.
+    bool Play(int masterVolume); // Play sound, return true if it was previously stopped.
     bool Stop(void); // Stop sound, return true if it was previously playing.
 
     QUrl Source(void) const { return source; }

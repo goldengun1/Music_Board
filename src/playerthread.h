@@ -33,4 +33,5 @@ private:
 signals:
     void playFinished();
     void markHit(mark_t info);
+    void valueChanged(int value);
 };

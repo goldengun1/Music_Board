@@ -46,7 +46,7 @@ void Matrix::Export(const QString & path) const
     file.close();
 }
 
-Matrix Matrix::Import(const QString & path) {
+std::pair<Matrix, uint32_t> Matrix::Import(const QString & path) {
 
     QFile file(path);
 
@@ -61,16 +61,19 @@ Matrix Matrix::Import(const QString & path) {
     uint32_t markTime;
     uint32_t markTypeint;
     sid markSound;
+    uint32_t matrixDuration;
     while (!in.atEnd())
     {
         in >> markTime >> markTypeint >> markSound;
         in.seek(in.pos() + 1); // Preskacemo `\n` karaktere.
         m.Append(markTime, static_cast<marktype_t>(markTypeint), markSound);
+        if (static_cast<marktype_t>(markTypeint) == MARK_REC_STOP)
+            matrixDuration = markTime;
     }
 
     file.close();
 
-    return m;
+    return std::make_pair(m, matrixDuration);
 }
 
 bool Matrix::Empty() const {

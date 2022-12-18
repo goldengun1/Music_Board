@@ -12,7 +12,7 @@ class MatrixPlayer: public QObject {
     Q_OBJECT
 
 public:
-    explicit MatrixPlayer(std::shared_ptr<SoundBank> &bank, QObject *parent = nullptr);
+    explicit MatrixPlayer(std::shared_ptr<SoundBank> bank, std::shared_ptr<SoundPlayer> player, QObject *parent = nullptr);
     ~MatrixPlayer();
     void PlayMatrix(const Matrix &);
     void Stop(void);
@@ -22,7 +22,7 @@ public:
 
 private:
     std::shared_ptr<SoundBank> bank;
-    std::unique_ptr<SoundPlayer> player;
+    std::shared_ptr<SoundPlayer> player;
     PlayerThread *playerthread;
     QMutex mutex;
 
@@ -31,7 +31,9 @@ private:
 private slots:
     void onPlayFinished();
     void markHit(mark_t mark);
+    void onValueChanged(int value);
 
 signals:
     void matrixEnd();
+    void valueChanged(int value);
 };

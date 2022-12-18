@@ -2,10 +2,10 @@
 
 #include <iostream>
 
-MatrixPlayer::MatrixPlayer(std::shared_ptr<SoundBank> &bank, QObject *parent)
+MatrixPlayer::MatrixPlayer(std::shared_ptr<SoundBank> bank, std::shared_ptr<SoundPlayer> player, QObject *parent)
     : QObject(parent)
-    , bank(bank),
-    player(std::make_unique<SoundPlayer>(bank))
+    , bank(bank)
+    , player(player)
 {
     playerthread = nullptr;
 }
@@ -25,6 +25,7 @@ void MatrixPlayer::PlayMatrix(const Matrix &matrix) {
     playerthread = new PlayerThread(&mutex, this);
     connect(playerthread, &PlayerThread::playFinished, this, &MatrixPlayer::onPlayFinished);
     connect(playerthread, &PlayerThread::markHit, this, &MatrixPlayer::markHit);
+    connect(playerthread,&PlayerThread::valueChanged,this,&MatrixPlayer::onValueChanged);
     playerthread->NewMatrix(matrix);
     playerthread->start();
 }
@@ -101,4 +102,9 @@ void MatrixPlayer::markHit(mark_t mark)
         break;
     }
 
+}
+
+void MatrixPlayer::onValueChanged(int value)
+{
+    emit valueChanged(value);
 }
