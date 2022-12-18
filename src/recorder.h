@@ -32,6 +32,8 @@ public:
     qint64 firstRecordingDuration = 0;
     qint64 longestRecordingDuration = 0;
 
+    void setMatrix(const Matrix &newMatrix);
+
 public slots:
     void handleMatrixEnd();
 };

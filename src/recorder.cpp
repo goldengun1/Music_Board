@@ -2,6 +2,12 @@
 #include "recorder.h"
 
 void
+Recorder::setMatrix(const Matrix &newMatrix)
+{
+    matrix = newMatrix;
+}
+
+void
 Recorder::Start(void)
 {
     Rewind();
