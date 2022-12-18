@@ -1,28 +1,23 @@
-//
-// Created by Aleksa Stevic on 10.12.22..
-//
-
+#include <utility>
 #include "timelinemark.h"
+#include "headers/utlis.h"
 
-#include <QRandomGenerator>
-
-TimelineMark::TimelineMark(qreal w)
+TimelineMark::TimelineMark(qreal xpos, qreal w, qreal h, QString text)
     : QGraphicsItem()
-    , w{w} {
-    auto r = QRandomGenerator::global()->bounded(255);
-    auto g = QRandomGenerator::global()->bounded(255);
-    auto b = QRandomGenerator::global()->bounded(255);
-
-    color = QColor::fromRgb(r, g, b);
+    , color{Utlis::randomColor()}
+    , text{std::move(text)}
+    , w{w}
+    , h{h} {
+    this->setPos(xpos, 0);
 }
 
 QRectF TimelineMark::boundingRect() const {
-    return{0, 0, w, TimelineMark::HEIGHT};
+    return{0, 0, w, h};
 }
 
 void TimelineMark::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     painter->fillRect(boundingRect(), color);
-    painter->drawText(boundingRect().adjusted(10, 0, 0, 0), Qt::AlignLeft | Qt::AlignVCenter, "Hello");
+    painter->drawText(boundingRect().adjusted(10, 0, 0, 0), Qt::AlignLeft | Qt::AlignVCenter, text);
     QPen pen{QBrush(Qt::NoBrush), 5, Qt::SolidLine, Qt::FlatCap};
     pen.setColor(Qt::white);
     painter->setPen(pen);

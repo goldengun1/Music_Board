@@ -441,9 +441,8 @@
       </spacer>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
-        <widget class="QGraphicsView" name="gvTimeline"/>
         <widget class="QProgressBar" name="progressBar">
          <property name="enabled">
           <bool>true</bool>
@@ -461,6 +460,9 @@
           <bool>false</bool>
          </property>
         </widget>
+       </item>
+       <item>
+        <widget class="QGraphicsView" name="gvTimeline"/>
        </item>
       </layout>
      </item>

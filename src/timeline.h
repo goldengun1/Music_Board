@@ -8,6 +8,8 @@
 #include <QObject>
 #include <QGraphicsView>
 #include "soundbank.h"
+#include "matrix.h"
+#include "timelinemark.h"
 
 
 class Timeline: public QGraphicsScene {
@@ -16,6 +18,12 @@ public:
 
 private:
     std::shared_ptr<SoundBank> bank;
+    std::vector<TimelineMark *> marks;
+
+    QGraphicsView *GetGraphicsView() const;
+
+public:
+    void PaintMatrix(Matrix m);
 };
 
 

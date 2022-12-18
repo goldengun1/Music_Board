@@ -111,8 +111,10 @@ void MainWindow::recordDelete()
 void MainWindow::recordStop()
 {
     qDebug() << "Recording: stop!";
-    if(recorder->Recording())
+    if(recorder->Recording()) {
         matrix = recorder->Stop();
+        timeline->PaintMatrix(matrix);
+    }
 }
 
 void MainWindow::recordPlay()
@@ -427,7 +429,6 @@ void MainWindow::initButtons()
 }
 
 void MainWindow::initTimeline() {
-    timeline->setSceneRect(ui->gvTimeline->rect());
     ui->gvTimeline->setScene(timeline.get());
     ui->gvTimeline->setRenderHint(QPainter::Antialiasing);
     ui->gvTimeline->setAlignment(Qt::AlignTop | Qt::AlignLeft);

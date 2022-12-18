@@ -10,6 +10,7 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QTextStream>
+#include <QColor>
 
 
 
@@ -20,6 +21,7 @@ public:
     Utlis();
 
     static QByteArray readJsonFromFile(QString &fileName);
+    static QColor randomColor();
 
 };
 

@@ -9,15 +9,19 @@
 #include <QPainter>
 
 class TimelineMark: public QGraphicsItem {
-    const qreal HEIGHT = 30.0;
 public:
-    explicit TimelineMark(qreal w);
+    constexpr static const qreal HEIGHT = 30.0;
+    constexpr static const qreal WIDTH = 100.0;
+
+    explicit TimelineMark(qreal xpos, qreal w, qreal h, QString text);
     [[nodiscard]] QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 private:
-    qreal w;
     QColor color;
+    QString text;
+    qreal w;
+    qreal h;
 };
 
 

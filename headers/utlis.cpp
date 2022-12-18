@@ -1,5 +1,7 @@
 #include "utlis.h"
 
+#include <QRandomGenerator>
+
 Utlis::Utlis()
 {
 
@@ -15,4 +17,12 @@ QByteArray Utlis::readJsonFromFile(QString &fileName)
     }
 
     return data;
+}
+
+QColor Utlis::randomColor() {
+    auto r = QRandomGenerator::global()->bounded(255);
+    auto g = QRandomGenerator::global()->bounded(255);
+    auto b = QRandomGenerator::global()->bounded(255);
+
+     return QColor::fromRgb(r, g, b);
 }
