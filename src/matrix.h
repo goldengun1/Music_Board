@@ -20,10 +20,10 @@ struct Matrix
 
     Matrix &operator=(Matrix other) { timeline = other.timeline; return *this; }
 
-    void          Clear(void);
-    marktype_t    Append(mark_t);
-    marktype_t    Append(uint32_t, marktype_t, sid);
-    void          Export(const QString &) const;
-    static Matrix Import(const QString &);
-    bool          Empty() const;
+    void                               Clear(void);
+    marktype_t                         Append(mark_t);
+    marktype_t                         Append(uint32_t, marktype_t, sid);
+    void                               Export(const QString &) const;
+    static std::pair<Matrix, uint32_t> Import(const QString &);
+    bool                               Empty() const;
 };

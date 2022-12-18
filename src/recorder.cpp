@@ -26,11 +26,18 @@ Recorder::Rewind(void)
 Matrix
 Recorder::Stop(void)
 {
-    if(firstRecordingDuration == 0) {
-        firstRecordingDuration = stopwatch.elapsed();
+    if(recording){
+        auto time = stopwatch.elapsed();
+        if(firstRecordingDuration == 0) {
+            firstRecordingDuration = time;
+            longestRecordingDuration = time;
+        }
+        else if(time > longestRecordingDuration) {
+            longestRecordingDuration = time;
+        }
         Mark(0, MARK_REC_STOP);
+        recording = false;
     }
-    recording = false;
     return matrix;
 }
 
@@ -45,6 +52,8 @@ void
 Recorder::Reset(void)
 {
     firstRecordingDuration = 0;
+    longestRecordingDuration = 0;
     matrix.Clear();
     Rewind();
+    recording = false;
 }

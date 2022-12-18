@@ -103,6 +103,7 @@ void MainWindow::recordDelete()
     recorder->Reset();
     matrixPlayer->Stop();
     matrix.Clear();
+    ui->progressBar->setValue(0);
 }
 
 void MainWindow::recordStop()
@@ -114,7 +115,8 @@ void MainWindow::recordStop()
 
 void MainWindow::recordPlay()
 {
-    ui->progressBar->setRange(0,(int)recorder->firstRecordingDuration);
+    if(recorder->longestRecordingDuration != 0)
+        ui->progressBar->setRange(0,(int)recorder->longestRecordingDuration);
     qDebug() << "Recording: play!";
     matrixPlayer->PlayMatrix(matrix);
 }
@@ -348,12 +350,14 @@ void MainWindow::importMatrix() {
 
     if (reply == QMessageBox::Yes) {
         auto filePath = QFileDialog::getOpenFileName(this, tr("Open Matrix"), QDir::homePath(), tr("Matrix files (*.matrix)"));
-        matrix = Matrix::Import(filePath);
+        auto matrixDurationPair = Matrix::Import(filePath);
+        matrix = matrixDurationPair.first;
         //TODO:set min and max value for timeline, this is not working properly
-        int matrixSize = (int)matrix.timeline.size();
-        qDebug()<<matrixSize;
-        ui->progressBar->setRange(0,matrixSize * 500);
 
+        auto duration = matrixDurationPair.second;
+        ui->progressBar->setRange(0, (int)duration);
+        recorder->firstRecordingDuration = (qint64)duration;
+        recorder->longestRecordingDuration = (qint64)duration;
         //NOTE: trebalo bi ili promeniti tip skladista za matrix, da ne bude std::priority_queue,
         //jer nije moguce pronaci na jednostavan nacin posledji element, ili omoguciti da se info o poslednjem unosu
         //moze naci u samoj klasi kao neki field.

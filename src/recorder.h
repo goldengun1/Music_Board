@@ -30,6 +30,7 @@ public:
 
     bool   loopRecording = false;
     qint64 firstRecordingDuration = 0;
+    qint64 longestRecordingDuration = 0;
 
 public slots:
     void handleMatrixEnd();
