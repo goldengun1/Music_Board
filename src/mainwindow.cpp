@@ -18,6 +18,16 @@ MainWindow::MainWindow(QWidget *parent)
     initButtons();
     initTimeline();
 
+    ui->pbRecord->setToolTip("Započni snimanje");
+    ui->pbPlay->setToolTip("Započni reprodukciju");
+    ui->pbPause->setToolTip("Pauziraj reprodukciju");
+    ui->pbStop->setToolTip("Zaustavi snimanje");
+    ui->pbDelete->setToolTip("Obriši snimak");
+    ui->pbLoop->setToolTip("Neprekidna reprodukcija");
+
+    ui->pbSaveButton->setToolTip("Sačuvaj snimak");
+    ui->pbImport->setToolTip("Učitaj snimak");
+
     // Default bank configuration.
     bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ay.wav"));
     bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass1.wav"));
