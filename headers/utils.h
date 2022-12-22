@@ -1,5 +1,4 @@
-#ifndef UTLIS_H
-#define UTLIS_H
+#pragma once
 
 #include <QByteArray>
 #include <QString>
@@ -28,5 +27,3 @@ public:
     static qreal MilisecondsToPixel(quint64 duration);
 
 };
-
-#endif // UTLIS_H

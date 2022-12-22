@@ -1,9 +1,4 @@
-//
-// Created by Aleksa Stevic on 10.12.22..
-//
-
-#ifndef INC_05_MUZICKA_TABLA_TIMELINE_H
-#define INC_05_MUZICKA_TABLA_TIMELINE_H
+#pragma once
 
 #include <QObject>
 #include <QGraphicsView>
@@ -24,6 +19,3 @@ private:
 public:
     void PaintMatrix(Matrix m);
 };
-
-
-#endif //INC_05_MUZICKA_TABLA_TIMELINE_H

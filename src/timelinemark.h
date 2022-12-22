@@ -1,9 +1,4 @@
-//
-// Created by Aleksa Stevic on 10.12.22..
-//
-
-#ifndef INC_05_MUZICKA_TABLA_TIMELINEMARK_H
-#define INC_05_MUZICKA_TABLA_TIMELINEMARK_H
+#pragma once
 
 #include <QGraphicsItem>
 #include <QPainter>
@@ -26,6 +21,3 @@ private:
     qreal xpos;
     int track;
 };
-
-
-#endif //INC_05_MUZICKA_TABLA_TIMELINEMARK_H
