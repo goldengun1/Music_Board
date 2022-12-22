@@ -7,13 +7,15 @@
 
 #include <QGraphicsItem>
 #include <QPainter>
+#include "sound.h"
 
 class TimelineMark: public QGraphicsItem {
 public:
-    constexpr static const qreal HEIGHT = 30.0;
-    constexpr static const qreal WIDTH = 100.0;
+    TimelineMark(int track, qreal xpos, qreal w, QString text);
+    bool Overlaps(const TimelineMark *other);
+    void IncreaseTrack();
+    void SetWidth(qreal w);
 
-    explicit TimelineMark(qreal xpos, qreal w, qreal h, QString text);
     [[nodiscard]] QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
@@ -21,7 +23,8 @@ private:
     QColor color;
     QString text;
     qreal w;
-    qreal h;
+    qreal xpos;
+    int track;
 };
 
 

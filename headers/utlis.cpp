@@ -26,3 +26,8 @@ QColor Utlis::randomColor() {
 
      return QColor::fromRgb(r, g, b);
 }
+
+qreal Utlis::MilisecondsToPixel(quint64 duration) {
+    return (qreal)duration / Utlis::TIMELINE_SCALE;
+}
+

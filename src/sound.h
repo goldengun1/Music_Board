@@ -17,18 +17,18 @@ class Sound: public QObject
     qreal effectVolume {1};
 
 public:
-    Sound(const QUrl &source, QObject *parent = nullptr);
-    ~Sound(void);
-
-    bool Play(int masterVolume); // Play sound, return true if it was previously stopped.
-    bool Stop(void); // Stop sound, return true if it was previously playing.
-
-    QUrl Source(void) const { return source; }
+    explicit Sound(const QUrl &source, QObject *parent = nullptr);
+    ~Sound(void) override;
 
     bool oneShot {true};
-
+    bool Play(int masterVolume); // Play sound, return true if it was previously stopped.
+    bool Stop(void); // Stop sound, return true if it was previously playing.
+    bool IsPlaying() const;
     void setVolume(int volume);
-    int getVolume() const;
+
+    [[nodiscard]] quint64 Duration() const;
+    [[nodiscard]] QUrl Source(void) const { return source; }
+    [[nodiscard]] int getVolume() const;
 
 private slots:
     void printMediaStatus(QMediaPlayer::MediaStatus status);

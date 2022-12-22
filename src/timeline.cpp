@@ -1,6 +1,8 @@
 #include <QDebug>
+#include <vector>
 #include "timeline.h"
 #include "timelinemark.h"
+#include "headers/utlis.h"
 
 Timeline::Timeline(std::shared_ptr<SoundBank> &bank, QObject *parent)
     : QGraphicsScene(parent)
@@ -9,18 +11,34 @@ Timeline::Timeline(std::shared_ptr<SoundBank> &bank, QObject *parent)
 
 void Timeline::PaintMatrix(Matrix m) {
     this->clear();
-    qreal pos = 0;
+
+    std::vector<TimelineMark *> marks;
+    TimelineMark *last = nullptr;
+    mark_t lastMark;
     while (!m.timeline.empty()) {
         auto top = m.timeline.top();
         m.timeline.pop();
-        if (top.first.second != marktype_t::MARK_PUSH) continue;
+        if (top.first.second == marktype_t::MARK_REC_STOP) continue;
+
+        if (top.first.second == marktype_t::MARK_RELEASE) {
+            auto duration = top.first.first - lastMark.first.first;
+            last->SetWidth(Utlis::MilisecondsToPixel(duration));
+            continue;
+        }
 
         auto sound = bank->Assigned(top.second);
         if (!sound.has_value()) continue;
 
-        auto mark = new TimelineMark(pos, 100, 30, sound.value()->Source().fileName());
+        last = new TimelineMark(0, Utlis::MilisecondsToPixel(top.first.first), Utlis::MilisecondsToPixel(sound.value()->Duration()), sound.value()->Source().fileName().remove(QRegExp("\\.[^.]+")));
+        lastMark = top;
+        while(std::any_of(marks.begin(), marks.end(), [&last](const TimelineMark *m) { return last->Overlaps(m); }))
+            last->IncreaseTrack();
+
+        marks.push_back(last);
+    }
+
+    for (auto mark : marks) {
         this->addItem(mark);
-        pos += TimelineMark::WIDTH;
     }
 }
 

@@ -18,7 +18,6 @@ public:
 
 private:
     std::shared_ptr<SoundBank> bank;
-    std::vector<TimelineMark *> marks;
 
     QGraphicsView *GetGraphicsView() const;
 

@@ -21,6 +21,7 @@ bool
 Sound::Play(int masterVolume)
 {
     player.setVolume(floor(effectVolume * masterVolume));
+    if (IsPlaying()) player.stop();
     player.play();
     return true;
 }
@@ -28,7 +29,7 @@ Sound::Play(int masterVolume)
 bool
 Sound::Stop(void)
 {
-    if (player.state() == QMediaPlayer::PlayingState)
+    if (IsPlaying())
     {
         player.stop();
         return true;
@@ -47,11 +48,20 @@ int Sound::getVolume() const
     return floor(effectVolume * 100);
 }
 
+quint64 Sound::Duration() const {
+    return player.duration();
+}
+
 void Sound::printMediaStatus(QMediaPlayer::MediaStatus status) {
-    qDebug() << "Sound: " << source << ", status: " << status;
+    if (status == QMediaPlayer::MediaStatus::LoadedMedia)
+        qDebug() << "Sound: " << source << ", status: " << status;
 }
 
 void Sound::printMediaError(QMediaPlayer::Error error) {
     qDebug() << "Sound: " << source << ", error: " << error;
+}
+
+bool Sound::IsPlaying() const {
+    return player.state() == QMediaPlayer::PlayingState;
 }
 
