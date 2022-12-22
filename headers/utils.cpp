@@ -1,12 +1,12 @@
-#include "utlis.h"
+#include "utils.h"
 
 #include <QRandomGenerator>
 
-Utlis::Utlis()
+Utils::Utils()
 {
 
 }
-QByteArray Utlis::readJsonFromFile(QString &fileName)
+QByteArray Utils::readJsonFromFile(QString &fileName)
 {
     QFile file(fileName);
     QByteArray data = QByteArray("");
@@ -19,7 +19,7 @@ QByteArray Utlis::readJsonFromFile(QString &fileName)
     return data;
 }
 
-QColor Utlis::randomColor() {
+QColor Utils::randomColor() {
     auto r = QRandomGenerator::global()->bounded(255);
     auto g = QRandomGenerator::global()->bounded(255);
     auto b = QRandomGenerator::global()->bounded(255);
@@ -27,7 +27,7 @@ QColor Utlis::randomColor() {
      return QColor::fromRgb(r, g, b);
 }
 
-qreal Utlis::MilisecondsToPixel(quint64 duration) {
-    return (qreal)duration / Utlis::TIMELINE_SCALE;
+qreal Utils::MilisecondsToPixel(quint64 duration) {
+    return (qreal)duration / Utils::TIMELINE_SCALE;
 }
 

@@ -14,11 +14,11 @@
 
 
 
-class Utlis: public QObject
+class Utils: public QObject
 {
     Q_OBJECT
 public:
-    Utlis();
+    Utils();
 
     constexpr static const qreal TIMELINE_SCALE = 3.0; // How much ms is each graphical unit of measure.
     constexpr static const qreal TRACK_HEIGHT = 30.0;

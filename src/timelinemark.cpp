@@ -1,20 +1,20 @@
 #include <utility>
 #include "timelinemark.h"
-#include "headers/utlis.h"
+#include "headers/utils.h"
 #include "matrix.h"
 
 TimelineMark::TimelineMark(int track, qreal xpos, qreal w, QString text)
     : QGraphicsItem()
-    , color{Utlis::randomColor()}
+    , color{Utils::randomColor()}
     , text{std::move(text)}
     , w{w}
     , track{track}
     , xpos{xpos} {
-    this->setPos(xpos, track * Utlis::TRACK_HEIGHT);
+    this->setPos(xpos, track * Utils::TRACK_HEIGHT);
 }
 
 QRectF TimelineMark::boundingRect() const {
-    return{0, 0, w, Utlis::TRACK_HEIGHT};
+    return{0, 0, w, Utils::TRACK_HEIGHT};
 }
 
 void TimelineMark::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
@@ -37,7 +37,7 @@ bool TimelineMark::Overlaps(const TimelineMark *other) {
 
 void TimelineMark::IncreaseTrack() {
     track++;
-    this->setPos(xpos, track * Utlis::TRACK_HEIGHT);
+    this->setPos(xpos, track * Utils::TRACK_HEIGHT);
 }
 
 void TimelineMark::SetWidth(qreal width) {

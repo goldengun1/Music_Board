@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <thread>
-#include <headers/utlis.h>
+#include <headers/utils.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
@@ -191,7 +191,7 @@ void MainWindow::on_radioTheme3_clicked()
 {
     QString stylePath = ":/src/teme/MatfTheme.qss";
 
-    QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
+    QString styleSheetData = QString(Utils::readJsonFromFile(stylePath));
     this->setStyleSheet(styleSheetData);
 }
 
@@ -200,7 +200,7 @@ void MainWindow::on_radioTheme2_clicked()
 {
     QString stylePath = ":/src/teme/SyNet.qss";
 
-    QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
+    QString styleSheetData = QString(Utils::readJsonFromFile(stylePath));
     this->setStyleSheet(styleSheetData);
 }
 
@@ -208,7 +208,7 @@ void MainWindow::on_radioTheme1_clicked()
 {
     QString stylePath = ":/src/teme/Darkeum.qss";
 
-    QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
+    QString styleSheetData = QString(Utils::readJsonFromFile(stylePath));
     this->setStyleSheet(styleSheetData);
 }
 

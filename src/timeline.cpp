@@ -2,7 +2,7 @@
 #include <vector>
 #include "timeline.h"
 #include "timelinemark.h"
-#include "headers/utlis.h"
+#include "headers/utils.h"
 
 Timeline::Timeline(std::shared_ptr<SoundBank> &bank, QObject *parent)
     : QGraphicsScene(parent)
@@ -22,14 +22,14 @@ void Timeline::PaintMatrix(Matrix m) {
 
         if (top.first.second == marktype_t::MARK_RELEASE) {
             auto duration = top.first.first - lastMark.first.first;
-            last->SetWidth(Utlis::MilisecondsToPixel(duration));
+            last->SetWidth(Utils::MilisecondsToPixel(duration));
             continue;
         }
 
         auto sound = bank->Assigned(top.second);
         if (!sound.has_value()) continue;
 
-        last = new TimelineMark(0, Utlis::MilisecondsToPixel(top.first.first), Utlis::MilisecondsToPixel(sound.value()->Duration()), sound.value()->Source().fileName().remove(QRegExp("\\.[^.]+")));
+        last = new TimelineMark(0, Utils::MilisecondsToPixel(top.first.first), Utils::MilisecondsToPixel(sound.value()->Duration()), sound.value()->Source().fileName().remove(QRegExp("\\.[^.]+")));
         lastMark = top;
         while(std::any_of(marks.begin(), marks.end(), [&last](const TimelineMark *m) { return last->Overlaps(m); }))
             last->IncreaseTrack();
