@@ -1,6 +1,7 @@
 #pragma once
 
-#include <QSoundEffect>
+#include <QObject>
+#include <QMediaPlayer>
 #include <QUrl>
 
 ///
@@ -8,14 +9,15 @@
 /// Meant to be held by a SoundBank object.
 /// Source can be a local file, example - QUrl::fromLocalFile("path...").
 ///
-class Sound
+class Sound: public QObject
 {
-    QSoundEffect effect;
+    Q_OBJECT
+    QMediaPlayer player;
     const QUrl source;
     qreal effectVolume {1};
 
 public:
-    Sound(const QUrl &source);
+    Sound(const QUrl &source, QObject *parent = nullptr);
     ~Sound(void);
 
     bool Play(int masterVolume); // Play sound, return true if it was previously stopped.
@@ -26,5 +28,9 @@ public:
     bool oneShot {true};
 
     void setVolume(int volume);
-    int getVolume();
+    int getVolume() const;
+
+private slots:
+    void printMediaStatus(QMediaPlayer::MediaStatus status);
+    void printMediaError(QMediaPlayer::Error error);
 };

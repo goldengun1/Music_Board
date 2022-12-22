@@ -29,18 +29,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->pbImport->setToolTip("Učitaj snimak");
 
     // Default bank configuration.
-    bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ay.wav"));
-    bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass1.wav"));
-    bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass2.wav"));
-    bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass4.wav"));
-    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/Kick.wav"));
-    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/Dobos1.wav"));
-    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/Dobos2.wav"));
-    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/Clap.wav"));
-    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/Prsti.wav"));
-    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ks1.wav"));
-    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/Cinela1.wav"));
-    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ding.wav"));
+    bank->Assign(0, QUrl("qrc:/src/resursi/zvukovi/Ay.wav"));
+    bank->Assign(1, QUrl("qrc:/src/resursi/zvukovi/Bass1.wav"));
+    bank->Assign(2, QUrl("qrc:/src/resursi/zvukovi/Bass2.wav"));
+    bank->Assign(3, QUrl("qrc:/src/resursi/zvukovi/Bass4.wav"));
+    bank->Assign(4, QUrl("qrc:/src/resursi/zvukovi/Kick.wav"));
+    bank->Assign(5, QUrl("qrc:/src/resursi/zvukovi/Dobos1.wav"));
+    bank->Assign(6, QUrl("qrc:/src/resursi/zvukovi/Dobos2.wav"));
+    bank->Assign(7, QUrl("qrc:/src/resursi/zvukovi/Clap.wav"));
+    bank->Assign(8, QUrl("qrc:/src/resursi/zvukovi/Prsti.wav"));
+    bank->Assign(9, QUrl("qrc:/src/resursi/zvukovi/Ks1.wav"));
+    bank->Assign(10, QUrl("qrc:/src/resursi/zvukovi/Cinela1.wav"));
+    bank->Assign(11, QUrl("qrc:/src/resursi/zvukovi/Ding.wav"));
 
     connect(ui->pbRecord, &QPushButton::clicked, this, &MainWindow::recordStart);
     connect(ui->pbPlay, &QPushButton::clicked, this, &MainWindow::recordPlay);

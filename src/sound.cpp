@@ -1,11 +1,14 @@
 #include <QDebug>
 #include "sound.h"
 
-Sound::Sound(const QUrl &source)
-    :source(source)
+Sound::Sound(const QUrl &source, QObject *parent)
+    : QObject(parent)
+    , source(source)
+    , player()
 {
-    qDebug() << "Create sound" << source;
-    effect.setSource(source);
+    connect(&player, &QMediaPlayer::mediaStatusChanged, this, &Sound::printMediaStatus);
+    connect(&player, QOverload<QMediaPlayer::Error>::of(&QMediaPlayer::error), this, &Sound::printMediaError);
+    player.setMedia(source);
 }
 
 Sound::~Sound(void)
@@ -17,17 +20,17 @@ Sound::~Sound(void)
 bool
 Sound::Play(int masterVolume)
 {
-    effect.setVolume(effectVolume*(masterVolume/100.0));
-    effect.play();
+    player.setVolume(floor(effectVolume * masterVolume));
+    player.play();
     return true;
 }
 
 bool
 Sound::Stop(void)
 {
-    if (effect.isPlaying())
+    if (player.state() == QMediaPlayer::PlayingState)
     {
-        effect.stop();
+        player.stop();
         return true;
     }
 
@@ -39,9 +42,16 @@ void Sound::setVolume(int volume)
     effectVolume = volume/100.0;
 }
 
-int Sound::getVolume()
+int Sound::getVolume() const
 {
-    return effectVolume*100;
+    return floor(effectVolume * 100);
 }
 
+void Sound::printMediaStatus(QMediaPlayer::MediaStatus status) {
+    qDebug() << "Sound: " << source << ", status: " << status;
+}
+
+void Sound::printMediaError(QMediaPlayer::Error error) {
+    qDebug() << "Sound: " << source << ", error: " << error;
+}
 
