@@ -9,3 +9,7 @@ Aplikacija koja nam omogućava da učitavamo, snimimo, manipulisemo i reprodukuj
     <li><a href="https://gitlab.com/_astevic">Aleksa Stević 37/2018</a></li>
     <li><a href="https://gitlab.com/mihailo.simic">Mihailo Simić 267/2018</a></li>
 </ul>
+
+## Napomene
+
+1. Ukoliko se radi na Windows operativnom sistemu, potrebno je u Qt Creator-u postaviti env promenljivu: `QT_MULTIMEDIA_PREFERRED_PLUGINS=windowsmediafoundation`

@@ -167,7 +167,7 @@
     </layout>
    </item>
    <item row="1" column="1" rowspan="2">
-    <layout class="QVBoxLayout" name="verticalLayout" stretch="4,0,1">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="4,0,2">
      <item>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="9">
@@ -435,13 +435,13 @@
        <property name="sizeHint" stdset="0">
         <size>
          <width>20</width>
-         <height>40</height>
+         <height>10</height>
         </size>
        </property>
       </spacer>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
         <widget class="QProgressBar" name="progressBar">
          <property name="enabled">
@@ -460,6 +460,9 @@
           <bool>false</bool>
          </property>
         </widget>
+       </item>
+       <item>
+        <widget class="QGraphicsView" name="gvTimeline"/>
        </item>
       </layout>
      </item>

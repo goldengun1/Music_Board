@@ -25,8 +25,8 @@ set(PROJECT_SOURCES
         src/soundbank.h
         src/sound.h
         src/sound.cpp
-        headers/utlis.cpp
-        headers/utlis.h
+        headers/utils.cpp
+        headers/utils.h
         src/soundbutton.h
         src/soundbutton.cpp
         src/recorder.h
@@ -37,6 +37,10 @@ set(PROJECT_SOURCES
         src/matrixplayer.h
         src/playerthread.cpp
         src/playerthread.h
+        src/timeline.cpp
+        src/timeline.h
+        src/timelinemark.cpp
+        src/timelinemark.h
         src/resursi/
         src/teme/
         zvukovi.qrc

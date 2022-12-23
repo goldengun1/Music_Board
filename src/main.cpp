@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "headers/utlis.h"
+#include "headers/utils.h"
 #include <QApplication>
 #include <QFile>
 #include<QVector>
@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
     QString stylePath = ":/src/teme/Darkeum.qss";
 
-    QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
+    QString styleSheetData = QString(Utils::readJsonFromFile(stylePath));
       a.setStyleSheet(styleSheetData);
 
 

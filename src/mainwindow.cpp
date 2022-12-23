@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <thread>
-#include <headers/utlis.h>
+#include <headers/utils.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
@@ -12,9 +12,11 @@ MainWindow::MainWindow(QWidget *parent)
     player = std::make_shared<SoundPlayer>(bank);
     matrixPlayer = std::make_unique<MatrixPlayer>(bank, player, this);
     recorder = std::make_unique<Recorder>();
+    timeline = std::make_unique<Timeline>(bank, this);
     qRegisterMetaType<sid>("sid");
     qRegisterMetaType<mark_t>("mark_t");
     initButtons();
+    initTimeline();
 
     ui->pbRecord->setToolTip("Započni snimanje");
     ui->pbPlay->setToolTip("Započni reprodukciju");
@@ -27,18 +29,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->pbImport->setToolTip("Učitaj snimak");
 
     // Default bank configuration.
-    bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ay.wav"));
-    bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass1.wav"));
-    bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass2.wav"));
-    bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass4.wav"));
-    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/Kick.wav"));
-    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/Dobos1.wav"));
-    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/Dobos2.wav"));
-    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/Clap.wav"));
-    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/Prsti.wav"));
-    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ks1.wav"));
-    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/Cinela1.wav"));
-    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ding.wav"));
+    bank->Assign(0, QUrl("qrc:/src/resursi/zvukovi/Ay.wav"));
+    bank->Assign(1, QUrl("qrc:/src/resursi/zvukovi/Bass1.wav"));
+    bank->Assign(2, QUrl("qrc:/src/resursi/zvukovi/Bass2.wav"));
+    bank->Assign(3, QUrl("qrc:/src/resursi/zvukovi/Bass4.wav"));
+    bank->Assign(4, QUrl("qrc:/src/resursi/zvukovi/Kick.wav"));
+    bank->Assign(5, QUrl("qrc:/src/resursi/zvukovi/Dobos1.wav"));
+    bank->Assign(6, QUrl("qrc:/src/resursi/zvukovi/Dobos2.wav"));
+    bank->Assign(7, QUrl("qrc:/src/resursi/zvukovi/Clap.wav"));
+    bank->Assign(8, QUrl("qrc:/src/resursi/zvukovi/Prsti.wav"));
+    bank->Assign(9, QUrl("qrc:/src/resursi/zvukovi/Ks1.wav"));
+    bank->Assign(10, QUrl("qrc:/src/resursi/zvukovi/Cinela1.wav"));
+    bank->Assign(11, QUrl("qrc:/src/resursi/zvukovi/Ding.wav"));
 
     connect(ui->pbRecord, &QPushButton::clicked, this, &MainWindow::recordStart);
     connect(ui->pbPlay, &QPushButton::clicked, this, &MainWindow::recordPlay);
@@ -114,13 +116,16 @@ void MainWindow::recordDelete()
     matrixPlayer->Stop();
     matrix.Clear();
     ui->progressBar->setValue(0);
+    timeline->clear();
 }
 
 void MainWindow::recordStop()
 {
     qDebug() << "Recording: stop!";
-    if(recorder->Recording())
+    if(recorder->Recording()) {
         matrix = recorder->Stop();
+        timeline->PaintMatrix(matrix);
+    }
 }
 
 void MainWindow::recordPlay()
@@ -186,7 +191,7 @@ void MainWindow::on_radioTheme3_clicked()
 {
     QString stylePath = ":/src/teme/MatfTheme.qss";
 
-    QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
+    QString styleSheetData = QString(Utils::readJsonFromFile(stylePath));
     this->setStyleSheet(styleSheetData);
 }
 
@@ -195,7 +200,7 @@ void MainWindow::on_radioTheme2_clicked()
 {
     QString stylePath = ":/src/teme/SyNet.qss";
 
-    QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
+    QString styleSheetData = QString(Utils::readJsonFromFile(stylePath));
     this->setStyleSheet(styleSheetData);
 }
 
@@ -203,7 +208,7 @@ void MainWindow::on_radioTheme1_clicked()
 {
     QString stylePath = ":/src/teme/Darkeum.qss";
 
-    QString styleSheetData = QString(Utlis::readJsonFromFile(stylePath));
+    QString styleSheetData = QString(Utils::readJsonFromFile(stylePath));
     this->setStyleSheet(styleSheetData);
 }
 
@@ -434,93 +439,97 @@ void MainWindow::initButtons()
     connect(ui->pbV, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
 }
 
-
+void MainWindow::initTimeline() {
+    ui->gvTimeline->setScene(timeline.get());
+    ui->gvTimeline->setRenderHint(QPainter::Antialiasing);
+    ui->gvTimeline->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+}
 
 void MainWindow::on_radioPreset1_toggled(bool checked)
 {
     if(!checked)
         return;
-    bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ay.wav"));
-    bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass1.wav"));
-    bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass2.wav"));
-    bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/Bass4.wav"));
-    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/Kick.wav"));
-    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/Dobos1.wav"));
-    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/Dobos2.wav"));
-    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/Clap.wav"));
-    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/Prsti.wav"));
-    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ks1.wav"));
-    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/Cinela1.wav"));
-    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ding.wav"));
+    bank->Assign(0, QUrl("qrc:/src/resursi/zvukovi/Ay.wav"));
+    bank->Assign(1, QUrl("qrc:/src/resursi/zvukovi/Bass1.wav"));
+    bank->Assign(2, QUrl("qrc:/src/resursi/zvukovi/Bass2.wav"));
+    bank->Assign(3, QUrl("qrc:/src/resursi/zvukovi/Bass4.wav"));
+    bank->Assign(4, QUrl("qrc:/src/resursi/zvukovi/Kick.wav"));
+    bank->Assign(5, QUrl("qrc:/src/resursi/zvukovi/Dobos1.wav"));
+    bank->Assign(6, QUrl("qrc:/src/resursi/zvukovi/Dobos2.wav"));
+    bank->Assign(7, QUrl("qrc:/src/resursi/zvukovi/Clap.wav"));
+    bank->Assign(8, QUrl("qrc:/src/resursi/zvukovi/Prsti.wav"));
+    bank->Assign(9, QUrl("qrc:/src/resursi/zvukovi/Ks1.wav"));
+    bank->Assign(10, QUrl("qrc:/src/resursi/zvukovi/Cinela1.wav"));
+    bank->Assign(11, QUrl("qrc:/src/resursi/zvukovi/Ding.wav"));
 }
 
 
 void MainWindow::on_radioPreset2_clicked()
 {
 
-    bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/Kick.wav"));
-    bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ks1.wav"));
-    bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/Cinela1.wav"));
-    bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/Prsti.wav"));
-    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara1.wav"));
-    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara2.wav"));
-    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara3.wav"));
-    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/Gitara4.wav"));
-    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/Orgulje1.wav"));
-    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/Orgulje2.wav"));
-    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/Orgulje3.wav"));
-    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/Orgulje4.wav"));
+    bank->Assign(0, QUrl("qrc:/src/resursi/zvukovi/Kick.wav"));
+    bank->Assign(1, QUrl("qrc:/src/resursi/zvukovi/Ks1.wav"));
+    bank->Assign(2, QUrl("qrc:/src/resursi/zvukovi/Cinela1.wav"));
+    bank->Assign(3, QUrl("qrc:/src/resursi/zvukovi/Prsti.wav"));
+    bank->Assign(4, QUrl("qrc:/src/resursi/zvukovi/Gitara1.wav"));
+    bank->Assign(5, QUrl("qrc:/src/resursi/zvukovi/Gitara2.wav"));
+    bank->Assign(6, QUrl("qrc:/src/resursi/zvukovi/Gitara3.wav"));
+    bank->Assign(7, QUrl("qrc:/src/resursi/zvukovi/Gitara4.wav"));
+    bank->Assign(8, QUrl("qrc:/src/resursi/zvukovi/Orgulje1.wav"));
+    bank->Assign(9, QUrl("qrc:/src/resursi/zvukovi/Orgulje2.wav"));
+    bank->Assign(10, QUrl("qrc:/src/resursi/zvukovi/Orgulje3.wav"));
+    bank->Assign(11, QUrl("qrc:/src/resursi/zvukovi/Orgulje4.wav"));
 }
 
 
 void MainWindow::on_radioPreset3_clicked()
 {
-    bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano1.wav"));
-    bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano2.wav"));
-    bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano3.wav"));
-    bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano4.wav"));
-    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano5.wav"));
-    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano6.wav"));
-    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano7.wav"));
-    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano8.wav"));
-    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano9.wav"));
-    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano10.wav"));
-    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano11.wav"));
-    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/piano12.wav"));
+    bank->Assign(0, QUrl("qrc:/src/resursi/zvukovi/piano1.wav"));
+    bank->Assign(1, QUrl("qrc:/src/resursi/zvukovi/piano2.wav"));
+    bank->Assign(2, QUrl("qrc:/src/resursi/zvukovi/piano3.wav"));
+    bank->Assign(3, QUrl("qrc:/src/resursi/zvukovi/piano4.wav"));
+    bank->Assign(4, QUrl("qrc:/src/resursi/zvukovi/piano5.wav"));
+    bank->Assign(5, QUrl("qrc:/src/resursi/zvukovi/piano6.wav"));
+    bank->Assign(6, QUrl("qrc:/src/resursi/zvukovi/piano7.wav"));
+    bank->Assign(7, QUrl("qrc:/src/resursi/zvukovi/piano8.wav"));
+    bank->Assign(8, QUrl("qrc:/src/resursi/zvukovi/piano9.wav"));
+    bank->Assign(9, QUrl("qrc:/src/resursi/zvukovi/piano10.wav"));
+    bank->Assign(10, QUrl("qrc:/src/resursi/zvukovi/piano11.wav"));
+    bank->Assign(11, QUrl("qrc:/src/resursi/zvukovi/piano12.wav"));
 }
 
 
 void MainWindow::on_radioPreset4_clicked()
 {
-    bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme1.wav"));
-    bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme2.wav"));
-    bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme3.wav"));
-    bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme4.wav"));
-    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme5.wav"));
-    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme6.wav"));
-    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme7.wav"));
-    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme8.wav"));
-    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme9.wav"));
-    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme10.wav"));
-    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme11.wav"));
-    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/meme12.wav"));
+    bank->Assign(0, QUrl("qrc:/src/resursi/zvukovi/meme1.wav"));
+    bank->Assign(1, QUrl("qrc:/src/resursi/zvukovi/meme2.wav"));
+    bank->Assign(2, QUrl("qrc:/src/resursi/zvukovi/meme3.wav"));
+    bank->Assign(3, QUrl("qrc:/src/resursi/zvukovi/meme4.wav"));
+    bank->Assign(4, QUrl("qrc:/src/resursi/zvukovi/meme5.wav"));
+    bank->Assign(5, QUrl("qrc:/src/resursi/zvukovi/meme6.wav"));
+    bank->Assign(6, QUrl("qrc:/src/resursi/zvukovi/meme7.wav"));
+    bank->Assign(7, QUrl("qrc:/src/resursi/zvukovi/meme8.wav"));
+    bank->Assign(8, QUrl("qrc:/src/resursi/zvukovi/meme9.wav"));
+    bank->Assign(9, QUrl("qrc:/src/resursi/zvukovi/meme10.wav"));
+    bank->Assign(10, QUrl("qrc:/src/resursi/zvukovi/meme11.wav"));
+    bank->Assign(11, QUrl("qrc:/src/resursi/zvukovi/meme12.wav"));
 }
 
 
 void MainWindow::on_radioPreset5_clicked()
 {
-    bank->Assign(0, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShady1.wav"));
-    bank->Assign(1, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShady2.wav"));
-    bank->Assign(2, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShady3.wav"));
-    bank->Assign(3, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShady4.wav"));
-    bank->Assign(4, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShady5.wav"));
-    bank->Assign(5, QUrl::fromLocalFile(":/src/resursi/zvukovi/Kick.wav"));
-    bank->Assign(6, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyDrum1.wav"));
-    bank->Assign(7, QUrl::fromLocalFile(":/src/resursi/zvukovi/Ks1.wav"));
-    bank->Assign(8, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyBass1.wav"));
-    bank->Assign(9, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyBass3.wav"));
-    bank->Assign(10, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyBass4.wav"));
-    bank->Assign(11, QUrl::fromLocalFile(":/src/resursi/zvukovi/SlimShadyBass5.wav"));
+    bank->Assign(0, QUrl("qrc:/src/resursi/zvukovi/SlimShady1.wav"));
+    bank->Assign(1, QUrl("qrc:/src/resursi/zvukovi/SlimShady2.wav"));
+    bank->Assign(2, QUrl("qrc:/src/resursi/zvukovi/SlimShady3.wav"));
+    bank->Assign(3, QUrl("qrc:/src/resursi/zvukovi/SlimShady4.wav"));
+    bank->Assign(4, QUrl("qrc:/src/resursi/zvukovi/SlimShady5.wav"));
+    bank->Assign(5, QUrl("qrc:/src/resursi/zvukovi/Kick.wav"));
+    bank->Assign(6, QUrl("qrc:/src/resursi/zvukovi/SlimShadyDrum1.wav"));
+    bank->Assign(7, QUrl("qrc:/src/resursi/zvukovi/Ks1.wav"));
+    bank->Assign(8, QUrl("qrc:/src/resursi/zvukovi/SlimShadyBass1.wav"));
+    bank->Assign(9, QUrl("qrc:/src/resursi/zvukovi/SlimShadyBass3.wav"));
+    bank->Assign(10, QUrl("qrc:/src/resursi/zvukovi/SlimShadyBass4.wav"));
+    bank->Assign(11, QUrl("qrc:/src/resursi/zvukovi/SlimShadyBass5.wav"));
 }
 
 

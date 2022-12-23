@@ -7,6 +7,7 @@
 #include "soundplayer.h"
 #include "matrixplayer.h"
 #include "recorder.h"
+#include "timeline.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -63,11 +64,13 @@ private:
     std::shared_ptr<SoundPlayer> player;
     std::unique_ptr<MatrixPlayer> matrixPlayer;
     std::unique_ptr<Recorder> recorder;
+    std::unique_ptr<Timeline> timeline;
     std::shared_ptr<SoundBank> bank;
     Matrix matrix;
     SoundButton *lastClickedBtn;
 
     void initButtons();
+    void initTimeline();
     void initSoundEditing();
 };
 #endif // MAINWINDOW_H
