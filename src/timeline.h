@@ -13,9 +13,6 @@ public:
 
 private:
     std::shared_ptr<SoundBank> bank;
-
-    QGraphicsView *GetGraphicsView() const;
-
 public:
     void PaintMatrix(Matrix m);
 };

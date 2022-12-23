@@ -43,11 +43,3 @@ void Timeline::PaintMatrix(Matrix m) {
     this->setSceneRect(itemsBoundingRect());
 }
 
-QGraphicsView *Timeline::GetGraphicsView() const {
-    if (this->views().empty()) {
-        qDebug() << "This scene is not added to any graphics views.";
-    }
-
-    return this->views().first();
-}
-
