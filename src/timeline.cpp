@@ -40,6 +40,7 @@ void Timeline::PaintMatrix(Matrix m) {
     for (auto mark : marks) {
         this->addItem(mark);
     }
+    this->setSceneRect(itemsBoundingRect());
 }
 
 QGraphicsView *Timeline::GetGraphicsView() const {
