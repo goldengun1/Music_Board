@@ -1023,7 +1023,7 @@ QScrollBar:horizontal
 
 QScrollBar::handle:horizontal
 {
-    background: #607cff;
+    background: #80ffbf;
     min-height: 20px;
 
 }
@@ -1032,7 +1032,7 @@ QScrollBar::handle:horizontal
 QScrollBar::add-line:horizontal
 {
     border: 1px solid #1b1b19;
-    background-color: #607cff;
+    background-color: #80ffbf;
     width: 14px;
     subcontrol-position: right;
     subcontrol-origin: margin;
@@ -1043,7 +1043,7 @@ QScrollBar::add-line:horizontal
 QScrollBar::sub-line:horizontal
 {
     border: 1px solid #1b1b19;
-    background-color: #607cff;
+    background-color: #80ffbf;
     width: 14px;
     subcontrol-position: left;
     subcontrol-origin: margin;
@@ -1053,7 +1053,7 @@ QScrollBar::sub-line:horizontal
 
 QScrollBar::right-arrow:horizontal
 {
-    image: url(://arrow-right.png);
+    background: #80ffbf;
     width: 6px;
     height: 6px;
 
@@ -1062,7 +1062,7 @@ QScrollBar::right-arrow:horizontal
 
 QScrollBar::left-arrow:horizontal
 {
-    image: url(://arrow-left.png);
+    background: #80ffbf;
     width: 6px;
     height: 6px;
 
@@ -1088,7 +1088,7 @@ QScrollBar:vertical
 
 QScrollBar::handle:vertical
 {
-    background-color: #607cff;
+    background-color: #80ffbf;
     min-height: 20px;
 
 }
@@ -1097,7 +1097,7 @@ QScrollBar::handle:vertical
 QScrollBar::add-line:vertical
 {
     border: 1px solid #1b1b19;
-    background-color: #607cff;
+    background-color: #80ffbf;
     height: 14px;
     subcontrol-position: bottom;
     subcontrol-origin: margin;
@@ -1108,7 +1108,7 @@ QScrollBar::add-line:vertical
 QScrollBar::sub-line:vertical
 {
     border: 1px solid #1b1b19;
-    background-color: #607cff;
+    background-color: #80ffbf;
     height: 14px;
     subcontrol-position: top;
     subcontrol-origin: margin;
@@ -1118,7 +1118,7 @@ QScrollBar::sub-line:vertical
 
 QScrollBar::up-arrow:vertical
 {
-    image: url(://arrow-up.png);
+    background-color: #80ffbf;
     width: 6px;
     height: 6px;
 
@@ -1127,7 +1127,7 @@ QScrollBar::up-arrow:vertical
 
 QScrollBar::down-arrow:vertical
 {
-    image: url(://arrow-down.png);
+   background-color: #80ffbf;
     width: 6px;
     height: 6px;
 
@@ -1432,3 +1432,5 @@ QPushButton#pbV:pressed{
 
     border-color: #051a39;
 }
+
+
