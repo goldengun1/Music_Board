@@ -167,7 +167,7 @@
     </layout>
    </item>
    <item row="1" column="1" rowspan="2">
-    <layout class="QVBoxLayout" name="verticalLayout" stretch="4,0,1">
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="4,0,2">
      <item>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="9">
@@ -435,7 +435,7 @@
        <property name="sizeHint" stdset="0">
         <size>
          <width>20</width>
-         <height>40</height>
+         <height>10</height>
         </size>
        </property>
       </spacer>
