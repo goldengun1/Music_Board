@@ -1,5 +1,5 @@
-#ifndef UTLIS_H
-#define UTLIS_H
+#ifndef UTILS_H
+#define UTILS_H
 
 #include <QByteArray>
 #include <QString>
@@ -13,14 +13,14 @@
 
 
 
-class Utlis: public QObject
+class Utils: public QObject
 {
     Q_OBJECT
 public:
-    Utlis();
+    Utils();
 
     static QByteArray readJsonFromFile(QString &fileName);
 
 };
 
-#endif // UTLIS_H
+#endif // UTILS_H

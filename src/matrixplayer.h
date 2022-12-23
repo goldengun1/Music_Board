@@ -2,8 +2,8 @@
 
 #include <QObject>
 #include <QMutex>
-
-#include "soundbank.h"
+#include <QDebug>
+#include "recorder.h"
 #include "soundplayer.h"
 #include "matrix.h"
 #include "playerthread.h"
@@ -12,17 +12,18 @@ class MatrixPlayer: public QObject {
     Q_OBJECT
 
 public:
-    explicit MatrixPlayer(std::shared_ptr<SoundBank> bank, std::shared_ptr<SoundPlayer> player, QObject *parent = nullptr);
+    explicit MatrixPlayer(std::shared_ptr<Recorder> recorder, std::shared_ptr<SoundPlayer> player, QObject *parent = nullptr);
     ~MatrixPlayer();
-    void PlayMatrix(const Matrix &);
+
+    void PlayMatrix();
     void Stop(void);
     void Pause(void);
     void DeleteMatrix(void);
     bool loopPlaying = false;
 
 private:
-    std::shared_ptr<SoundBank> bank;
     std::shared_ptr<SoundPlayer> player;
+    std::shared_ptr<Recorder> recorder;
     PlayerThread *playerthread;
     QMutex mutex;
 

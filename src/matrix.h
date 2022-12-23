@@ -2,6 +2,8 @@
 
 #include <queue>
 #include <QString>
+#include <QFile>
+#include <QTextStream>
 #include "soundbank.h" // For "sid" type.
 
 enum marktype_t

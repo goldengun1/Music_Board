@@ -1,6 +1,4 @@
 #include "matrix.h"
-#include <QFile>
-#include <QTextStream>
 
 void
 Matrix::Clear(void)

@@ -1,4 +1,3 @@
-#include <QDebug>
 #include "recorder.h"
 
 void
@@ -29,7 +28,7 @@ Recorder::Rewind(void)
     stopwatch.restart();
 }
 
-Matrix
+void
 Recorder::Stop(void)
 {
     if(recording){
@@ -44,7 +43,6 @@ Recorder::Stop(void)
         Mark(0, MARK_REC_STOP);
         recording = false;
     }
-    return matrix;
 }
 
 void Recorder::handleMatrixEnd()

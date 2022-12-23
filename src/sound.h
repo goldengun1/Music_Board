@@ -2,6 +2,7 @@
 
 #include <QSoundEffect>
 #include <QUrl>
+#include <QDebug>
 
 ///
 /// Play sound files.

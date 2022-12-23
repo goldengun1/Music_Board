@@ -79,7 +79,7 @@
         <item>
          <widget class="QRadioButton" name="radioPreset3">
           <property name="text">
-           <string> Preset Piano</string>
+           <string>Preset Piano</string>
           </property>
          </widget>
         </item>

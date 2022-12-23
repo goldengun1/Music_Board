@@ -1,8 +1,5 @@
 #include "playerthread.h"
 
-#include <iostream>
-#include <QDebug>
-
 PlayerThread::PlayerThread(QMutex *mutex, QObject *parent) : QThread(parent), mutex(mutex) {
     pausetime_accumulated = 0;
     pause = false;

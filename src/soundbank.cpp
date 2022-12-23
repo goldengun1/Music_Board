@@ -1,5 +1,3 @@
-#include<stdexcept>
-#include <qdebug.h>
 #include "soundbank.h"
 
 SoundBank::SoundBank(void)

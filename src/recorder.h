@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QElapsedTimer>
+#include <QDebug>
 #include "matrix.h"
 #include "soundbank.h" // for 'sid' type.
 
@@ -15,7 +16,7 @@ class Recorder: public QObject
 
     Matrix        matrix;
     QElapsedTimer stopwatch;
-    bool          recording;
+    bool          recording {false};
 
 public:
     void       Start(void);           // Restart stopwatch and start (internally) counting time passed.
@@ -25,14 +26,14 @@ public:
 
     bool Recording(void) const { return recording; }
 
-    [[nodiscard("RECORDED MATRIX IS NOT USED")]]
-    Matrix Stop(void); // Return last mark's time and recorded matrix.
+    void Stop(void); // Return last mark's time and recorded matrix.
 
     bool   loopRecording = false;
     qint64 firstRecordingDuration = 0;
     qint64 longestRecordingDuration = 0;
 
     void setMatrix(const Matrix &newMatrix);
+    Matrix getMatrix() { return matrix; }
 
 public slots:
     void handleMatrixEnd();

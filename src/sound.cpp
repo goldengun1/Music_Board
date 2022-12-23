@@ -1,4 +1,3 @@
-#include <QDebug>
 #include "sound.h"
 
 Sound::Sound(const QUrl &source)

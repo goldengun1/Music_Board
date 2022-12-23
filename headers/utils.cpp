@@ -1,10 +1,10 @@
-#include "utlis.h"
+#include "utils.h"
 
-Utlis::Utlis()
+Utils::Utils()
 {
 
 }
-QByteArray Utlis::readJsonFromFile(QString &fileName)
+QByteArray Utils::readJsonFromFile(QString &fileName)
 {
     QFile file(fileName);
     QByteArray data = QByteArray("");

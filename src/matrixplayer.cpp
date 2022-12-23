@@ -1,11 +1,9 @@
 #include "matrixplayer.h"
 
-#include <iostream>
-
-MatrixPlayer::MatrixPlayer(std::shared_ptr<SoundBank> bank, std::shared_ptr<SoundPlayer> player, QObject *parent)
+MatrixPlayer::MatrixPlayer(std::shared_ptr<Recorder> recorder, std::shared_ptr<SoundPlayer> player, QObject *parent)
     : QObject(parent)
-    , bank(bank)
     , player(player)
+    , recorder(recorder)
 {
     playerthread = nullptr;
 }
@@ -15,19 +13,19 @@ MatrixPlayer::~MatrixPlayer()
     DeleteThread();
 }
 
-void MatrixPlayer::PlayMatrix(const Matrix &matrix) {
-    
-    if (playerthread)
-    {
-        DeleteThread();
-    }
+void MatrixPlayer::PlayMatrix() {
 
-    playerthread = new PlayerThread(&mutex, this);
-    connect(playerthread, &PlayerThread::playFinished, this, &MatrixPlayer::onPlayFinished);
-    connect(playerthread, &PlayerThread::markHit, this, &MatrixPlayer::markHit);
-    connect(playerthread,&PlayerThread::valueChanged,this,&MatrixPlayer::onValueChanged);
-    playerthread->NewMatrix(matrix);
-    playerthread->start();
+    if(recorder->firstRecordingDuration != 0){
+        if (playerthread){
+            DeleteThread();
+        }
+        playerthread = new PlayerThread(&mutex, this);
+        connect(playerthread, &PlayerThread::playFinished, this, &MatrixPlayer::onPlayFinished);
+        connect(playerthread, &PlayerThread::markHit, this, &MatrixPlayer::markHit);
+        connect(playerthread, &PlayerThread::valueChanged, this, &MatrixPlayer::onValueChanged);
+        playerthread->NewMatrix(recorder->getMatrix());
+        playerthread->start();
+    }
 }
 
 void MatrixPlayer::DeleteThread(void)
@@ -71,6 +69,9 @@ void MatrixPlayer::Pause(void)
 void MatrixPlayer::onPlayFinished() {
     qDebug("Play finished (main thread)");
     DeleteThread();
+    if (loopPlaying && recorder->firstRecordingDuration != 0){
+        PlayMatrix();
+    }
     emit matrixEnd();
 }
 

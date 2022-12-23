@@ -3,7 +3,7 @@
 #include <QThread>
 #include <QSemaphore>
 #include <QMutex>
-
+#include <QDebug>
 #include "matrix.h"
 
 class PlayerThread: public QThread {

@@ -25,8 +25,8 @@ set(PROJECT_SOURCES
         src/soundbank.h
         src/sound.h
         src/sound.cpp
-        headers/utlis.cpp
-        headers/utlis.h
+        headers/utils.cpp
+        headers/utils.h
         src/soundbutton.h
         src/soundbutton.cpp
         src/recorder.h
