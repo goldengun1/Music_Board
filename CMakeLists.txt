@@ -37,6 +37,10 @@ set(PROJECT_SOURCES
         src/matrixplayer.h
         src/playerthread.cpp
         src/playerthread.h
+        src/timeline.cpp
+        src/timeline.h
+        src/timelinemark.cpp
+        src/timelinemark.h
         src/resursi/
         src/teme/
         zvukovi.qrc

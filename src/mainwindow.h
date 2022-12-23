@@ -9,6 +9,7 @@
 #include "recorder.h"
 #include <thread>
 #include <headers/utils.h>
+#include "timeline.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -61,10 +62,12 @@ private:
     std::shared_ptr<SoundPlayer> player;
     std::unique_ptr<MatrixPlayer> matrixPlayer;
     std::shared_ptr<Recorder> recorder;
+    std::unique_ptr<Timeline> timeline;
     std::shared_ptr<SoundBank> bank;
     SoundButton *lastClickedBtn;
 
     void initButtons();
+    void initTimeline();
     void initSoundEditing();
     void initToolTips();
 };
