@@ -10,11 +10,11 @@
 ///
 class SoundPlayer: public QObject
 {
+    Q_OBJECT
     std::shared_ptr<SoundBank> bank;
 
 public:
-    SoundPlayer(std::shared_ptr<SoundBank> bank);
-    ~SoundPlayer(void);
+    SoundPlayer(std::shared_ptr<SoundBank> bank, QObject *parent);
 
     int masterVolume {100};
 

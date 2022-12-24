@@ -5,8 +5,6 @@
 #include "matrix.h"
 #include "soundbank.h" // for 'sid' type.
 
-using matrix_t = std::vector<std::pair<uint64_t, sid>>; // This should be its own Matrix class.
-
 //
 // Construct matrix with timestamps.
 //

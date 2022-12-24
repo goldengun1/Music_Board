@@ -13,12 +13,11 @@ class MatrixPlayer: public QObject {
 
 public:
     explicit MatrixPlayer(std::shared_ptr<Recorder> recorder, std::shared_ptr<SoundPlayer> player, QObject *parent = nullptr);
-    ~MatrixPlayer();
+    ~MatrixPlayer() override;
 
     void PlayMatrix();
     void Stop(void);
     void Pause(void);
-    void DeleteMatrix(void);
     bool loopPlaying = false;
 
 private:

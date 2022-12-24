@@ -1,14 +1,11 @@
 #include "soundplayer.h"
 
-SoundPlayer::SoundPlayer(std::shared_ptr<SoundBank> bank)
-    :bank(bank)
+#include <utility>
+
+SoundPlayer::SoundPlayer(std::shared_ptr<SoundBank> bank, QObject *parent = nullptr)
+    : QObject(parent)
+    , bank(std::move(bank))
 {
-
-}
-
-SoundPlayer::~SoundPlayer(void)
-{
-
 }
 
 bool

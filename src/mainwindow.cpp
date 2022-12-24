@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     , bank(std::make_shared<SoundBank>())
 {
     ui->setupUi(this);
-    player = std::make_shared<SoundPlayer>(bank);
+    player = std::make_shared<SoundPlayer>(bank, this);
     recorder = std::make_shared<Recorder>();
     matrixPlayer = std::make_unique<MatrixPlayer>(recorder, player, this);
     timeline = std::make_unique<Timeline>(bank, this);
