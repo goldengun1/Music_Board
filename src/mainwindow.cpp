@@ -344,6 +344,7 @@ void MainWindow::importMatrix() {
         recorder->firstRecordingDuration = (qint64)duration;
         recorder->longestRecordingDuration = (qint64)duration;
         recorder->setMatrix(matrix);
+        timeline->PaintMatrix(matrix);
         //NOTE: trebalo bi ili promeniti tip skladista za matrix, da ne bude std::priority_queue,
         //jer nije moguce pronaci na jednostavan nacin posledji element, ili omoguciti da se info o poslednjem unosu
         //moze naci u samoj klasi kao neki field.
