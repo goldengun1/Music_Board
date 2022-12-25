@@ -16,7 +16,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(test_matrix tst_matrix.cpp)
+add_executable(test_matrix tst_matrix.cpp ../catch_amalgamated.cpp )
 add_test(NAME test_matrix COMMAND test_matrix)
 
-target_link_libraries(test_matrix PRIVATE Qt${QT_VERSION_MAJOR}::Gui Qt${QT_VERSION_MAJOR}::Test)
+target_link_libraries(test_matrix PRIVATE Qt${QT_VERSION_MAJOR}::Gui)

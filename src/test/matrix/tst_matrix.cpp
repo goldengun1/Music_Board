@@ -1,54 +1,8 @@
-#include <QtTest>
-#include <QCoreApplication>
+#define CONFIG_CATCH_MAIN
+#include "../catch_amalgamated.hpp"
 
-// add necessary includes here
 
-class TestMatrix : public QObject
+TEST_CASE("1 je 1", "[1]" )
 {
-    Q_OBJECT
-
-public:
-    TestMatrix();
-    ~TestMatrix();
-
-private slots:
-    void initTestCase();
-    void cleanupTestCase();
-    void test_case1();
-    void test_case2();
-
-};
-
-TestMatrix::TestMatrix()
-{
-
+    REQUIRE(1 == 1);
 }
-
-TestMatrix::~TestMatrix()
-{
-
-}
-
-void TestMatrix::initTestCase()
-{
-
-}
-
-void TestMatrix::cleanupTestCase()
-{
-
-}
-
-void TestMatrix::test_case1()
-{
-    QCOMPARE(1, 1);
-}
-
-void TestMatrix::test_case2()
-{
-    QCOMPARE(1, 11);
-}
-
-QTEST_MAIN(TestMatrix)
-
-#include "tst_matrix.moc"
