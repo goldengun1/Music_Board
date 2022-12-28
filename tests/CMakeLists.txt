@@ -7,13 +7,17 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(TEST_SOURCES
-        )
+    matrix.cpp
+)
 
 set(CPP_SOURCES
         ../headers/utils.h
         ../headers/utils.cpp
         ../src/timelinemark.h
         ../src/timelinemark.cpp
+        ../src/matrix.h
+        ../src/matrix.cpp
+        catch2_main.cpp
 )
 
 add_executable(tests ${TEST_SOURCES} ../lib/catch_amalgamated.cpp ${CPP_SOURCES})
