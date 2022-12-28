@@ -10,6 +10,28 @@ Aplikacija koja nam omogućava da učitavamo, snimimo, manipulisemo i reprodukuj
     <li><a href="https://gitlab.com/mihailo.simic">Mihailo Simić 267/2018</a></li>
 </ul>
 
+## Kompilacija
+
+Za kompilaciju na Linux sistemima potrebni su sledeci paketi: `git gcc g++ cmake qtcreator qtbase5-dev qt5-qmake qtmultimedia5-dev`.
+
+Koraci za kompilaciju na Ubuntu 22.04:
+
+```sh
+sudo apt install -y git gcc g++ cmake qtcreator qtbase5-dev qt5-qmake qtmultimedia5-dev
+git clone https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2022-2023/05-muzicka-tabla
+cd 05-muzicka-tabla
+mkdir build
+cd build
+cmake ..
+make
+
+# Za pokretanje programa (u build direktorijumu):
+./05-muzicka-tabla
+
+# Za pokretanje testova (u build direktorijumu):
+./tests/tests
+```
+
 ## Napomene
 
 1. Ukoliko se radi na Windows operativnom sistemu, potrebno je u Qt Creator-u postaviti env promenljivu: `QT_MULTIMEDIA_PREFERRED_PLUGINS=windowsmediafoundation`
