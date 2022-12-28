@@ -66,5 +66,17 @@
         <file>src/resursi/zvukovi/SlimShadyBass4.wav</file>
         <file>src/resursi/zvukovi/SlimShadyBass5.wav</file>
         <file>src/resursi/zvukovi/SlimShadyDrum1.wav</file>
+        <file>src/resursi/zvukovi/A.wav</file>
+        <file>src/resursi/zvukovi/C.wav</file>
+        <file>src/resursi/zvukovi/D.wav</file>
+        <file>src/resursi/zvukovi/E.wav</file>
+        <file>src/resursi/zvukovi/F.wav</file>
+        <file>src/resursi/zvukovi/G.wav</file>
+        <file>src/resursi/zvukovi/H.wav</file>
+        <file>src/resursi/zvukovi/As.wav</file>
+        <file>src/resursi/zvukovi/Cs.wav</file>
+        <file>src/resursi/zvukovi/Ds.wav</file>
+        <file>src/resursi/zvukovi/Fs.wav</file>
+        <file>src/resursi/zvukovi/Gs.wav</file>
     </qresource>
 </RCC>

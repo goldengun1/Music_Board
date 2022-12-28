@@ -466,18 +466,31 @@ void MainWindow::on_radioPreset2_clicked()
 
 void MainWindow::on_radioPreset3_clicked()
 {
-    bank->Assign(0, QUrl("qrc:/src/resursi/zvukovi/piano1.wav"));
-    bank->Assign(1, QUrl("qrc:/src/resursi/zvukovi/piano2.wav"));
-    bank->Assign(2, QUrl("qrc:/src/resursi/zvukovi/piano3.wav"));
-    bank->Assign(3, QUrl("qrc:/src/resursi/zvukovi/piano4.wav"));
-    bank->Assign(4, QUrl("qrc:/src/resursi/zvukovi/piano5.wav"));
-    bank->Assign(5, QUrl("qrc:/src/resursi/zvukovi/piano6.wav"));
-    bank->Assign(6, QUrl("qrc:/src/resursi/zvukovi/piano7.wav"));
-    bank->Assign(7, QUrl("qrc:/src/resursi/zvukovi/piano8.wav"));
-    bank->Assign(8, QUrl("qrc:/src/resursi/zvukovi/piano9.wav"));
-    bank->Assign(9, QUrl("qrc:/src/resursi/zvukovi/piano10.wav"));
-    bank->Assign(10, QUrl("qrc:/src/resursi/zvukovi/piano11.wav"));
-    bank->Assign(11, QUrl("qrc:/src/resursi/zvukovi/piano12.wav"));
+//    bank->Assign(0, QUrl("qrc:/src/resursi/zvukovi/piano1.wav"));
+//    bank->Assign(1, QUrl("qrc:/src/resursi/zvukovi/piano2.wav"));
+//    bank->Assign(2, QUrl("qrc:/src/resursi/zvukovi/piano3.wav"));
+//    bank->Assign(3, QUrl("qrc:/src/resursi/zvukovi/piano4.wav"));
+//    bank->Assign(4, QUrl("qrc:/src/resursi/zvukovi/piano5.wav"));
+//    bank->Assign(5, QUrl("qrc:/src/resursi/zvukovi/piano6.wav"));
+//    bank->Assign(6, QUrl("qrc:/src/resursi/zvukovi/piano7.wav"));
+//    bank->Assign(7, QUrl("qrc:/src/resursi/zvukovi/piano8.wav"));
+//    bank->Assign(8, QUrl("qrc:/src/resursi/zvukovi/piano9.wav"));
+//    bank->Assign(9, QUrl("qrc:/src/resursi/zvukovi/piano10.wav"));
+//    bank->Assign(10, QUrl("qrc:/src/resursi/zvukovi/piano11.wav"));
+//    bank->Assign(11, QUrl("qrc:/src/resursi/zvukovi/piano12.wav"));
+
+      bank->Assign(0, QUrl("qrc:/src/resursi/zvukovi/C.wav"));
+      bank->Assign(1, QUrl("qrc:/src/resursi/zvukovi/Cs.wav"));
+      bank->Assign(2, QUrl("qrc:/src/resursi/zvukovi/D.wav"));
+      bank->Assign(3, QUrl("qrc:/src/resursi/zvukovi/Ds.wav"));
+      bank->Assign(4, QUrl("qrc:/src/resursi/zvukovi/E.wav"));
+      bank->Assign(5, QUrl("qrc:/src/resursi/zvukovi/F.wav"));
+      bank->Assign(6, QUrl("qrc:/src/resursi/zvukovi/Fs.wav"));
+      bank->Assign(7, QUrl("qrc:/src/resursi/zvukovi/G.wav"));
+      bank->Assign(8, QUrl("qrc:/src/resursi/zvukovi/Gs.wav"));
+      bank->Assign(9, QUrl("qrc:/src/resursi/zvukovi/A.wav"));
+      bank->Assign(10, QUrl("qrc:/src/resursi/zvukovi/As.wav"));
+      bank->Assign(11, QUrl("qrc:/src/resursi/zvukovi/H.wav"));
 }
 
 
