@@ -1,6 +1,6 @@
 #include <utility>
 #include "timelinemark.h"
-#include "headers/utils.h"
+#include "../headers/utils.h"
 #include "matrix.h"
 
 TimelineMark::TimelineMark(int track, qreal xpos, qreal w, QString text)

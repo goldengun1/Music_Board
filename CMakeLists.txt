@@ -81,6 +81,8 @@ set_target_properties(05-muzicka-tabla PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
+add_subdirectory(tests)
+
 install(TARGETS 05-muzicka-tabla
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
@@ -88,5 +90,3 @@ install(TARGETS 05-muzicka-tabla
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(05-muzicka-tabla)
 endif()
-
-add_subdirectory(${CMAKE_SOURCE_DIR}/src/test/matrix)
