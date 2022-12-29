@@ -1,3 +1,4 @@
+#include <cmath>
 #include "sound.h"
 
 Sound::Sound(const QUrl &source, QObject *parent)
