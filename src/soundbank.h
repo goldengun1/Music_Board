@@ -1,9 +1,9 @@
 #pragma once
 
+#include "sound.h"
 #include <map>
 #include <memory>
 #include <optional>
-#include "sound.h"
 
 // Sound identifier type.
 typedef uint32_t sid;
@@ -15,14 +15,17 @@ typedef uint32_t sid;
 ///
 class SoundBank
 {
-    std::map<sid, std::shared_ptr<Sound>> sound;
+	std::map<sid, std::shared_ptr<Sound>> sound;
 
-public:
-    SoundBank();
-    ~SoundBank(void);
+  public:
+	SoundBank();
+	~SoundBank(void);
 
-    sid Assign(const sid index, std::shared_ptr<Sound> sound);
-    sid Assign(const sid index, const QUrl& url);
-    void Unassign(const sid index) { return sound[index].reset(); }
-    std::optional<std::shared_ptr<Sound>> Assigned(const sid index);
+	sid Assign(const sid index, std::shared_ptr<Sound> sound);
+	sid Assign(const sid index, const QUrl &url);
+	void Unassign(const sid index)
+	{
+		return sound[index].reset();
+	}
+	std::optional<std::shared_ptr<Sound>> Assigned(const sid index);
 };

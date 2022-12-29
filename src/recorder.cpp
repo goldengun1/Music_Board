@@ -1,63 +1,61 @@
 #include "recorder.h"
 
-void
-Recorder::setMatrix(const Matrix &newMatrix)
+void Recorder::setMatrix(const Matrix &newMatrix)
 {
-    matrix = newMatrix;
+	matrix = newMatrix;
 }
 
-void
-Recorder::Start(void)
+void Recorder::Start(void)
 {
-    Rewind();
-    recording = true;
+	Rewind();
+	recording = true;
 }
 
-marktype_t
-Recorder::Mark(sid sound, marktype_t type)
+marktype_t Recorder::Mark(sid sound, marktype_t type)
 {
-    const qint64 time = stopwatch.elapsed();
+	const qint64 time = stopwatch.elapsed();
 
-    qDebug() << "Mark at " << time << ".";
-    return matrix.Append(time, type, sound);
+	qDebug() << "Mark at " << time << ".";
+	return matrix.Append(time, type, sound);
 }
 
-void
-Recorder::Rewind(void)
+void Recorder::Rewind(void)
 {
-    stopwatch.restart();
+	stopwatch.restart();
 }
 
-void
-Recorder::Stop(void)
+void Recorder::Stop(void)
 {
-    if(recording){
-        auto time = stopwatch.elapsed();
-        if(firstRecordingDuration == 0) {
-            firstRecordingDuration = time;
-            longestRecordingDuration = time;
-        }
-        else if(time > longestRecordingDuration) {
-            longestRecordingDuration = time;
-        }
-        Mark(0, MARK_REC_STOP);
-        recording = false;
-    }
+	if (recording)
+	{
+		auto time = stopwatch.elapsed();
+		if (firstRecordingDuration == 0)
+		{
+			firstRecordingDuration = time;
+			longestRecordingDuration = time;
+		}
+		else if (time > longestRecordingDuration)
+		{
+			longestRecordingDuration = time;
+		}
+		Mark(0, MARK_REC_STOP);
+		recording = false;
+	}
 }
 
 void Recorder::handleMatrixEnd()
 {
-    if(loopRecording){
-        Rewind();
-    }
+	if (loopRecording)
+	{
+		Rewind();
+	}
 }
 
-void
-Recorder::Reset(void)
+void Recorder::Reset(void)
 {
-    firstRecordingDuration = 0;
-    longestRecordingDuration = 0;
-    matrix.Clear();
-    Rewind();
-    recording = false;
+	firstRecordingDuration = 0;
+	longestRecordingDuration = 0;
+	matrix.Clear();
+	Rewind();
+	recording = false;
 }

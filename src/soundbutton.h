@@ -1,24 +1,23 @@
 #ifndef SOUNDBUTTON_H
 #define SOUNDBUTTON_H
 
-#include <QPushButton>
 #include <QMouseEvent>
+#include <QPushButton>
 
-class SoundButton : public QPushButton
+class SoundButton: public QPushButton
 {
-    Q_OBJECT
-public:
-    SoundButton(QWidget *parent = 0);
-    uint32_t id;
+	Q_OBJECT
+  public:
+	SoundButton(QWidget *parent = 0);
+	uint32_t id;
 
-private slots:
-    void mouseReleaseEvent(QMouseEvent *e);
+  private slots:
+	void mouseReleaseEvent(QMouseEvent *e);
 
-signals:
-    void rightClicked(SoundButton *button);
+  signals:
+	void rightClicked(SoundButton *button);
 
-public slots:
-
+  public slots:
 };
 
 #endif // SOUNDBUTTON_H

@@ -1,18 +1,19 @@
 #pragma once
 
-#include <QObject>
-#include <QGraphicsView>
-#include "soundbank.h"
 #include "matrix.h"
+#include "soundbank.h"
 #include "timelinemark.h"
+#include <QGraphicsView>
+#include <QObject>
 
+class Timeline: public QGraphicsScene
+{
+  public:
+	explicit Timeline(std::shared_ptr<SoundBank> &bank, QObject *parent = nullptr);
 
-class Timeline: public QGraphicsScene {
-public:
-    explicit Timeline(std::shared_ptr<SoundBank> &bank, QObject *parent = nullptr);
+  private:
+	std::shared_ptr<SoundBank> bank;
 
-private:
-    std::shared_ptr<SoundBank> bank;
-public:
-    void PaintMatrix(Matrix m);
+  public:
+	void PaintMatrix(Matrix m);
 };
