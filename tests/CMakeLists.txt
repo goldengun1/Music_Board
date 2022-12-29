@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(TEST_SOURCES
     matrix.cpp
+    test_recorder.cpp
 )
 
 set(CPP_SOURCES
@@ -17,6 +18,8 @@ set(CPP_SOURCES
         ../src/timelinemark.cpp
         ../src/matrix.h
         ../src/matrix.cpp
+        ../src/recorder.h
+        ../src/recorder.cpp
         catch2_main.cpp
 )
 

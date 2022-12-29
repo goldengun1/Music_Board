@@ -20,13 +20,13 @@ class Recorder: public QObject
 
 public:
     void       Start(void);           // Restart stopwatch and start (internally) counting time passed.
-    marktype_t Mark(sid, marktype_t); // New mark with current stopwatch time and given sound id. Return current time.
+    marktype_t Mark(sid, marktype_t); // New mark with current stopwatch time and given sound id.
     void       Rewind(void);
     void       Reset(void);
 
     bool Recording(void) const { return recording; }
 
-    void Stop(void); // Return last mark's time and recorded matrix.
+    void Stop(void);
 
     bool   loopRecording = false;
     qint64 firstRecordingDuration = 0;
