@@ -21,8 +21,13 @@ public:
     SoundBank();
     ~SoundBank(void);
 
+    /// Assigns the sound to the slot given by index
     sid Assign(const sid index, std::shared_ptr<Sound> sound);
     sid Assign(const sid index, const QUrl& url);
+
+    // Unassings the sound assigned to slot given by index
     void Unassign(const sid index) { return sound[index].reset(); }
+
+    // Returns a sound value that is assigned to the given index.
     std::optional<std::shared_ptr<Sound>> Assigned(const sid index);
 };
