@@ -1,0 +1,10 @@
+# Format Style Options - Created with Clang Power Tools
+---
+BasedOnStyle: Microsoft
+BreakBeforeBraces: Allman
+BreakBeforeTernaryOperators: false
+SpaceBeforeCtorInitializerColon: false
+SpaceBeforeInheritanceColon: false
+SpaceBeforeRangeBasedForLoopColon: false
+UseTab: ForIndentation
+...
