@@ -15,7 +15,7 @@ SoundBank::Assign(const sid index, std::shared_ptr<Sound> sound)
 {
     auto it = this->sound.find(index);
 
-    if (it != this->sound.end())
+    if (it != this->sound.end() && it->second != nullptr)
     {
         it->second->Stop();
     }
@@ -28,7 +28,7 @@ SoundBank::Assign(const sid index, const QUrl& url)
 {
     auto it = this->sound.find(index);
 
-    if (it != this->sound.end())
+    if (it != this->sound.end() && it->second != nullptr)
     {
         it->second->Stop();
     }
