@@ -2,7 +2,6 @@
 
 #include <QGraphicsItem>
 #include <QPainter>
-#include "sound.h"
 
 class TimelineMark: public QGraphicsItem {
 public:
@@ -13,6 +12,9 @@ public:
 
     [[nodiscard]] QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+
+    qreal getW() const;
+    int getTrack() const;
 
 private:
     QColor color;

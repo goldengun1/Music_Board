@@ -11,6 +11,7 @@ set(TEST_SOURCES
         test_recorder.cpp
         matrix.cpp
         soundbank.cpp
+        test_timelinemark.cpp
 )
 
 set(CPP_SOURCES

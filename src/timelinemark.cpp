@@ -1,15 +1,14 @@
 #include <utility>
 #include "timelinemark.h"
 #include "../headers/utils.h"
-#include "matrix.h"
 
 TimelineMark::TimelineMark(int track, qreal xpos, qreal w, QString text)
     : QGraphicsItem()
     , color{Utils::randomColor()}
     , text{std::move(text)}
     , w{w}
-    , track{track}
-    , xpos{xpos} {
+    , xpos{xpos}
+    , track{track}{
     this->setPos(xpos, track * Utils::TRACK_HEIGHT);
 }
 
@@ -42,4 +41,14 @@ void TimelineMark::IncreaseTrack() {
 
 void TimelineMark::SetWidth(qreal width) {
     this->w = width;
+}
+
+qreal TimelineMark::getW() const
+{
+    return this->w;
+}
+
+int TimelineMark::getTrack() const
+{
+    return this->track;
 }
