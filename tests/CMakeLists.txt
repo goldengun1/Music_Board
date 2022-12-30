@@ -12,6 +12,7 @@ set(TEST_SOURCES
         matrix.cpp
         soundbank.cpp
         test_timelinemark.cpp
+        test_sound.cpp
 )
 
 set(CPP_SOURCES
@@ -27,6 +28,7 @@ set(CPP_SOURCES
         ../src/soundbank.cpp
         ../src/sound.h
         ../src/sound.cpp
+
         catch2_main.cpp
 )
 
