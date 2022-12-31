@@ -15,7 +15,7 @@ public:
     explicit PlayerThread(QMutex *mutex, QObject *parent = nullptr);
     ~PlayerThread(void) { }
 
-    void Pause(void) { pause = true; pausetime.restart(); pausetime.start(); }
+    void Pause(void)  { pause = true;  pausetime.start(); }
 	void Resume(void) { pause = false; pausetime_accumulated += pausetime.elapsed(); }
     void NewMatrix(const Matrix& matrix) { this->matrix = matrix; }
 
