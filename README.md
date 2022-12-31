@@ -77,3 +77,12 @@ rem 05-muzicka-tabla.zip se nalazi u direktorijumu iznad korena projekta.
 ## Napomene
 
 1. Ukoliko se radi na Windows operativnom sistemu, potrebno je u Qt Creator-u postaviti env promenljivu: `QT_MULTIMEDIA_PREFERRED_PLUGINS=windowsmediafoundation`
+
+# Pregled
+
+## Demo video: [Muzicka Tabla](https://youtu.be/AGG2Z7ID35c)
+
+## Pictures:
+![1](https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2022-2023/05-muzicka-tabla/-/blob/main/demo/demo_pic1.png)
+![2](https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2022-2023/05-muzicka-tabla/-/blob/main/demo/demo_pic2.png)
+![3](https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2022-2023/05-muzicka-tabla/-/blob/main/demo/demo_pic3.png)
