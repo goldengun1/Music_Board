@@ -1,3 +1,4 @@
+#include <array>
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
@@ -353,71 +354,27 @@ void MainWindow::importMatrix() {
 
 void MainWindow::initButtons()
 {
-    ui->pbQ->id = 0;
-    ui->pbW->id = 1;
-    ui->pbE->id = 2;
-    ui->pbR->id = 3;
+    std::array<SoundButton *, 12> sb = { ui->pbQ, ui->pbW, ui->pbE, ui->pbR, ui->pbA, ui->pbS, ui->pbD, ui->pbF, ui->pbZ, ui->pbX, ui->pbC, ui->pbV };
 
-    ui->pbA->id = 4;
-    ui->pbS->id = 5;
-    ui->pbD->id = 6;
-    ui->pbF->id = 7;
-
-    ui->pbZ->id = 8;
-    ui->pbX->id = 9;
-    ui->pbC->id = 10;
-    ui->pbV->id = 11;
-
-    connect(ui->pbQ, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
-    connect(ui->pbW, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
-    connect(ui->pbE, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
-    connect(ui->pbR, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
-    connect(ui->pbA, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
-    connect(ui->pbS, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
-    connect(ui->pbD, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
-    connect(ui->pbF, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
-    connect(ui->pbZ, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
-    connect(ui->pbX, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
-    connect(ui->pbC, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
-    connect(ui->pbV, &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
-
-    connect(ui->pbQ, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
-    connect(ui->pbW, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
-    connect(ui->pbE, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
-    connect(ui->pbR, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
-    connect(ui->pbA, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
-    connect(ui->pbS, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
-    connect(ui->pbD, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
-    connect(ui->pbF, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
-    connect(ui->pbZ, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
-    connect(ui->pbX, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
-    connect(ui->pbC, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
-    connect(ui->pbV, &SoundButton::pressed, this, &MainWindow::handleSoundButtonPress);
-
-    connect(ui->pbQ, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
-    connect(ui->pbW, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
-    connect(ui->pbE, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
-    connect(ui->pbR, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
-    connect(ui->pbA, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
-    connect(ui->pbS, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
-    connect(ui->pbD, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
-    connect(ui->pbF, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
-    connect(ui->pbZ, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
-    connect(ui->pbX, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
-    connect(ui->pbC, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
-    connect(ui->pbV, &SoundButton::released, this, &MainWindow::handleSoundButtonRelease);
+    for (size_t i = 0; i < sb.size(); i++)
+    {
+        sb.at(i)->id = (uint32_t) i;
+        connect(sb.at(i), &SoundButton::rightClicked, this, &MainWindow::openFileDialog);
+        connect(sb.at(i), &SoundButton::pressed,      this, &MainWindow::handleSoundButtonPress);
+        connect(sb.at(i), &SoundButton::released,     this, &MainWindow::handleSoundButtonRelease);
+    }
 
     //Connect buttons for recording
     connect(ui->pbRecord, &QPushButton::clicked, this, &MainWindow::recordStart);
-    connect(ui->pbPlay, &QPushButton::clicked, this, &MainWindow::recordPlay);
-    connect(ui->pbPause, &QPushButton::clicked, this, &MainWindow::recordPause);
-    connect(ui->pbStop, &QPushButton::clicked, this, &MainWindow::recordStop);
+    connect(ui->pbPlay,   &QPushButton::clicked, this, &MainWindow::recordPlay);
+    connect(ui->pbPause,  &QPushButton::clicked, this, &MainWindow::recordPause);
+    connect(ui->pbStop,   &QPushButton::clicked, this, &MainWindow::recordStop);
     connect(ui->pbDelete, &QPushButton::clicked, this, &MainWindow::recordDelete);
-    connect(ui->pbLoop, &QPushButton::toggled, this, &MainWindow::loopToggle);
+    connect(ui->pbLoop,   &QPushButton::toggled, this, &MainWindow::loopToggle);
 
     //Connect recording import/export buttons
     connect(ui->pbSaveButton, &QPushButton::clicked, this, &MainWindow::saveMatrix);
-    connect(ui->pbImport, &QPushButton::clicked, this, &MainWindow::importMatrix);
+    connect(ui->pbImport,     &QPushButton::clicked, this, &MainWindow::importMatrix);
 
 }
 
@@ -448,7 +405,6 @@ void MainWindow::on_radioPreset1_toggled(bool checked)
 
 void MainWindow::on_radioPreset2_clicked()
 {
-
     bank->Assign(0, QUrl("qrc:/src/resursi/zvukovi/Kick.wav"));
     bank->Assign(1, QUrl("qrc:/src/resursi/zvukovi/Ks1.wav"));
     bank->Assign(2, QUrl("qrc:/src/resursi/zvukovi/Cinela1.wav"));
