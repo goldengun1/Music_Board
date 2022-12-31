@@ -16,7 +16,7 @@ Aplikacija koja nam omogućava da učitavamo, snimimo, manipulisemo i reprodukuj
 
 Za kompilaciju na Linux sistemima potrebni su sledeci paketi: `git gcc g++ cmake qtcreator qtbase5-dev qt5-qmake qtmultimedia5-dev`.
 
-Koraci za kompilaciju na Ubuntu 22.04:
+##### Koraci za kompilaciju na Ubuntu 22.04:
 
 ```sh
 sudo apt install -y git gcc g++ cmake qtcreator qtbase5-dev qt5-qmake qtmultimedia5-dev
