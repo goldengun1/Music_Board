@@ -83,6 +83,6 @@ rem 05-muzicka-tabla.zip se nalazi u direktorijumu iznad korena projekta.
 ## Demo video: [Muzicka Tabla](https://youtu.be/AGG2Z7ID35c)
 
 ## Pictures:
-![1](https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2022-2023/05-muzicka-tabla/-/blob/main/demo/demo_pic1.png)
-![2](https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2022-2023/05-muzicka-tabla/-/blob/main/demo/demo_pic2.png)
-![3](https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2022-2023/05-muzicka-tabla/-/blob/main/demo/demo_pic3.png)
+![1](https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2022-2023/05-muzicka-tabla/-/blob/ef4b9fddc4f777db691c5ce479a2e0c6f4f77c38/demo/demo_pic1.png)
+![2](https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2022-2023/05-muzicka-tabla/-/blob/ef4b9fddc4f777db691c5ce479a2e0c6f4f77c38/demo/demo_pic2.png)
+![3](https://gitlab.com/matf-bg-ac-rs/course-rs/projects-2022-2023/05-muzicka-tabla/-/blob/ef4b9fddc4f777db691c5ce479a2e0c6f4f77c38/demo/demo_pic3.png)
